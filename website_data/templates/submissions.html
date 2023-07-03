@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submissions</title>
+    <link rel="stylesheet" href="../static/style.css">
+
+    <style>
+        .box {
+            font-size: 20px;
+            background-color: lightcyan;
+            text-align: center;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/rules">Rules</a></li>
+            <li><a href="/submit">Submit</a></li>
+            <li><a href="/awards">Awards</a></li>
+            <li><a href="/submissions">Submissions</a></li>
+            <li><a href="/process">Our Process</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+    </nav>
+
+    <h1>Student Submissions</h1>
+
+    <div id="root" style="display: none;">{{submissions}}</div>
+
+    <div id="submissions"></div>
+
+    <script>
+        const submissions = document.querySelector("#root").innerText.replaceAll("<QuerySet [", "").replaceAll("<CreateUserModel: ", "").replaceAll(">,", "").replaceAll(">]>", "").replaceAll("| ", "|").split("|").slice(0, -1)
+        
+        submissions.forEach( submission => {
+            const p = document.createElement("p")
+            p.classList.add("box")
+            p.append(submission)
+            document.querySelector("#submissions").append(p)
+        })
+    </script>
+</body>
+
+</html>
