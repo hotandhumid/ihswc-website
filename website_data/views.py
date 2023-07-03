@@ -4,7 +4,7 @@ from .models import CreateUserModel
 # Create your views here.
 
 
-def submit(request):
+def form(request):
     if request.method == "POST":
 
         form = CreateUserForm(request.POST)
@@ -66,7 +66,10 @@ def submit(request):
     else:
         form = CreateUserForm()
 
-    return render(request, "submit.html", {"form": form})
+    return render(request, "form.html", {"form": form})
+
+def submit(request):
+    return render(request, "submit.html")
 
 def awards(request):
     return render(request, "awards.html")

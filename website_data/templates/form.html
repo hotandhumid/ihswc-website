@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit <Form></Form></title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        h1 {
+            font-size: 100px;
+        }
+
+        #form {
+            margin: 50px;
+        }
+
+        label {
+            text-transform:capitalize;
+        }
+
+        input {
+            height: 15px;
+            width: 150px;
+            padding: 12px;
+            margin: 8px;
+            box-shadow: 1 1 5;
+            border-radius: 5%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Submission Form</h1>
+    <div id="form">
+        <form action="/submit/" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
