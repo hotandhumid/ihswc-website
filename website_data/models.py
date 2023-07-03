@@ -52,7 +52,7 @@ class CreateUserModel(models.Model):
 
 
     def __str__(self):
-        return f"{str(self.firstname).capitalize()} {str(self.lastname).capitalize()}'s Submission"
+        return f"{str(self.firstname).capitalize()} {str(self.lastname).capitalize()}'s Submission|"
 
     class Meta:
         verbose_name = "Student Submission"

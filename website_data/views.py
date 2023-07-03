@@ -87,3 +87,7 @@ def rules(request):
 
 def awards(request):
     return render(request, "awards.html")
+
+
+def submissions(request):
+    return render(request, "submissions.html", {"submissions": CreateUserModel.objects.all()})

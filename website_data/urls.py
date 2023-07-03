@@ -9,5 +9,6 @@ urlpatterns = [
     path('index/', views.index),
     path('process/', views.process),
     path('rules/', views.rules),
+    path('submissions/', views.submissions),
 ]
 
