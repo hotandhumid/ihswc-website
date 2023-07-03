@@ -6,4 +6,4 @@ urlpatterns = [
     path('submit/', views.submit),
     path('awards/', views.awards)
 ]
-
+fads
