@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 
 class CreateUserModel(models.Model):
+
     firstname = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
@@ -48,3 +49,10 @@ class CreateUserModel(models.Model):
 
     student_checkbox = models.BooleanField()
     teacher_checkbox = models.BooleanField()
+
+
+    def __str__(self):
+        return f"{str(self.firstname).capitalize()} {str(self.lastname).capitalize()}'s Submission"
+
+    class Meta:
+        verbose_name = "Student Submission"
