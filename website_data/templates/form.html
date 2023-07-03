@@ -1,37 +1,55 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submit <Form></Form></title>
+    <title>Submit Form</title>
+    <link rel="stylesheet" href="../static/style.css" />
     <style>
         body {
-            background-color: aliceblue;
-        }
-
-        h1 {
-            font-size: 100px;
+            margin: 0;
         }
 
         #form {
-            margin: 50px;
+            margin: 25px;
         }
 
         label {
-            text-transform:capitalize;
+            font-size: 20px;
+            text-transform: capitalize;
         }
 
-        input {
+        input[type="text"] {
             height: 15px;
             width: 150px;
             padding: 12px;
             margin: 8px;
             box-shadow: 1 1 5;
-            border-radius: 5%;
+            border-radius: 10px;
+            border: 2px solid green;
+            font-size: 18px;
+        }
+
+        .name {
+            display: flex;
+            gap: 20px;
         }
     </style>
 </head>
+
 <body>
+    <nav>
+        <ul>
+            <li><a href="/index">Home</a></li>
+            <li><a href="/rules">Rules</a></li>
+            <li><a href="/submit">Submit</a></li>
+            <li><a href="/awards">Awards</a></li>
+            <li><a href="/process">Our Process</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+    </nav>
     <h1 style="text-align: center;">Submission Form</h1>
     <div id="form">
         <form action="/submit/" method="post">
@@ -40,5 +58,19 @@
             <button type="submit">Submit</button>
         </form>
     </div>
+
+    <script>
+        document.querySelector("#id_firstname").parentElement.classList.add("firstname")
+        document.querySelector("#id_lastname").parentElement.classList.add("lastname")
+
+        const div = document.createElement("div")
+        div.classList.add("name")
+
+        document.querySelector("form").prepend(div)
+
+        document.querySelector(".name").append(document.querySelector(".firstname"))
+        document.querySelector(".name").append(document.querySelector(".lastname"))
+    </script>
 </body>
+
 </html>

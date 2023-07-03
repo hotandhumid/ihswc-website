@@ -3,8 +3,11 @@ from . import views
 from django.urls import path
 
 urlpatterns = [
-    path('form/', views.form, name="form"),
-    path('submit/', views.submit),
-    path('awards/', views.awards)
+    path('about/', views.about),
+    path('awards/', views.awards),
+    path('submit/', views.form, name="form"),
+    path('index/', views.index),
+    path('process/', views.process),
+    path('rules/', views.rules),
 ]
 
