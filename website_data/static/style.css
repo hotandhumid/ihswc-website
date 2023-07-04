@@ -1,5 +1,14 @@
+
+/* 
+#F7FBFC
+#D6E6F2
+#B9D7EA
+#769FCD
+*/
+
 body {
     margin: 0;
+    background-color: #F7FBFC;
 }
 
 h1 {
@@ -30,7 +39,7 @@ nav ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #769FCD;
 }
 
 nav ul li {
@@ -46,5 +55,5 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #111;
+    background-color: #31476c5e;
 }

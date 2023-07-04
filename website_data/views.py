@@ -1,7 +1,24 @@
 from django.shortcuts import render, redirect
-from .forms import CreateUserForm
-from .models import CreateUserModel
+from .forms import CreateUserForm, TestFileForm
+from .models import CreateUserModel, TestFileModel
 # Create your views here.
+
+def test(request):
+    if request.method == "POST":
+
+        form = TestFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            f = TestFileModel(file=request.FILES['file'])
+            f.save()
+    else:
+        form = TestFileForm()
+
+    return render(request, "test.html", {"form": form})
+
+
+def send_to_home(request):
+    return redirect("/index")
 
 
 def about(request):
@@ -67,9 +84,6 @@ def form(request):
                 word_count5=cd["word_count5"],
                 pdf_file5=cd["pdf_file5"],
 
-
-                student_checkbox=cd["student_checkbox"],
-                teacher_checkbox=cd["teacher_checkbox"],
             )
 
             f.save()
@@ -90,4 +104,4 @@ def awards(request):
 
 
 def submissions(request):
-    return render(request, "submissions.html", {"submissions": CreateUserModel.objects.all()})
+    return render(request, "submissions.html", {"submissions": list(CreateUserModel.objects.all().values())})

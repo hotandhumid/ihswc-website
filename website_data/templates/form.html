@@ -16,6 +16,15 @@
             margin: 25px;
         }
 
+        form {
+            margin: 0 auto;
+            display: block;
+            width: 814px;
+            background-color: white;
+            border: 2px solid black;
+            padding: 25px;
+        }
+
         label {
             font-size: 20px;
             text-transform: capitalize;
@@ -28,13 +37,50 @@
             margin: 8px;
             box-shadow: 1 1 5;
             border-radius: 10px;
-            border: 2px solid green;
+            border: 2px solid rgba(48, 48, 48, 0.649);
             font-size: 18px;
         }
 
-        .name {
+        input[type="file"] {
+            display: none;
+        }
+        
+        #group8 {
+            border: 1px solid #ccc;
+            display: flex;
+            padding: 6px 12px;
+            flex-wrap: wrap;
+            cursor: pointer;
+            width: 162px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #group8 * {
+            margin: 5px !important;
+            cursor: pointer;
+        }
+
+        select {
+            margin: 5px;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        .group {
             display: flex;
             gap: 20px;
+        }
+
+        button {
+            width: 100px;
+            height: 50px;
+            background-color: #99DBF5;
+            color: white;
+            border-radius: 10px;
+            display: block;
+            margin: 10px auto;
         }
     </style>
 </head>
@@ -53,24 +99,44 @@
     </nav>
     <h1 style="text-align: center;">Submission Form</h1>
     <div id="form">
+
         <form action="/submit/" method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit">Submit</button>
         </form>
+
+        <form style="display: none;">
+            {{form.as_p}}
+        </form>
+
     </div>
 
     <script>
-        document.querySelector("#id_firstname").parentElement.classList.add("firstname")
-        document.querySelector("#id_lastname").parentElement.classList.add("lastname")
+        function makeGroup(ids, count) {
+            const div = document.createElement("div")
+            div.classList.add("group")
+            div.setAttribute("id", `group${count}`)
+            document.querySelector("form").append(div)
 
-        const div = document.createElement("div")
-        div.classList.add("name")
+            const group = document.querySelector(`#group${count}`)
+            
+            ids.forEach( id => {
+                group.append(document.querySelector(`#id_${id}`).parentElement)
+            })
+        }
+        
+        makeGroup(["firstname", "lastname"], 1)
+        makeGroup(["email", "phone_number"], 2)
+        makeGroup(["country", "city", "zipcode"], 3)
+        makeGroup(["grade_level", "birthday_month"], 4)
+        makeGroup(["school_name", "school_address"], 5)
+        makeGroup(["parent_firstname", "parent_lastname"], 6)
+        makeGroup(["parent_email", "parent_phone_number"], 7)
+        makeGroup(["pdf_id"], 8)
 
-        document.querySelector("form").prepend(div)
-
-        document.querySelector(".name").append(document.querySelector(".firstname"))
-        document.querySelector(".name").append(document.querySelector(".lastname"))
+        button = document.createElement("button")
+        button.setAttribute("type", "submit")
+        button.innerText = "Submit"
+        document.querySelector("form").append(button)
     </script>
 </body>
 
