@@ -12,5 +12,14 @@
         {{form}}
         <button type="submit">Submit</button>
     </form>
+
+
+    <script>
+        function getFileData(myFile){
+            var file = myFile.files[0];  
+            var filename = file.name;
+            console.log(filename)
+        }
+    </script>
 </body>
 </html>

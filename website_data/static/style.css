@@ -58,3 +58,13 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #31476c5e;
 }
+
+footer {
+    background-color: rgb(74, 74, 74);
+    color: rgba(255, 255, 255, 0.88);
+    height: 150px;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

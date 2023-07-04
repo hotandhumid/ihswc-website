@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Form</title>
     <link rel="stylesheet" href="../static/style.css" />
+    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
     <style>
         body {
             margin: 0;
@@ -56,7 +57,7 @@
             border: 2px solid black;
             padding: 6px 12px;
             cursor: pointer;
-            width: 202px;
+            width: 214px;
             height: 62px;
             border-radius: 5px;
             text-align: center;
@@ -121,6 +122,15 @@
 
         .hide {
             visibility: hidden;
+        }
+
+        .file-label {
+            font-size: 25px;
+            margin: 25px !important;
+            background-color: color(srgb 0.855 0.855 0.855);
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid black;
         }
     </style>
 </head>
@@ -238,17 +248,20 @@
 
     </div>
 
-    <h3>Check out our Instagram!</h3>
 
-    <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
-        <img src="../static/instagram_logo.png">
-    </a>
+    <footer>
+        <h3>Check out our Instagram!</h3>
 
-    <h3>©2023 by International High School Writing Competition</h3>
+        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+            <img src="../static/instagram_logo.png">
+        </a>
+
+        <h3>©2023 by International High School Writing Competition</h3>
+    </footer>
 
     <script>
-        document.querySelector("label[for='id_pdf_id']").innerText = "Upload Driver License"
 
+        // Function for moving inputs under specified group and page
         function makeGroup(ids, count, page) {
             const div = document.createElement("div")
             div.classList.add("group")
@@ -296,11 +309,13 @@
         makeGroup(["word_count5"], 23, 6)
         makeGroup(["pdf_file5"], 24, 6)
 
+        // Appends submit button on page 6
         button = document.createElement("button")
         button.setAttribute("type", "submit")
         button.innerText = "Submit"
         document.querySelector("#page6").append(button)
 
+        // Adding functions to next and back buttons
         next = document.querySelector("#next")
         back = document.querySelector("#back")
 
@@ -338,9 +353,34 @@
             }
         })
 
+        // Adding a class to input type files
         document.querySelectorAll("input[type='file']").forEach(i => {
             i.parentElement.parentElement.classList.add("file-style")
         })
+
+
+        // Changes label for file uploads
+        document.querySelector("label[for='id_pdf_id']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Driver License'
+        document.querySelector("label[for='id_pdf_file1']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1'
+        document.querySelector("label[for='id_pdf_file2']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2'
+        document.querySelector("label[for='id_pdf_file3']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3'
+        document.querySelector("label[for='id_pdf_file4']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4'
+        document.querySelector("label[for='id_pdf_file5']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5'
+
+        
+        // Adding a function for onchange event to input type files
+        function getFileData(d){
+            console.log(d)
+            var file = d.files[0];  
+            var filename = file.name;
+            d.parentElement.parentElement.style.width = "auto"
+
+            d.previousElementSibling.innerText = filename
+            d.previousElementSibling.innerHTML += '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>'
+        }
+
+        
+
     </script>
 </body>
 
