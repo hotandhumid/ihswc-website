@@ -1,6 +1,12 @@
 
 from django import forms
+from datetime import date
 
+
+class TestFileForm(forms.Form):
+    file = forms.FileField()
+
+    
 class CreateUserForm(forms.Form):
     firstname = forms.CharField(required=False, label="first name")
     lastname = forms.CharField(required=False, label="last name")
@@ -10,7 +16,7 @@ class CreateUserForm(forms.Form):
     city = forms.CharField(required=False, label="city")
     zipcode = forms.CharField(required=False, label="zipcode")
     grade_level = forms.CharField(required=False, label="grade level")
-    birthday = forms.DateField(required=False, label="birthday", widget=forms.SelectDateWidget())
+    birthday = forms.DateField(required=False, initial=date.today(),label="birthday", widget=forms.SelectDateWidget(years=range(1970, int(date.today().strftime("%Y")) + 1)))
     school_name = forms.CharField(required=False, label="school name")
     school_address = forms.CharField(required=False, label="school address")
     pdf_id = forms.FileField(required=False, label="pdf id")
@@ -44,7 +50,4 @@ class CreateUserForm(forms.Form):
     word_count5 = forms.CharField(required=False, label="word count 5")
     pdf_file5 = forms.FileField(required=False, label="pdf file 5")
 
-
-    student_checkbox = forms.BooleanField()
-    teacher_checkbox = forms.BooleanField()
 

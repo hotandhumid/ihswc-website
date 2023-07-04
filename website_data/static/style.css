@@ -1,0 +1,59 @@
+
+/* 
+#F7FBFC
+#D6E6F2
+#B9D7EA
+#769FCD
+*/
+
+body {
+    margin: 0;
+    background-color: #F7FBFC;
+}
+
+h1 {
+    margin: 25px;
+    margin-bottom: 50px;
+}
+
+h2 {
+    margin: 25px;
+}
+
+h3 {
+    margin: 25px;
+}
+
+p {
+    margin: 25px;
+}
+
+nav {
+    height: 60px;
+    width: 100%;
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #769FCD;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    background-color: #31476c5e;
+}
