@@ -4,15 +4,15 @@ from .models import CreateUserModel, TestFileModel
 # Create your views here.
 
 def send_to_home(request):
-    return redirect("/index")
+    return redirect("/home")
 
 
 def about(request):
     return render(request, "about.html")
 
 
-def index(request):
-    return render(request, "index.html")
+def home(request):
+    return render(request, "home.html")
 
 
 def process(request):
