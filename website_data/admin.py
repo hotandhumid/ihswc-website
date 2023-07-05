@@ -4,4 +4,4 @@ from .models import CreateUserModel, TestFileModel
 # Register your models here.
 
 admin.site.register(CreateUserModel)
-admin.site.register(TestFileModel)
+# admin.site.register(TestFileModel)

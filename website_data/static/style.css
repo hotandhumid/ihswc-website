@@ -9,9 +9,14 @@
 body {
     margin: 0;
     background-color: #F7FBFC;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
 }
 
 h1 {
+    text-align: center;
+    font-size: 40px;
     margin: 25px;
     margin-bottom: 50px;
 }
@@ -29,12 +34,18 @@ p {
 }
 
 nav {
-    height: 60px;
+    height: 50px;
     width: 100%;
     margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    background-color: #769fcd;
 }
 
 nav ul {
+    height: 50px;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -50,10 +61,24 @@ nav ul li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 17px 23px;
     text-decoration: none;
 }
 
-nav ul li a:hover {
+nav ul li:hover {
     background-color: #31476c5e;
+}
+
+footer {
+    background-color: rgb(74, 74, 74);
+    color: rgba(255, 255, 255, 0.88);
+    height: 150px;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h3 {
+    display: flex;
 }

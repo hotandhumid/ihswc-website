@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+
+    <style>
+        #root {
+            display: none;
+        }
+
+        #submission-box {
+            display: flex;
+        }
+
+        .submission {
+            width: 400px;
+            margin: 50px;
+            background-color: lightblue;
+            padding: 30px;
+            border: 2px solid black;
+            border-radius: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="left">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/submit">Submit</a></li>
+            <li><a href="/awards">Awards</a></li>
+            <li><a href="/process">Our Process</a></li>
+            <li><a href="/about">About Us</a></li>
+        </ul>
+    </nav>
+      
+    <h1>Admin Page</h1>
+
+    <div id="root">{{submissions}}</div>
+
+    <div id="submission-box"></div>
+
+    <script>
+        q = new URLSearchParams(location.search)
+        if (q.get("login") != "success") {
+            location.href = "/sign-in"
+        }
+    </script>
+    <script>
+        function makeLink(href, n, div, obj) {
+            a = document.createElement("a")
+            a.setAttribute("href", `/media/${href}`)
+            a.setAttribute("target", "_blank")
+
+            // p = document.createElement("p")
+            // p.innerText = `Title: ${obj['title' + n]}`
+            a.innerText = `Submission: ${n}, Title: ${obj['title' + n]}, Category: ${obj['category' + n]}, Word Count: ${obj['word_count' + n]}`
+            div.append(a)
+        }
+
+        pdfs = ['pdf_file1', 'pdf_file2', 'pdf_file3', 'pdf_file4', 'pdf_file5']
+
+        submissions = JSON.parse(document.querySelector("#root").innerText.replaceAll("'", "\"").replaceAll("datetime", "\"datetime").replaceAll(")", ")\""))
+
+        submissions.forEach( s => {
+            div = document.createElement("div")
+            div.classList.add("submission")
+            div.innerHTML = `<p style="text-transform: capitalize; font-size: 30px;">${s['firstname']} ${s['lastname']}</p>`
+            
+            pdfs.forEach( pdf => {
+                if (s[pdf] == "") {
+                    console.log("empty")
+                } else {
+                    console.log(s[pdf])
+                    makeLink(s[pdf], pdf.slice(-1), div, s)
+                }
+            })
+            
+            document.querySelector("#submission-box").append(div)
+
+        })
+    </script>
+</body>
+
+</html>

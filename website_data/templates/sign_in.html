@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+
+    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/style.css">
+
+    <style>
+        body {
+            background-color: rgb(247, 247, 247);
+            margin: 0px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .box {
+            height: 600px;
+            width: 600px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 10px;
+            box-shadow: 1px 1px 5px;
+        }
+
+        h1 {
+            margin-top: 70px;
+            margin-left: 70px;
+        }
+
+        i {
+            margin-left: 20px;
+        }
+
+        input {
+            margin-left: 70px;
+            margin-top: 30px;
+            width: 350px;
+            height: 40px;
+            border-radius: 10px;
+            border: 2px solid rgb(126, 126, 126);
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        input:focus {
+            border: 2px solid rgb(113, 178, 255);
+        }
+
+        button {
+            height: 50px;
+            width: 150px;
+            font-size: 15px;
+            border-radius: 10px;
+            border: none;
+            color: white;
+            background-color: rgb(66, 146, 255);
+            display: block;
+            margin: 50px auto;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(66, 124, 206);
+        }
+
+        img {
+            position: absolute;
+            z-index: -1;
+            width: 577px;
+            top: 31px;
+            height: 562px;
+            right: 447px;
+            transform: rotateZ(277deg);
+        }
+
+        #error {
+            color: rgb(233, 104, 5);
+        }
+    </style>
+</head>
+<body>
+
+
+    <img src="https://www.pngitem.com/pimgs/m/272-2728198_transparent-banner-shape-clipart-cool-shapes-png-png.png" >
+    <div class="box">
+        <h1>Sign In<i class="fa-solid fa-right-to-bracket"></i></h1>
+        <input type="text" name="username" id="username" placeholder="Username">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <button type="submit">Login</button>
+        <p id="error"></p>
+    </div>
+
+    <script>
+        inp = document.querySelector("#password")
+        inp.addEventListener("keypress", e => {
+            if (e.key === "Enter") {
+                if (username.value == "admin" && password.value == "12345") {
+                location.href = "/admin-page"
+                } else {
+                    p = document.querySelector("#error")
+                    p.innerText = "Incorrect username or password"
+                }
+            }
+        })
+        
+        button = document.querySelector("button")
+
+        button.addEventListener("click", function() {
+            username = document.querySelector("#username")
+            password = document.querySelector("#password")
+
+            if (username.value == "admin" && password.value == "12345") {
+                location.href = "/admin-page?login=success"
+            } else {
+                p = document.querySelector("#error")
+                p.innerText = "Incorrect username or password"
+            }
+        })
+    </script>
+</body>
+</html>
