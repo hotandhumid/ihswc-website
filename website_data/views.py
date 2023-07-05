@@ -3,6 +3,15 @@ from .forms import CreateUserForm, TestFileForm
 from .models import CreateUserModel, TestFileModel
 # Create your views here.
 
+
+def admin_page(request):
+    return render(request, "admin_page.html", {"submissions": list(CreateUserModel.objects.all().values())})
+
+
+def sign_in(request):
+    return render(request, "sign_in.html")
+
+
 def send_to_home(request):
     return redirect("/home")
 

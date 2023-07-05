@@ -10,8 +10,10 @@
       src="https://kit.fontawesome.com/65a259d37d.js"
       crossorigin="anonymous"
     ></script>
-    <script src="../static/smooth_scroll.js"></script>
     <style>
+      html {
+        scroll-behavior: smooth;
+      }
       body {
         margin: 0;
       }
@@ -141,6 +143,24 @@
         text-align: center;
         color: #ff3200;
       }
+
+      .form-link {
+        color: black !important;
+        margin: 200px 0 0 25px;
+        text-decoration: none;
+        background-color: #00c527;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+
+      .form-link:visited {
+        color: inherit;
+      }
+
+      .form-link:hover {
+        background-color: #00d72b;
+      }
     </style>
   </head>
 
@@ -148,17 +168,18 @@
     <nav>
       <ul class="left">
         <li><a href="/home">Home</a></li>
-        <li><a href="/submit#submission-form">Submit</a></li>
+        <li><a href="/submit">Submit</a></li>
         <li><a href="/awards">Awards</a></li>
         <li><a href="/process">Our Process</a></li>
         <li><a href="/about">About Us</a></li>
       </ul>
       <ul class="right">
-        <li><a href="/admin">Sign In</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
       </ul>
     </nav>
     <h1>International High School Writing Contest</h1>
-    <h1>Submission</h1>
+    <h1>Submit Your Entries</h1>
+    <a href="#submission-form" class="form-link">Submission Form <i class="fa-solid fa-down-long"></i></a>
     <h2>General Rules:</h2>
     <ul>
       <li>Submissions must be primarily in English.</li>
@@ -258,11 +279,6 @@
     </footer>
 
     <script>
-      document.querySelector('a[href="#submission-form"]').addEventListener("click", function (e) {
-          e.preventDefault();
-          document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
-      });
-
       
       // Function for moving inputs under specified group and page
       function makeGroup(ids, count, page) {
