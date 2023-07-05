@@ -1,7 +1,6 @@
 
 from django.db import models
-# from .validators import validate_file_extension
-from django.core.validators import FileExtensionValidator
+
 
 # Create your models here.
 

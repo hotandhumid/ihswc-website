@@ -53,9 +53,16 @@
     <div id="submission-box"></div>
 
     <script>
+        q = new URLSearchParams(location.search)
+        if (q.get("login") != "success") {
+            location.href = "/sign-in"
+        }
+    </script>
+    <script>
         function makeLink(href, n, div, obj) {
             a = document.createElement("a")
             a.setAttribute("href", `/media/${href}`)
+            a.setAttribute("target","_blank")
 
             // p = document.createElement("p")
             // p.innerText = `Title: ${obj['title' + n]}`

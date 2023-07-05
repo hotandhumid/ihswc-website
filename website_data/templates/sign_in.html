@@ -118,7 +118,7 @@
             password = document.querySelector("#password")
 
             if (username.value == "admin" && password.value == "12345") {
-                location.href = "/admin-page"
+                location.href = "/admin-page?login=success"
             } else {
                 p = document.querySelector("#error")
                 p.innerText = "Incorrect username or password"

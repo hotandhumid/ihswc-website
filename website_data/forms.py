@@ -1,7 +1,6 @@
 
 from django import forms
 from datetime import date
-from django.core.validators import FileExtensionValidator
 
 
 class TestFileForm(forms.Form):
