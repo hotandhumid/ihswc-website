@@ -4,7 +4,7 @@
 
 Make sure your terminal looks like this:
 `<C:/jackj/Documents/jacks_website>`
-`git pull https://github.com/hotandhumid/jacks-website`
+`git add . && git commit -m "jack made changes" && git pull https://github.com/hotandhumid/jacks-website`
 
 ## **TO UPLOAD CHANGES TO GITHUB**
 
