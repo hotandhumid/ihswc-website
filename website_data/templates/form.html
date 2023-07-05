@@ -1,387 +1,429 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Submit Form</title>
     <link rel="stylesheet" href="../static/style.css" />
-    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/65a259d37d.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/smooth_scroll.js"></script>
     <style>
-        body {
-            margin: 0;
-        }
+      body {
+        margin: 0;
+      }
 
-        img {
-            max-width: 25px;
-            height: auto;
-        }
+      img {
+        max-width: 25px;
+        height: auto;
+      }
 
-        #form {
-            margin: 25px;
-        }
+      #form {
+        margin: 25px;
+      }
 
-        form {
-            margin: 0 auto;
-            display: block;
-            width: 818px;
-            background-color: white;
-            border: 2px solid black;
-            padding: 25px;
-        }
+      form {
+        margin: 0 auto;
+        display: block;
+        width: 818px;
+        background-color: white;
+        border: 2px solid black;
+        padding: 25px;
+      }
 
-        label {
-            font-size: 20px;
-            text-transform: capitalize;
-        }
+      label {
+        font-size: 20px;
+        text-transform: capitalize;
+      }
 
-        input[type="text"] {
-            height: 15px;
-            width: 150px;
-            padding: 12px;
-            margin: 8px;
-            box-shadow: 1 1 5;
-            border-radius: 5px;
-            border: 2px solid rgba(48, 48, 48, 0.649);
-            font-size: 18px;
-        }
+      input[type="text"] {
+        height: 15px;
+        width: 150px;
+        padding: 12px;
+        margin: 8px;
+        box-shadow: 1 1 5;
+        border-radius: 5px;
+        border: 2px solid rgba(48, 48, 48, 0.649);
+        font-size: 18px;
+      }
 
-        input[type="file"] {
-            display: none;
-        }
+      input[type="file"] {
+        display: none;
+      }
 
-        .file-style {
-            display: block !important;
-            margin: 10px auto;
-            border: 2px solid black;
-            padding: 6px 12px;
-            cursor: pointer;
-            width: 214px;
-            height: 62px;
-            border-radius: 5px;
-            text-align: center;
-            background-color: rgba(222, 222, 222, 0.819);
-        }
+      .file-style {
+        justify-content: center;
+        margin: 10px auto;
+        border: 2px solid black;
+        padding: 6px 12px;
+        cursor: pointer;
+        width: 245px;
+        height: 62px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: rgba(222, 222, 222, 0.819);
+      }
 
-        .file-style:hover {
-            background-color: rgba(163, 163, 163, 0.819);
-        }
+      .file-style:hover {
+        background-color: rgba(163, 163, 163, 0.819);
+      }
 
-        .file-style * {
-            margin: 5px !important;
-            cursor: pointer;
-        }
+      .file-style * {
+        margin: 5px !important;
+        cursor: pointer;
+      }
 
-        select {
-            margin: 5px;
-            padding: 5px;
-            border-radius: 10px;
-        }
+      select {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px;
+      }
 
-        .group {
-            display: flex;
-            gap: 20px;
-        }
+      .group {
+        display: flex;
+        gap: 20px;
+      }
 
-        button {
-            width: 100px;
-            height: 50px;
-            background-color: #99DBF5;
-            color: black;
-            border: 2px solid black;
-            border-radius: 10px;
-            font-size: 15px;
-            display: block;
-            margin: 10px auto;
-            outline: none;
-        }
+      button {
+        width: 100px;
+        height: 50px;
+        background-color: #99dbf5;
+        color: black;
+        border: 2px solid black;
+        border-radius: 10px;
+        font-size: 15px;
+        display: block;
+        margin: 10px auto;
+        outline: none;
+      }
 
-        button:hover {
-            background-color: #51c5f3;
-            cursor: pointer;
-        }
+      button:hover {
+        background-color: #51c5f3;
+        cursor: pointer;
+      }
 
-        .show {
-            display: block !important;
-        }
+      .show {
+        display: block !important;
+      }
 
-        .button-box {
-            display: block;
-            height: 80px;
-            margin: 15px;
-        }
+      .button-box {
+        display: block;
+        height: 80px;
+        margin: 15px;
+      }
 
-        #back {
-            float: left;
-        }
+      #back {
+        float: left;
+      }
 
-        #next {
-            float: right;
-        }
+      #next {
+        float: right;
+      }
 
-        .hide {
-            visibility: hidden;
-        }
+      .hide {
+        visibility: hidden;
+      }
 
-        .file-label {
-            font-size: 25px;
-            margin: 25px !important;
-            background-color: color(srgb 0.855 0.855 0.855);
-            padding: 10px;
-            border-radius: 5px;
-            border: 2px solid black;
-        }
+      .file-label {
+        font-size: 25px;
+        margin: 25px !important;
+        background-color: color(srgb 0.855 0.855 0.855);
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+
+      .error {
+        text-transform: capitalize;
+        text-align: center;
+        color: #ff3200;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/submit">Submit</a></li>
-            <li><a href="/awards">Awards</a></li>
-            <li><a href="/process">Our Process</a></li>
-            <li><a href="/about">About Us</a></li>
-        </ul>
+      <ul class="left">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/submit#submission-form">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+      </ul>
+      <ul class="right">
+        <li><a href="/admin">Sign In</a></li>
+      </ul>
     </nav>
     <h1>International High School Writing Contest</h1>
     <h1>Submission</h1>
     <h2>General Rules:</h2>
     <ul>
-        <li>Submissions must be primarily in English.</li>
-        <li>Use a clear, standard font (Arial, Georgia, Times New Roman) that is not excessively large or small.</li>
-        <li>Poems in collections must be titled individually.</li>
-        <li>No identifying information, such as the student’s name, may appear anywhere on the manuscript.</li>
-        <li>Use fictional names for real people in all works.</li>
-        <li>No images or hyperlinks are permitted.</li>
-        <li>Work must be original.</li>
-        <li>Collaborative works are not allowed.</li>
+      <li>Submissions must be primarily in English.</li>
+      <li>
+        Use a clear, standard font (Arial, Georgia, Times New Roman) that is not
+        excessively large or small.
+      </li>
+      <li>Poems in collections must be titled individually.</li>
+      <li>
+        No identifying information, such as the student’s name, may appear
+        anywhere on the manuscript.
+      </li>
+      <li>Use fictional names for real people in all works.</li>
+      <li>No images or hyperlinks are permitted.</li>
+      <li>Work must be original.</li>
+      <li>Collaborative works are not allowed.</li>
     </ul>
-    <p>Individual students can submit a maximum of 5 entries. Each entry must be labelled in one of five categories:
-        Critical Essay, Dramatic Script, Poetry, Flash Fiction, and Short Story.
-        There may be multiple entries per category. Read about the requirements for each category below:
+    <p>
+      Individual students can submit a maximum of 5 entries. Each entry must be
+      labelled in one of five categories: Critical Essay, Dramatic Script,
+      Poetry, Flash Fiction, and Short Story. There may be multiple entries per
+      category. Read about the requirements for each category below:
     </p>
     <h2>Critical Essay</h2>
     <p>
-        Category Description
-
-        An informative or persuasive work that analyzes and evaluates a subject,
-        such as a literary work or a social issue.
-
-        Sources must be cited. Footnotes/works cited are not part of the word count.
-
-        500-3,000 words.
+      Category Description An informative or persuasive work that analyzes and
+      evaluates a subject, such as a literary work or a social issue. Sources
+      must be cited. Footnotes/works cited are not part of the word count.
+      500-3,000 words.
     </p>
     <h2>Dramatic Script</h2>
     <p>
-        Category Description
-
-        A written form of a play or performance that uses dialogue, action, and stage direction to tell a story, such as
-        scripts for television, film, or stage.
-
-        500-3,000 words.
+      Category Description A written form of a play or performance that uses
+      dialogue, action, and stage direction to tell a story, such as scripts for
+      television, film, or stage. 500-3,000 words.
     </p>
     <h2>Poetry</h2>
     <p>
-        Category Description
-
-        Writing in verse. Examples include prose poetry, free verse, formal poetry, song lyrics, and spoken word.
-
-        Students may submit more than one collection but must register each separately.
-
-        20–200 lines (total for the entire collection).
+      Category Description Writing in verse. Examples include prose poetry, free
+      verse, formal poetry, song lyrics, and spoken word. Students may submit
+      more than one collection but must register each separately. 20–200 lines
+      (total for the entire collection).
     </p>
     <h2>Flash Fiction</h2>
     <p>
-        Category Description
-
-        A concise form of fictional storytelling framed in a limited word count.
-
-        Maximum of 1,000 words.
+      Category Description A concise form of fictional storytelling framed in a
+      limited word count. Maximum of 1,000 words.
     </p>
     <h2>Short Story</h2>
     <p>
-        Category Description
-
-        A fiction or nonfiction narrative written in prose.
-
-        500-3,000 words.
+      Category Description A fiction or nonfiction narrative written in prose.
+      500-3,000 words.
     </p>
 
-    <h1 style="text-align: center;">Submission Form</h1>
+    <h1 id="submission-form" style="text-align: center">Submission Form</h1>
 
     <div id="form">
+      <form action="/submit/" method="post" enctype="multipart/form-data">
+        <div id="pages">
+          <div id="page1" style="display: none" class="show">
+            <h2 style="text-align: center">Personal Information</h2>
+          </div>
+          <div id="page2" style="display: none">
+            <h2 style="text-align: center">Submission 1</h2>
+          </div>
+          <div id="page3" style="display: none">
+            <h2 style="text-align: center">Submission 2</h2>
+          </div>
+          <div id="page4" style="display: none">
+            <h2 style="text-align: center">Submission 3</h2>
+          </div>
+          <div id="page5" style="display: none">
+            <h2 style="text-align: center">Submission 4</h2>
+          </div>
+          <div id="page6" style="display: none">
+            <h2 style="text-align: center">Submission 5</h2>
+          </div>
+        </div>
+        {% csrf_token %}
+        <div class="button-box">
+          <button type="button" id="back" class="hide">Back</button>
+          <button type="button" id="next">Next</button>
+        </div>
+      </form>
 
-        <form action="/submit/" method="post" enctype="multipart/form-data">
-            <div id="pages">
-                <div id="page1" style="display: none" class="show">
-                    <h2 style="text-align: center;">Personal Information</h2>
-                </div>
-                <div id="page2" style="display: none">
-                    <h2 style="text-align: center;">Submission 1</h2>
-                </div>
-                <div id="page3" style="display: none">
-                    <h2 style="text-align: center;">Submission 2</h2>
-                </div>
-                <div id="page4" style="display: none">
-                    <h2 style="text-align: center;">Submission 3</h2>
-                </div>
-                <div id="page5" style="display: none">
-                    <h2 style="text-align: center;">Submission 4</h2>
-                </div>
-                <div id="page6" style="display: none">
-                    <h2 style="text-align: center;">Submission 5</h2>
-                </div>
-            </div>
-            {% csrf_token %}
-            <div class="button-box">
-                <button type="button" id="back" class="hide">Back</button>
-                <button type="button" id="next">Next</button>
-            </div>
-        </form>
-
-
-        <form style="display: none;">
-            {{form.as_p}}
-        </form>
-
+      <form style="display: none">{{form.as_p}}</form>
     </div>
 
-
-    <footer>
-        <h3>Check out our Instagram!</h3>
-
-        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
-            <img src="../static/instagram_logo.png">
+    <footer style="position: relative !important">
+      <h3>
+        Check out our Instagram!
+        <a style="margin-left: 25px" href="https://www.instagram.com/highschool.writing/">
+          <img src="../static/instagram_logo.png" />
         </a>
-
-        <h3>©2023 by International High School Writing Competition</h3>
+      </h3>
+      <h3>©2023 by International High School Writing Competition</h3>
     </footer>
 
     <script>
+      document.querySelector('a[href="#submission-form"]').addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({ behavior: "smooth" });
+      });
 
-        // Function for moving inputs under specified group and page
-        function makeGroup(ids, count, page) {
-            const div = document.createElement("div")
-            div.classList.add("group")
-            div.setAttribute("id", `group${count}`)
-            document.querySelector(`#page${page}`).append(div)
+      
+      // Function for moving inputs under specified group and page
+      function makeGroup(ids, count, page) {
+        const div = document.createElement("div");
+        div.classList.add("group");
+        div.setAttribute("id", `group${count}`);
+        document.querySelector(`#page${page}`).append(div);
 
-            const group = document.querySelector(`#group${count}`)
+        const group = document.querySelector(`#group${count}`);
 
-            ids.forEach(id => {
-                group.append(document.querySelector(`#id_${id}`).parentElement)
-            })
+        ids.forEach((id) => {
+          group.append(document.querySelector(`#id_${id}`).parentElement);
+        });
+      }
+
+      makeGroup(["firstname", "lastname"], 1, 1);
+      makeGroup(["email", "phone_number"], 2, 1);
+      makeGroup(["country", "city", "zipcode"], 3, 1);
+      makeGroup(["grade_level", "birthday_month"], 4, 1);
+      makeGroup(["school_name", "school_address"], 5, 1);
+      makeGroup(["parent_firstname", "parent_lastname"], 6, 1);
+      makeGroup(["parent_email", "parent_phone_number"], 7, 1);
+      makeGroup(["pdf_id"], 8, 1);
+
+      makeGroup(["category1"], 9, 2);
+      makeGroup(["title1"], 10, 2);
+      makeGroup(["word_count1"], 11, 2);
+      makeGroup(["pdf_file1"], 12, 2);
+
+      makeGroup(["category2"], 13, 3);
+      makeGroup(["title2"], 14, 3);
+      makeGroup(["word_count2"], 15, 3);
+      makeGroup(["pdf_file2"], 16, 3);
+
+      makeGroup(["category3"], 17, 4);
+      makeGroup(["title3"], 18, 4);
+      makeGroup(["word_count3"], 19, 4);
+      makeGroup(["pdf_file3"], 20, 4);
+
+      makeGroup(["category4"], 25, 5);
+      makeGroup(["title4"], 26, 5);
+      makeGroup(["word_count4"], 27, 5);
+      makeGroup(["pdf_file4"], 28, 5);
+
+      makeGroup(["category5"], 21, 6);
+      makeGroup(["title5"], 22, 6);
+      makeGroup(["word_count5"], 23, 6);
+      makeGroup(["pdf_file5"], 24, 6);
+
+      // Appends submit button and error message on page 6
+      button = document.createElement("button");
+      button.setAttribute("type", "submit");
+      button.innerText = "Submit";
+      p = document.createElement("p")
+      p.setAttribute("class", "error")
+      document.querySelector("#page6").append(button);
+      document.querySelector("#page6").append(p);
+
+      // Display error message if all fields are not filled
+      button = document.querySelector("button[type='submit']")
+      button.addEventListener("click", function() {
+        inputs = Array.prototype.slice.call(document.querySelectorAll("input")).slice(0, 18)
+        
+        for (i = 0; i < inputs.length; i += 1) {
+          if (inputs[i].value == '') {
+            document.querySelector(".error").innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[i].previousElementSibling.innerText.replace(":", "")}"`
+            break
+          }
+        }
+      })
+
+      // Adding functions to next and back buttons
+      next = document.querySelector("#next");
+      back = document.querySelector("#back");
+
+      next.addEventListener("click", function () {
+        back.classList.remove("hide");
+
+        if (document.querySelector("#page5").classList.contains("show")) {
+          next.classList.add("hide");
         }
 
-        makeGroup(["firstname", "lastname"], 1, 1)
-        makeGroup(["email", "phone_number"], 2, 1)
-        makeGroup(["country", "city", "zipcode"], 3, 1)
-        makeGroup(["grade_level", "birthday_month"], 4, 1)
-        makeGroup(["school_name", "school_address"], 5, 1)
-        makeGroup(["parent_firstname", "parent_lastname"], 6, 1)
-        makeGroup(["parent_email", "parent_phone_number"], 7, 1)
-        makeGroup(["pdf_id"], 8, 1)
+        for (
+          i = 0;
+          i <= document.querySelector("#pages").children.length;
+          i += 1
+        ) {
+          if (
+            document
+              .querySelector("#pages")
+              .children[i].classList.contains("show")
+          ) {
+            document
+              .querySelector("#pages")
+              .children[i].classList.remove("show");
+            document
+              .querySelector("#pages")
+              .children[i + 1].classList.add("show");
+            break;
+          }
+        }
+      });
 
-        makeGroup(["category1"], 9, 2)
-        makeGroup(["title1"], 10, 2)
-        makeGroup(["word_count1"], 11, 2)
-        makeGroup(["pdf_file1"], 12, 2)
+      back.addEventListener("click", function () {
+        next.classList.remove("hide");
 
-        makeGroup(["category2"], 13, 3)
-        makeGroup(["title2"], 14, 3)
-        makeGroup(["word_count2"], 15, 3)
-        makeGroup(["pdf_file2"], 16, 3)
-
-        makeGroup(["category3"], 17, 4)
-        makeGroup(["title3"], 18, 4)
-        makeGroup(["word_count3"], 19, 4)
-        makeGroup(["pdf_file3"], 20, 4)
-
-        makeGroup(["category4"], 25, 5)
-        makeGroup(["title4"], 26, 5)
-        makeGroup(["word_count4"], 27, 5)
-        makeGroup(["pdf_file4"], 28, 5)
-
-        makeGroup(["category5"], 21, 6)
-        makeGroup(["title5"], 22, 6)
-        makeGroup(["word_count5"], 23, 6)
-        makeGroup(["pdf_file5"], 24, 6)
-
-        // Appends submit button on page 6
-        button = document.createElement("button")
-        button.setAttribute("type", "submit")
-        button.innerText = "Submit"
-        document.querySelector("#page6").append(button)
-
-        // Adding functions to next and back buttons
-        next = document.querySelector("#next")
-        back = document.querySelector("#back")
-
-
-        next.addEventListener("click", function () {
-            back.classList.remove("hide")
-
-            if (document.querySelector("#page5").classList.contains("show")) {
-                next.classList.add("hide")
-            }
-
-            for (i = 0; i <= document.querySelector("#pages").children.length; i += 1) {
-                if (document.querySelector("#pages").children[i].classList.contains("show")) {
-                    document.querySelector("#pages").children[i].classList.remove("show")
-                    document.querySelector("#pages").children[i + 1].classList.add("show")
-                    break
-                }
-            }
-        })
-
-
-        back.addEventListener("click", function () {
-            next.classList.remove("hide")
-
-            if (document.querySelector("#page2").classList.contains("show")) {
-                back.classList.add("hide")
-            }
-
-            for (i = 0; i <= document.querySelector("#pages").children.length; i += 1) {
-                if (document.querySelector("#pages").children[i].classList.contains("show")) {
-                    document.querySelector("#pages").children[i].classList.remove("show")
-                    document.querySelector("#pages").children[i - 1].classList.add("show")
-                    break
-                }
-            }
-        })
-
-        // Adding a class to input type files
-        document.querySelectorAll("input[type='file']").forEach(i => {
-            i.parentElement.parentElement.classList.add("file-style")
-        })
-
-
-        // Changes label for file uploads
-        document.querySelector("label[for='id_pdf_id']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Driver License'
-        document.querySelector("label[for='id_pdf_file1']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1'
-        document.querySelector("label[for='id_pdf_file2']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2'
-        document.querySelector("label[for='id_pdf_file3']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3'
-        document.querySelector("label[for='id_pdf_file4']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4'
-        document.querySelector("label[for='id_pdf_file5']").innerHTML = '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5'
-
-        
-        // Adding a function for onchange event to input type files
-        function getFileData(d){
-            console.log(d)
-            var file = d.files[0];  
-            var filename = file.name;
-            d.parentElement.parentElement.style.width = "auto"
-
-            d.previousElementSibling.innerText = filename
-            d.previousElementSibling.innerHTML += '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>'
+        if (document.querySelector("#page2").classList.contains("show")) {
+          back.classList.add("hide");
         }
 
-        
+        for (
+          i = 0;
+          i <= document.querySelector("#pages").children.length;
+          i += 1
+        ) {
+          if (
+            document
+              .querySelector("#pages")
+              .children[i].classList.contains("show")
+          ) {
+            document
+              .querySelector("#pages")
+              .children[i].classList.remove("show");
+            document
+              .querySelector("#pages")
+              .children[i - 1].classList.add("show");
+            break;
+          }
+        }
+      });
 
+      // Adding a class to input type files
+      document.querySelectorAll("input[type='file']").forEach((i) => {
+        i.parentElement.parentElement.classList.add("file-style");
+      });
+
+      // Changes label for file uploads
+      document.querySelector("label[for='id_pdf_id']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Driver License';
+      document.querySelector("label[for='id_pdf_file1']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1';
+      document.querySelector("label[for='id_pdf_file2']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2';
+      document.querySelector("label[for='id_pdf_file3']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3';
+      document.querySelector("label[for='id_pdf_file4']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4';
+      document.querySelector("label[for='id_pdf_file5']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5';
+
+      // Adding a function for onchange event to input type files
+      function getFileData(d) {
+        console.log(d);
+        var file = d.files[0];
+        var filename = file.name;
+        d.parentElement.parentElement.style.width = "auto";
+
+        d.previousElementSibling.innerText = filename;
+        d.previousElementSibling.innerHTML +=
+          '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
+      }
     </script>
-</body>
-
+  </body>
 </html>

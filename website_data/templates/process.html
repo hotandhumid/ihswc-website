@@ -9,30 +9,23 @@
           max-width: 25px;
           height: auto;
         }
-        
-        footer {
-            background-color: rgb(74, 74, 74);
-            color: rgba(255, 255, 255, 0.88);
-            height: 150px;
-            padding: 20px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-        }
     </style>
     <link rel="stylesheet" href="../static/style.css" />
 </head>
 
 <body>
     <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/submit">Submit</a></li>
-            <li><a href="/awards">Awards</a></li>
-            <li><a href="/process">Our Process</a></li>
-            <li><a href="/about">About Us</a></li>
+        <ul class="left">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/submit">Submit</a></li>
+          <li><a href="/awards">Awards</a></li>
+          <li><a href="/process">Our Process</a></li>
+          <li><a href="/about">About Us</a></li>
         </ul>
-    </nav>
+        <ul class="right">
+          <li><a href="/admin">Sign In</a></li>
+        </ul>
+      </nav>
     <h1>Our Process</h1>
     <p></p>
     <h2>
@@ -54,12 +47,12 @@
     
 
     <footer>
-        <h3>Check out our Instagram!</h3>
-        
-        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
-            <img src="../static/instagram_logo.png" >
-        </a>
-    
+        <h3>
+            Check out our Instagram!
+            <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+                <img src="../static/instagram_logo.png" >
+            </a>
+        </h3>
         <h3>©2023 by International High School Writing Competition</h3>
     </footer>
 
