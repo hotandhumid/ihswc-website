@@ -41,6 +41,11 @@ def test(request):
 
     return render(request, "test.html", {"form": form})
 
+
+def submit(request):
+    return render(request, "submit.html")
+
+
 def form(request):
     if request.method == "POST":
 
@@ -70,7 +75,6 @@ def form(request):
                 birthday=cd["birthday"],
                 school_name=cd["school_name"],
                 school_address=cd["school_address"],
-                pdf_id=user_files["pdf_id"],
                 parent_firstname=cd["parent_firstname"],
                 parent_lastname=cd["parent_lastname"],
                 parent_email=cd["parent_email"],

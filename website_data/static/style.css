@@ -5,7 +5,7 @@
 #B9D7EA
 #769FCD
 */
-
+@import url('https://fonts.cdnfonts.com/css/apex-mk3');
 body {
     margin: 0;
     background-color: #F7FBFC;
@@ -15,6 +15,7 @@ body {
 }
 
 h1 {
+    font-family: 'Apex Mk3', sans-serif;
     text-align: center;
     font-size: 40px;
     margin: 25px;
@@ -22,7 +23,9 @@ h1 {
 }
 
 h2 {
-    margin: 25px;
+    line-height: 35px;
+    margin-left: 25px;
+    margin-right: 100px;
 }
 
 h3 {
@@ -30,7 +33,9 @@ h3 {
 }
 
 p {
-    margin: 25px;
+    margin-left: 25px;
+    margin-right: 100px;
+    line-height: 35px;
 }
 
 nav {

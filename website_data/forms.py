@@ -19,7 +19,6 @@ class CreateUserForm(forms.Form):
     birthday = forms.DateField(required=True, initial=date.today(),label="birthday", widget=forms.SelectDateWidget(years=range(1970, int(date.today().strftime("%Y")) + 1)))
     school_name = forms.CharField(required=True, label="school name")
     school_address = forms.CharField(required=True, label="school address")
-    pdf_id = forms.FileField(widget=forms.ClearableFileInput(attrs={"accept": "application/pdf", "onchange": "getFileData(this)"}),required=True, label="pdf id")
     parent_firstname = forms.CharField(required=True, label="parent first name")
     parent_lastname = forms.CharField(required=True, label="parent last name")
     parent_email = forms.CharField(required=True, label="parent email")
