@@ -216,7 +216,10 @@
     <footer style="position: relative !important">
       <h3>
         Check out our Instagram!
-        <a style="margin-left: 25px" href="https://www.instagram.com/highschool.writing/">
+        <a
+          style="margin-left: 25px"
+          href="https://www.instagram.com/highschool.writing/"
+        >
           <img src="../static/instagram_logo.png" />
         </a>
       </h3>
@@ -224,7 +227,6 @@
     </footer>
 
     <script>
-      
       // Function for moving inputs under specified group and page
       function makeGroup(ids, count, page) {
         const div = document.createElement("div");
@@ -276,23 +278,29 @@
       button = document.createElement("button");
       button.setAttribute("type", "submit");
       button.innerText = "Submit";
-      p = document.createElement("p")
-      p.setAttribute("class", "error")
+      p = document.createElement("p");
+      p.setAttribute("class", "error");
       document.querySelector("#page6").append(button);
       document.querySelector("#page6").append(p);
 
       // Display error message if all fields are not filled
-      button = document.querySelector("button[type='submit']")
-      button.addEventListener("click", function() {
-        inputs = Array.prototype.slice.call(document.querySelectorAll("input")).slice(0, 18)
-        
+      button = document.querySelector("button[type='submit']");
+      button.addEventListener("click", function () {
+        inputs = Array.prototype.slice
+          .call(document.querySelectorAll("input"))
+          .slice(0, 18);
+
         for (i = 0; i < inputs.length; i += 1) {
-          if (inputs[i].value == '') {
-            document.querySelector(".error").innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[i].previousElementSibling.innerText.replace(":", "")}"`
-            break
+          if (inputs[i].value == "") {
+            document.querySelector(
+              ".error"
+            ).innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[
+              i
+            ].previousElementSibling.innerText.replace(":", "")}"`;
+            break;
           }
         }
-      })
+      });
 
       // Adding functions to next and back buttons
       next = document.querySelector("#next");
@@ -360,8 +368,6 @@
       });
 
       // Changes label for file uploads
-      document.querySelector("label[for='id_pdf_id']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Driver License';
       document.querySelector("label[for='id_pdf_file1']").innerHTML =
         '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1';
       document.querySelector("label[for='id_pdf_file2']").innerHTML =

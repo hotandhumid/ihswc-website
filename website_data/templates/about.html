@@ -1,11 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>International High School Writing Contest</title>
     <style>
-        img {
+        body {
+          min-height: 210vh !important;
+        }
+
+        footer h3 a img {
           max-width: 25px;
           height: auto;
+        }
+
+        .wrapper {
+          margin-top: 130px;
+        }
+
+        .box {
+          width: 100%;
+          display: flex;
+          justify-content: space-between !important;
+          flex-wrap: wrap;
+          align-items: center;
+          margin-bottom: 100px;
+        }
+
+        .box1 h2 {
+          margin-right: 315px !important;
+        }
+
+        .box2 h2 {
+          margin-left: 237px;
+        }
+
+        .box3 h2 {
+          margin-right: 262px;
+        }
+
+        h2 {
+          width: 450px;
+          background-color: lightblue;
+          border: 2px solid black;
+          border-radius: 5px;
+          padding: 30px;
         }
     </style>
     <link rel="stylesheet" href="../static/style.css">
@@ -24,14 +62,37 @@
     </ul>
   </nav>
   <h1>About Us</h1>
-  <h2>The International High School Writing Contest (IHSWC for short) is a contest made for highschoolers by highschoolers. Started by two creative writers, the IHSWC
-      seeks to address three gap in writing competitions—accessibiliy, functionality, and transparency. In an age of information where the incentive and pressure for awards and excellence seems to grow exponentially,
-      our founders grew increasingly frustrated with the "prestigious" but often-paywalled and US-only writing competitions that sometimes gives and sometimes does not give you an award—with zero
-      explanation and zero feedback on how to improve.
-      <br>    
-      So, in 2022, our founders made IHSWC. With an emphasis on world-wide accessibility and a clear submission-to-judging-to-award process, the core of the IHSWC is be an uplifting community
-      for creative highschoolers and to reward and give them a place to have their work seen.
-  </h2>
+
+  <div class="wrapper">
+
+    <div class="box box1">
+      <img style="border-radius: 5px; width: 598px; height: 316px; margin-left: 190px;" src="https://fullfocus.co/wp-content/uploads/2018/04/pen-on-paper.jpg">
+      <h2>The International High School Writing Contest (IHSWC for short) is a contest made for highschoolers by highschoolers. Started by two creative writers, the IHSWC
+        seeks to address three gap in writing competitions—accessibiliy, functionality, and transparency. 
+      </h2>
+    </div>
+
+    <div class="box box2">
+      <h2>
+        In an age of information where the incentive and pressure for awards and excellence seems to grow exponentially,
+        our founders grew increasingly frustrated with the "prestigious" but often-paywalled and US-only writing competitions that sometimes gives and sometimes does not give you an award—with zero
+        explanation and zero feedback on how to improve.
+      </h2>
+      <img style="border-radius: 5px; width: 640px; height: 365px; margin-right: 190px;" src="https://www.ohow.com/wp-content/uploads/2020/08/7400_BackBack_Blog_1280x853.jpg" >
+    </div>
+
+    <div class="box box3">
+      <img style="border-radius: 5px; height: 305px;width: 392px;margin-left: 190px;" src="https://media.istockphoto.com/id/1094993558/vector/global-business-flat-design-style-colorful-illustration.jpg?s=612x612&w=0&k=20&c=VjRKIHnj6CmLFseO0ERfQrRl-dg5Lwm1fQhDZ4XE318=">
+      <h2>
+        So, in 2022, our founders made IHSWC. With an emphasis on world-wide accessibility and a clear submission-to-judging-to-award process, the core of the IHSWC is be an uplifting community
+        for creative highschoolers and to reward and give them a place to have their work seen.
+    </h2>
+    </div>
+
+  </div>
+  
+    
+  </div>
 
     <footer>
         <h3>

@@ -111,7 +111,7 @@ def form(request):
             return redirect("/awards")
     else:
         form = CreateUserForm()
-
+        
     return render(request, "form.html", {"form": form})
 
 

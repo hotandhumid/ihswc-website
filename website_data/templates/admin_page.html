@@ -9,6 +9,7 @@
     <title>Admin Page</title>
 
     <link rel="stylesheet" href="../static/style.css">
+    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
 
     <style>
         #root {
@@ -28,9 +29,41 @@
             border-radius: 5px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+        }
+
+        .info {
+            margin-top: 10px;
+        }
+
+        p {
+            margin-left: 25px;
+            margin-bottom: 0px;
+            margin-right: 100px;
+            margin-top: 0px;
+            line-height: 30px;
+            text-transform: capitalize;
+        }
+
+        .submission a {
+            margin: 20px auto 10px auto;
+            width: 100px;
+            height: 22px;
+            color: white !important;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            background-color: #eab949;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .submission a:hover {
+            background-color: #d0a43d;
+        }
+
+        .submission a:visited {
+            color: inherit 
         }
     </style>
 </head>
@@ -60,13 +93,16 @@
     </script>
     <script>
         function makeLink(href, n, div, obj) {
+            info = document.createElement("div")
+            info.classList.add("info")
+            info.innerHTML = `<p>Submission: ${n}</p> <p>Title: ${obj['title' + n]}</p> <p>Category: ${obj['category' + n]}</p> <p>Word Count: ${obj['word_count' + n]}</p>`
+            
             a = document.createElement("a")
             a.setAttribute("href", `/media/${href}`)
             a.setAttribute("target", "_blank")
+            a.innerHTML = 'View PDF <i class="fa-solid fa-right-long"></i>'
 
-            // p = document.createElement("p")
-            // p.innerText = `Title: ${obj['title' + n]}`
-            a.innerText = `Submission: ${n}, Title: ${obj['title' + n]}, Category: ${obj['category' + n]}, Word Count: ${obj['word_count' + n]}`
+            div.append(info)
             div.append(a)
         }
 

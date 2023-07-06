@@ -17,13 +17,15 @@ body {
 h1 {
     font-family: 'Apex Mk3', sans-serif;
     text-align: center;
-    font-size: 40px;
+    font-size: 60px;
     margin: 25px;
     margin-bottom: 50px;
 }
 
 h2 {
-    margin: 25px;
+    line-height: 35px;
+    margin-left: 25px;
+    margin-right: 100px;
 }
 
 h3 {
@@ -31,7 +33,8 @@ h3 {
 }
 
 p {
-    margin: 25px;
+    margin-left: 25px;
+    margin-right: 100px;
     line-height: 35px;
 }
 
