@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'website_settings.wsgi.application'
 #         'PORT': '5432',
 #     }
 # }
+
 DATABASES = {
     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }

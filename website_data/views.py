@@ -55,7 +55,6 @@ def form(request):
             cd = form.cleaned_data
 
             user_files = {
-                "pdf_id": request.FILES['pdf_id'],
                 "pdf_file1": request.FILES['pdf_file1'],
                 "pdf_file2": "",
                 "pdf_file3": "",
