@@ -76,20 +76,16 @@ WSGI_APPLICATION = 'website_settings.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         #'ENGINE': 'django.db.backends.sqlite3',
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'highschoolwritingcontest',
-#         'USER': 'highschoolwritingcontest_user',
-#         'PASSWORD': 'Weyd4ife877vMKgLpX4zJsDcbMHFgI6a',
-#         'HOST': 'dpg-cijna3p8g3nc2gamv6d0-a',
-#         'PORT': '5432',
-#     }
-# }
-
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'highschoolwritingcontest',
+        'USER': 'highschoolwritingcontest_user',
+        'PASSWORD': 'Weyd4ife877vMKgLpX4zJsDcbMHFgI6a',
+        'HOST': 'dpg-cijna3p8g3nc2gamv6d0-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
 
 # Password validation

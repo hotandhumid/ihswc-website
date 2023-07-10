@@ -47,7 +47,7 @@
 
         .submission a {
             margin: 20px auto 10px auto;
-            width: 100px;
+            width: 170px;
             height: 22px;
             color: white !important;
             padding: 10px;
@@ -100,7 +100,7 @@
             a = document.createElement("a")
             a.setAttribute("href", `/media/${href}`)
             a.setAttribute("target", "_blank")
-            a.innerHTML = 'View PDF <i class="fa-solid fa-right-long"></i>'
+            a.innerHTML = `View Submission ${n} <i class="fa-solid fa-right-long"></i>`
 
             div.append(info)
             div.append(a)
@@ -116,7 +116,7 @@
             div.innerHTML = `<p style="text-transform: capitalize; font-size: 30px;">${s['firstname']} ${s['lastname']}</p>`
             
             pdfs.forEach( pdf => {
-                if (s[pdf] == "") {
+                if (s[pdf] == "___") {
                     console.log("empty")
                 } else {
                     console.log(s[pdf])

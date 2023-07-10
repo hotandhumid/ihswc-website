@@ -4,10 +4,6 @@ from datetime import date
 
 
 class TestFileForm(forms.Form):
-    file = forms.FileField(widget=forms.ClearableFileInput(attrs={"accept": "application/pdf", "onchange": "getFileData(this)"}),)
-
-    
-class CreateUserForm(forms.Form):
     firstname = forms.CharField(required=True, label="first name")
     lastname = forms.CharField(required=True, label="last name")
     email = forms.CharField(required=True, label="email")
@@ -28,7 +24,7 @@ class CreateUserForm(forms.Form):
     title1 = forms.CharField(required=True, label="title 1")
     word_count1 = forms.CharField(required=True, label="word count 1")
     pdf_file1 = forms.FileField(widget=forms.ClearableFileInput(attrs={"accept": "application/pdf", "onchange": "getFileData(this)"}),required=True, label="pdf file 1")
-
+    
     category2 = forms.CharField(required=False, label="category 2", widget=forms.Select(choices=[("Dramatic Script", "Dramatic Script"), ("Critical Essay", "Critical Essay"), ("Poetry", "Poetry"), ("Flash Fiction", "Flash Fiction"), ("Shortstory", "Shortstory")]))
     title2 = forms.CharField(required=False, label="title 2")
     word_count2 = forms.CharField(required=False, label="word count 2")
@@ -48,5 +44,3 @@ class CreateUserForm(forms.Form):
     title5 = forms.CharField(required=False, label="title 5")
     word_count5 = forms.CharField(required=False, label="word count 5")
     pdf_file5 = forms.FileField(widget=forms.ClearableFileInput(attrs={"accept": "application/pdf", "onchange": "getFileData(this)"}),required=False, label="pdf file 5")
-
-

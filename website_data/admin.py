@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import CreateUserModel, TestFileModel
+from .models import TestFileModel
 
 # Register your models here.
 
-admin.site.register(CreateUserModel)
-# admin.site.register(TestFileModel)
+admin.site.register(TestFileModel)
