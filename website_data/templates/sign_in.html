@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,15 +20,15 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            min-height: 0 !important;
         }
 
         .box {
             height: 600px;
             width: 600px;
             background-color: white;
-            border: 2px solid black;
             border-radius: 10px;
-            box-shadow: 1px 1px 5px;
+            box-shadow: 0px 0px 20px 0px gray;
         }
 
         h1 {
@@ -86,10 +87,9 @@
         }
     </style>
 </head>
+
 <body>
 
-
-    <img src="https://www.pngitem.com/pimgs/m/272-2728198_transparent-banner-shape-clipart-cool-shapes-png-png.png" >
     <div class="box">
         <h1>Sign In<i class="fa-solid fa-right-to-bracket"></i></h1>
         <input type="text" name="username" id="username" placeholder="Username">
@@ -99,11 +99,11 @@
     </div>
 
     <script>
-        inp = document.querySelector("#password")
-        inp.addEventListener("keypress", e => {
+        inp1 = document.querySelector("#password")
+        inp1.addEventListener("keypress", e => {
             if (e.key === "Enter") {
                 if (username.value == "admin" && password.value == "12345") {
-                location.href = "/admin-page?login=success"
+                    location.href = "/admin-page?login=success"
                 } else {
                     p = document.querySelector("#error")
                     p.innerText = "Incorrect username or password"
@@ -111,9 +111,21 @@
             }
         })
         
+        inp2 = document.querySelector("#username")
+        inp2.addEventListener("keypress", e => {
+            if (e.key === "Enter") {
+                if (username.value == "admin" && password.value == "12345") {
+                    location.href = "/admin-page?login=success"
+                } else {
+                    p = document.querySelector("#error")
+                    p.innerText = "Incorrect username or password"
+                }
+            }
+        })
+
         button = document.querySelector("button")
 
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             username = document.querySelector("#username")
             password = document.querySelector("#password")
 
@@ -126,4 +138,5 @@
         })
     </script>
 </body>
+
 </html>

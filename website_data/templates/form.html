@@ -7,26 +7,23 @@
     <title>Submit Form</title>
     <link rel="stylesheet" href="../static/style.css" />
     <script
-      src="https://kit.fontawesome.com/65a259d37d.js"
-      crossorigin="anonymous"
+    src="https://kit.fontawesome.com/65a259d37d.js"
+    crossorigin="anonymous"
     ></script>
     <style>
       html {
         scroll-behavior: smooth;
       }
+      
       body {
         margin: 0;
+        min-height: 262vh;
       }
-
-      img {
-        max-width: 25px;
-        height: auto;
-      }
-
+      
       #form {
         margin: 120px;
       }
-
+      
       form {
         margin: 0 auto;
         display: block;
@@ -35,12 +32,12 @@
         border: 2px solid black;
         padding: 25px;
       }
-
+      
       label {
         font-size: 20px;
         text-transform: capitalize;
       }
-
+      
       input[type="text"] {
         height: 15px;
         width: 150px;
@@ -51,11 +48,11 @@
         border: 2px solid rgba(48, 48, 48, 0.649);
         font-size: 18px;
       }
-
+      
       input[type="file"] {
         display: none;
       }
-
+      
       .file-style {
         justify-content: center;
         margin: 10px auto;
@@ -68,27 +65,27 @@
         text-align: center;
         background-color: rgba(222, 222, 222, 0.819);
       }
-
+      
       .file-style:hover {
         background-color: rgba(163, 163, 163, 0.819);
       }
-
+      
       .file-style * {
         margin: 5px !important;
         cursor: pointer;
       }
-
+      
       select {
         margin: 5px;
         padding: 5px;
         border-radius: 10px;
       }
-
+      
       .group {
         display: flex;
         gap: 20px;
       }
-
+      
       button {
         width: 100px;
         height: 50px;
@@ -101,34 +98,34 @@
         margin: 10px auto;
         outline: none;
       }
-
+      
       button:hover {
         background-color: #51c5f3;
         cursor: pointer;
       }
-
+      
       .show {
         display: block !important;
       }
-
+      
       .button-box {
         display: block;
         height: 80px;
         margin: 15px;
       }
-
+      
       #back {
         float: left;
       }
-
+      
       #next {
         float: right;
       }
-
+      
       .hide {
         visibility: hidden;
       }
-
+      
       .file-label {
         font-size: 25px;
         margin: 25px !important;
@@ -137,7 +134,7 @@
         border-radius: 5px;
         border: 2px solid black;
       }
-
+      
       .error {
         text-transform: capitalize;
         text-align: center;
@@ -167,18 +164,19 @@
   <body>
     <nav>
       <ul class="left">
+        <img src="../static/jack_logo.png" alt="" >
+      </ul>
+      <ul class="right">
         <li><a href="/home">Home</a></li>
         <li><a href="/submit">Submit</a></li>
         <li><a href="/awards">Awards</a></li>
         <li><a href="/process">Our Process</a></li>
         <li><a href="/about">About Us</a></li>
-      </ul>
-      <ul class="right">
         <li><a href="/sign-in">Sign In</a></li>
+      </ul>
       </ul>
     </nav>
 
-    <h1>International High School Writing Contest</h1>
     <h1 id="submission-form" style="text-align: center">Submission Form</h1>
 
     <div id="form">
@@ -213,17 +211,14 @@
       <form style="display: none">{{form.as_p}}</form>
     </div>
 
-    <footer style="position: relative !important">
-      <h3>
+    <footer>
+      <p>
         Check out our Instagram!
-        <a
-          style="margin-left: 25px"
-          href="https://www.instagram.com/highschool.writing/"
-        >
-          <img src="../static/instagram_logo.png" />
+        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+          <img src="../static/instagram_logo.png">
         </a>
-      </h3>
-      <h3>©2023 by International High School Writing Competition</h3>
+      </p>
+      <p>©2023 by International High School Writing Competition</p>
     </footer>
 
     <script>

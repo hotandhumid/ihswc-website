@@ -1,195 +1,191 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Submit Form</title>
-    <link rel="stylesheet" href="../static/style.css" />
-    <link href="https://fonts.cdnfonts.com/css/apex-sans" rel="stylesheet">
-    <script
-      src="https://kit.fontawesome.com/65a259d37d.js"
-      crossorigin="anonymous"
-    ></script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        margin: 0;
-      }
 
-      img {
-        max-width: 25px;
-        height: auto;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Form</title>
+  <link rel="stylesheet" href="../static/style.css" />
+  <link href="https://fonts.cdnfonts.com/css/apex-sans" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-      #form {
-        margin: 25px;
-      }
+    body {
+      margin: 0;
+      min-height: 348vh !important;
+    }
 
-      form {
-        margin: 0 auto;
-        display: block;
-        width: 818px;
-        background-color: white;
-        border: 2px solid black;
-        padding: 25px;
-      }
+    #form {
+      margin: 25px;
+    }
 
-      .rules li {
-        line-height: 35px;
-      }
+    form {
+      margin: 0 auto;
+      display: block;
+      width: 818px;
+      background-color: white;
+      border: 2px solid black;
+      padding: 25px;
+    }
 
-      label {
-        font-size: 20px;
-        text-transform: capitalize;
-      }
+    .rules li {
+      line-height: 35px;
+    }
 
-      input[type="text"] {
-        height: 15px;
-        width: 150px;
-        padding: 12px;
-        margin: 8px;
-        box-shadow: 1 1 5;
-        border-radius: 5px;
-        border: 2px solid rgba(48, 48, 48, 0.649);
-        font-size: 18px;
-      }
+    label {
+      font-size: 20px;
+      text-transform: capitalize;
+    }
 
-      input[type="file"] {
-        display: none;
-      }
+    input[type="text"] {
+      height: 15px;
+      width: 150px;
+      padding: 12px;
+      margin: 8px;
+      box-shadow: 1 1 5;
+      border-radius: 5px;
+      border: 2px solid rgba(48, 48, 48, 0.649);
+      font-size: 18px;
+    }
 
-      .file-style {
-        justify-content: center;
-        margin: 10px auto;
-        border: 2px solid black;
-        padding: 6px 12px;
-        cursor: pointer;
-        width: 245px;
-        height: 62px;
-        border-radius: 5px;
-        text-align: center;
-        background-color: rgba(222, 222, 222, 0.819);
-      }
+    input[type="file"] {
+      display: none;
+    }
 
-      .file-style:hover {
-        background-color: rgba(163, 163, 163, 0.819);
-      }
+    .file-style {
+      justify-content: center;
+      margin: 10px auto;
+      border: 2px solid black;
+      padding: 6px 12px;
+      cursor: pointer;
+      width: 245px;
+      height: 62px;
+      border-radius: 5px;
+      text-align: center;
+      background-color: rgba(222, 222, 222, 0.819);
+    }
 
-      .file-style * {
-        margin: 5px !important;
-        cursor: pointer;
-      }
+    .file-style:hover {
+      background-color: rgba(163, 163, 163, 0.819);
+    }
 
-      select {
-        margin: 5px;
-        padding: 5px;
-        border-radius: 10px;
-      }
+    .file-style * {
+      margin: 5px !important;
+      cursor: pointer;
+    }
 
-      .group {
-        display: flex;
-        gap: 20px;
-      }
+    select {
+      margin: 5px;
+      padding: 5px;
+      border-radius: 10px;
+    }
 
-      button {
-        width: 100px;
-        height: 50px;
-        background-color: #99dbf5;
-        color: black;
-        border: 2px solid black;
-        border-radius: 10px;
-        font-size: 15px;
-        display: block;
-        margin: 10px auto;
-        outline: none;
-      }
+    .group {
+      display: flex;
+      gap: 20px;
+    }
 
-      button:hover {
-        background-color: #51c5f3;
-        cursor: pointer;
-      }
+    button {
+      width: 100px;
+      height: 50px;
+      background-color: #99dbf5;
+      color: black;
+      border: 2px solid black;
+      border-radius: 10px;
+      font-size: 15px;
+      display: block;
+      margin: 10px auto;
+      outline: none;
+    }
 
-      .show {
-        display: block !important;
-      }
+    button:hover {
+      background-color: #51c5f3;
+      cursor: pointer;
+    }
 
-      .button-box {
-        display: block;
-        height: 80px;
-        margin: 15px;
-      }
+    .show {
+      display: block !important;
+    }
 
-      #back {
-        float: left;
-      }
+    .button-box {
+      display: block;
+      height: 80px;
+      margin: 15px;
+    }
 
-      #next {
-        float: right;
-      }
+    #back {
+      float: left;
+    }
 
-      .hide {
-        visibility: hidden;
-      }
+    #next {
+      float: right;
+    }
 
-      .file-label {
-        font-size: 25px;
-        margin: 25px !important;
-        background-color: color(srgb 0.855 0.855 0.855);
-        padding: 10px;
-        border-radius: 5px;
-        border: 2px solid black;
-      }
+    .hide {
+      visibility: hidden;
+    }
 
-      .error {
-        text-transform: capitalize;
-        text-align: center;
-        color: #ff3200;
-      }
+    .file-label {
+      font-size: 25px;
+      margin: 25px !important;
+      background-color: color(srgb 0.855 0.855 0.855);
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid black;
+    }
 
-      .form-link {
-        color: white !important;
-        margin: 43px 0 59px 25px;
-        font-weight: bold;
-        width: 255px;
-        height: 53px;
-        text-decoration: none;
-        background-color: rgb(240 173 72);
-        padding: 10px;
-        border-radius: 35px;
-        border: 2px solid #f0ad48;
-        text-transform: uppercase;
-      }
+    .error {
+      text-transform: capitalize;
+      text-align: center;
+      color: #ff3200;
+    }
 
-      .form-link:visited {
-        color: inherit;
-      }
+    .form-link {
+      color: white !important;
+      margin: 43px 0 59px 25px;
+      font-weight: bold;
+      width: 255px;
+      height: 53px;
+      text-decoration: none;
+      background-color: rgb(240 173 72);
+      padding: 10px;
+      border-radius: 35px;
+      border: 2px solid #f0ad48;
+      text-transform: uppercase;
+    }
 
-      .form-link:hover {
-        background-color: #d58f25;
-        border: 2px solid #d58f25;
-      }
+    .form-link:visited {
+      color: inherit;
+    }
 
-    </style>
-  </head>
+    .form-link:hover {
+      background-color: #d58f25;
+      border: 2px solid #d58f25;
+    }
+  </style>
+</head>
 
-  <body>
-    <nav>
-      <ul class="left">
-        <li><a href="/home">Home</a></li>
-        <li><a href="/submit">Submit</a></li>
-        <li><a href="/awards">Awards</a></li>
-        <li><a href="/process">Our Process</a></li>
-        <li><a href="/about">About Us</a></li>
-      </ul>
-      <ul class="right">
-        <li><a href="/sign-in">Sign In</a></li>
-      </ul>
-    </nav>
+<body>
+  <nav>
+    <ul class="left">
+      <img src="../static/jack_logo.png" alt="">
+    </ul>
+    <ul class="right">
+      <li><a href="/home">Home</a></li>
+      <li><a href="/submit">Submit</a></li>
+      <li><a href="/awards">Awards</a></li>
+      <li><a href="/process">Our Process</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/sign-in">Sign In</a></li>
+    </ul>
+    </ul>
+  </nav>
 
-    <h1>International High School Writing Contest</h1>
+  <div class="main">
     <h1>Submission Guidelines</h1>
 
     <h2>General Rules:</h2>
@@ -212,13 +208,14 @@
     <p>
       Individual students can submit a maximum of 5 entries. Each entry must be
       labelled in one of five categories: Critical Essay, Dramatic Script,
-      Poetry, Flash Fiction, and Short Story.</p><p> There may be multiple entries per
+      Poetry, Flash Fiction, and Short Story.</p>
+    <p> There may be multiple entries per
       category. Read about the requirements for each category below:
     </p>
     <h2>Critical Essay</h2>
     <p>
       Category Description <br> An informative or persuasive work that analyzes and
-      evaluates a subject, such as a literary work or a social issue.  <br>Sources
+      evaluates a subject, such as a literary work or a social issue. <br>Sources
       must be cited. Footnotes/works cited are not part of the word count. <br>
       500-3,000 words.
     </p>
@@ -226,37 +223,39 @@
     <p>
       Category Description <br> A written form of a play or performance that uses
       dialogue, action, and stage direction to tell a story, such as scripts for
-      television, film, or stage.  <br>500-3,000 words.
+      television, film, or stage. <br>500-3,000 words.
     </p>
     <h2>Poetry</h2>
     <p>
-      Category Description  <br>Writing in verse. Examples include prose poetry, free
-      verse, formal poetry, song lyrics, and spoken word.  <br>Students may submit
-      more than one collection but must register each separately.  <br>20–200 lines
+      Category Description <br>Writing in verse. Examples include prose poetry, free
+      verse, formal poetry, song lyrics, and spoken word. <br>Students may submit
+      more than one collection but must register each separately. <br>20–200 lines
       (total for the entire collection).
     </p>
     <h2>Flash Fiction</h2>
     <p>
       Category Description <br> A concise form of fictional storytelling framed in a
-      limited word count.  <br>Maximum of 1,000 words.
+      limited word count. <br>Maximum of 1,000 words.
     </p>
     <h2>Short Story</h2>
     <p>
-      Category Description  <br>A fiction or nonfiction narrative written in prose. <br>
+      Category Description <br>A fiction or nonfiction narrative written in prose. <br>
       500-3,000 words.
     </p>
 
     <button class="form-link" onclick="location.href='/form'">Go To Submission Form</button>
+  </div>
 
-    <footer style="position: relative !important">
-      <h3>
-        Check out our Instagram!
-        <a style="margin-left: 25px" href="https://www.instagram.com/highschool.writing/">
-          <img src="../static/instagram_logo.png" />
-        </a>
-      </h3>
-      <h3>©2023 by International High School Writing Competition</h3>
-    </footer>
+  <footer>
+    <p>
+      Check out our Instagram!
+      <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+        <img src="../static/instagram_logo.png">
+      </a>
+    </p>
+    <p>©2023 by International High School Writing Competition</p>
+  </footer>
 
-  </body>
+</body>
+
 </html>
