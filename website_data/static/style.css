@@ -6,12 +6,23 @@
 #769FCD
 */
 @import url('https://fonts.cdnfonts.com/css/apex-mk3');
+
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     margin: 0;
     background-color: #F7FBFC;
     overflow-x: hidden;
     position: relative;
-    min-height: 100vh;
+    min-height: 200vh !important;
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    margin-top: auto !important;
 }
 
 h1 {
@@ -20,6 +31,66 @@ h1 {
     font-size: 60px;
     margin: 25px;
     margin-bottom: 50px;
+}
+
+@media screen and (max-width: 1232px) {
+    h1 {
+        font-size: 5vw;
+    }
+
+    h2 {
+        font-size: 4vw;
+    }
+}
+
+@media screen and (max-width: 695px) {
+    nav {
+        display: none !important;
+    }
+
+    .mobile-nav {
+        display: flex !important;
+    }
+}
+
+.mobile-nav {
+    height: 50px;
+    width: 100%;
+    margin: 0;
+    display: none;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    background-color: #769fcd;
+}
+
+.mobile-nav ul {
+    display: none;
+    height: 50px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #769FCD;
+}
+
+.mobile-nav ul li {
+    float: left;
+}
+
+.mobile-nav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 17px 23px;
+    text-decoration: none;
+}
+
+#nav-button {
+    background-color: #769fcd;
+    border: none;
+    color: white;
+    font-size: 40px;
 }
 
 h2 {
