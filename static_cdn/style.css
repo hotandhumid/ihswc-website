@@ -167,7 +167,8 @@ nav ul li:hover {
 .main {
     padding: 39px;
     margin: 68px 128px;
-    box-shadow: 1px 1px 20px 0px gray;
+    box-shadow: 0px 20px 10px 0px #c5c5c5, 1px 20px 20px 0px #c5c5c5;
+    /* box-shadow: 0px 20px 10px 0px #888, 0px 20px 16px 0px #888; */
 }
 
 footer {
