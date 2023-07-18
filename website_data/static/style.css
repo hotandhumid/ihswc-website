@@ -6,15 +6,14 @@
 */
 @import url('https://fonts.cdnfonts.com/css/apex-mk3');
 
-html,
-body {
+html {
     overflow-x: hidden;
 }
 
 body {
     margin: 0;
     background-color: #F7FBFC;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     position: relative;
     min-height: 200vh;
     display: flex;
@@ -115,17 +114,42 @@ p {
 }
 
 nav {
-    height: 175px;
+    height: 41px;
     width: 100%;
     font-size: 20px;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-between;
-    z-index: 2;
-    /* background-color: #769fcd; */
-    background-image: linear-gradient(180deg, rgb(58 64 225), rgb(113, 167, 235), #F7FBFC);
+    justify-content: center;
+    top: 0;
+    position: sticky;
+    background-color: #414141;
+    /* background-image: linear-gradient(180deg, rgb(58 64 225), rgb(113, 167, 235), #F7FBFC); */
+}
+
+.top-nav {
+    width: 100%;
+    height: 100px;
+    margin: 0;
+    padding: 100px;
+    background-color: #1773ce;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 250px;
+    height: 250px;
+}
+
+.vl {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 200px;
+}
+
+.top-nav h1 {
+    color: white;
 }
 
 nav ul {
@@ -141,10 +165,6 @@ nav ul {
 
 .left {
     margin-left: 50px !important;
-}
-
-nav ul img {
-    width: 153px;
 }
 
 nav ul li {
