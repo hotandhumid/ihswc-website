@@ -1,88 +1,94 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Page</title>
 
-    <link rel="stylesheet" href="../static/style.css">
-    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/style.css" />
+    <script
+      src="https://kit.fontawesome.com/65a259d37d.js"
+      crossorigin="anonymous"
+    ></script>
 
     <style>
-        #root {
-            display: none;
-        }
+      #root {
+        display: none;
+      }
 
-        #submission-box {
-            display: flex;
-        }
+      #submission-box {
+        display: flex;
+      }
 
-        .submission {
-            width: 400px;
-            margin: 50px;
-            background-color: lightblue;
-            padding: 30px;
-            border: 2px solid black;
-            border-radius: 5px;
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-        }
+      .submission {
+        width: 400px;
+        margin: 50px;
+        background-color: lightblue;
+        padding: 30px;
+        border: 2px solid black;
+        border-radius: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+      }
 
-        .info {
-            margin-top: 10px;
-        }
+      .info {
+        margin-top: 10px;
+      }
 
-        p {
-            margin-left: 25px;
-            margin-bottom: 0px;
-            margin-right: 100px;
-            margin-top: 0px;
-            line-height: 30px;
-            text-transform: capitalize;
-        }
+      p {
+        margin-left: 25px;
+        margin-bottom: 0px;
+        margin-right: 100px;
+        margin-top: 0px;
+        line-height: 30px;
+        text-transform: capitalize;
+      }
 
-        .submission a {
-            margin: 20px auto 10px auto;
-            width: 170px;
-            height: 22px;
-            color: white !important;
-            padding: 10px;
-            font-weight: bold;
-            text-align: center;
-            background-color: #eab949;
-            border-radius: 5px;
-            text-decoration: none;
-        }
+      .submission a {
+        margin: 20px auto 10px auto;
+        width: 170px;
+        height: 22px;
+        color: white !important;
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        background-color: #eab949;
+        border-radius: 5px;
+        text-decoration: none;
+      }
 
-        .submission a:hover {
-            background-color: #d0a43d;
-        }
+      .submission a:hover {
+        background-color: #d0a43d;
+      }
 
-        .submission a:visited {
-            color: inherit 
-        }
+      .submission a:visited {
+        color: inherit;
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
+    
+    <ul class="top-nav">
+      <img class="logo" src="../static/jack_logo.png" alt="" />
+      <div class="vl"></div>
+      <h1>International High School Writing Contest</h1>
+    </ul>
+
     <nav>
-        <ul class="left">
-          <img src="../static/jack_logo.png" alt="" >
-        </ul>
-        <ul class="right">
-          <li><a href="/home">Home</a></li>
-          <li><a href="/submit">Submit</a></li>
-          <li><a href="/awards">Awards</a></li>
-          <li><a href="/process">Our Process</a></li>
-          <li><a href="/about">About Us</a></li>
-        </ul>
-        </ul>
-      </nav>
-      
+      <ul class="right">
+        <li><a href="/home">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </nav>
+
     <h1>Admin Page</h1>
 
     <div id="root">{{submissions}}</div>
@@ -90,48 +96,56 @@
     <div id="submission-box"></div>
 
     <script>
-        q = new URLSearchParams(location.search)
-        if (q.get("login") != "success") {
-            location.href = "/sign-in"
-        }
+      q = new URLSearchParams(location.search);
+      if (q.get("login") != "success") {
+        location.href = "/sign-in";
+      }
     </script>
     <script>
-        function makeLink(href, n, div, obj) {
-            info = document.createElement("div")
-            info.classList.add("info")
-            info.innerHTML = `<p>Submission: ${n}</p> <p>Title: ${obj['title' + n]}</p> <p>Category: ${obj['category' + n]}</p> <p>Word Count: ${obj['word_count' + n]}</p>`
-            
-            a = document.createElement("a")
-            a.setAttribute("href", `/media/${href}`)
-            a.setAttribute("target", "_blank")
-            a.innerHTML = `View Submission ${n} <i class="fa-solid fa-right-long"></i>`
+      function makeLink(href, n, div, obj) {
+        info = document.createElement("div");
+        info.classList.add("info");
+        info.innerHTML = `<p>Submission: ${n}</p> <p>Title: ${
+          obj["title" + n]
+        }</p> <p>Category: ${obj["category" + n]}</p> <p>Word Count: ${
+          obj["word_count" + n]
+        }</p>`;
 
-            div.append(info)
-            div.append(a)
-        }
+        a = document.createElement("a");
+        a.setAttribute("href", `/media/${href}`);
+        a.setAttribute("target", "_blank");
+        a.innerHTML = `View Submission ${n} <i class="fa-solid fa-right-long"></i>`;
 
-        pdfs = ['pdf_file1', 'pdf_file2', 'pdf_file3', 'pdf_file4', 'pdf_file5']
+        div.append(info);
+        div.append(a);
+      }
 
-        submissions = JSON.parse(document.querySelector("#root").innerText.replaceAll("'", "\"").replaceAll("datetime", "\"datetime").replaceAll(")", ")\""))
+      pdfs = ["pdf_file1", "pdf_file2", "pdf_file3", "pdf_file4", "pdf_file5"];
 
-        submissions.forEach( s => {
-            div = document.createElement("div")
-            div.classList.add("submission")
-            div.innerHTML = `<p style="text-transform: capitalize; font-size: 30px;">${s['firstname']} ${s['lastname']}</p>`
-            
-            pdfs.forEach( pdf => {
-                if (s[pdf] == "___") {
-                    console.log("empty")
-                } else {
-                    console.log(s[pdf])
-                    makeLink(s[pdf], pdf.slice(-1), div, s)
-                }
-            })
-            
-            document.querySelector("#submission-box").append(div)
+      submissions = JSON.parse(
+        document
+          .querySelector("#root")
+          .innerText.replaceAll("'", '"')
+          .replaceAll("datetime", '"datetime')
+          .replaceAll(")", ')"')
+      );
 
-        })
+      submissions.forEach((s) => {
+        div = document.createElement("div");
+        div.classList.add("submission");
+        div.innerHTML = `<p style="text-transform: capitalize; font-size: 30px;">${s["firstname"]} ${s["lastname"]}</p>`;
+
+        pdfs.forEach((pdf) => {
+          if (s[pdf] == "___") {
+            console.log("empty");
+          } else {
+            console.log(s[pdf]);
+            makeLink(s[pdf], pdf.slice(-1), div, s);
+          }
+        });
+
+        document.querySelector("#submission-box").append(div);
+      });
     </script>
-</body>
-
+  </body>
 </html>
