@@ -39,11 +39,11 @@ h1 {
 
 @media screen and (max-width: 1232px) {
     h1 {
-        font-size: 5vw;
+        font-size: 3vw;
     }
 
     h2 {
-        font-size: 4vw;
+        font-size: 2vw;
     }
 }
 
@@ -201,7 +201,7 @@ nav ul li a {
     text-align: center;
     padding: 9px 29px;
     text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.1s ease-in-out;
 }
 
 nav ul li a:hover {

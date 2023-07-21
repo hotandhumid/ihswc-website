@@ -17,15 +17,13 @@
       body {
         background-color: rgb(247, 247, 247);
         margin: 0px;
-        overflow: hidden;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
+        height: 150vh;
         min-height: 0 !important;
       }
 
       .box {
+        display: block;
+        margin: 80px auto;
         height: 600px;
         width: 600px;
         background-color: white;
@@ -74,16 +72,6 @@
         background-color: rgb(66, 124, 206);
       }
 
-      img {
-        position: absolute;
-        z-index: -1;
-        width: 577px;
-        top: 31px;
-        height: 562px;
-        right: 447px;
-        transform: rotateZ(277deg);
-      }
-
       #error {
         color: rgb(233, 104, 5);
       }
@@ -120,6 +108,16 @@
       <button type="submit">Login</button>
       <p id="error"></p>
     </div>
+
+    <footer>
+      <p>
+        Check out our Instagram!
+        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+          <img src="../static/instagram_logo.png">
+        </a>
+      </p>
+      <p>©2023 by International High School Writing Competition</p>
+    </footer>
 
     <script>
       inp1 = document.querySelector("#password");
