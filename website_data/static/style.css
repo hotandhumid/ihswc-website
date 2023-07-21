@@ -32,7 +32,7 @@ footer p a img {
 h1 {
     font-family: 'Apex Mk3', sans-serif;
     text-align: center;
-    font-size: 60px;
+    font-size: 45px;
     margin: 25px;
     margin-bottom: 50px;
 }
@@ -130,7 +130,7 @@ nav {
 
 .top-nav {
     width: 100%;
-    height: 100px;
+    height: 1px;
     margin: 0;
     padding: 100px;
     background-color: #3f5c79;
@@ -138,15 +138,38 @@ nav {
     align-items: center;
 }
 
+.title-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-nav h1 {
+    margin-bottom: 0px !important;
+}
+
+.title-nav h2 {
+    margin-top: 5px !important;
+    font-family: 'Apex Mk3';
+    font-weight: 300;
+    color: white;
+}
+
+.underline-text {
+    display: flex;
+}
+
+.underline-text h2 {
+    margin-right: 0 !important;
+}
+
 .logo {
-    width: 250px;
-    height: 250px;
+    width: 182px;
 }
 
 .vl {
     border-left: 4px solid rgb(255, 255, 255);
     border-radius: 5px;
-    height: 200px;
+    height: 125px;
 }
 
 .top-nav h1 {
@@ -176,13 +199,14 @@ nav ul li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 17px 23px;
+    padding: 9px 29px;
     text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
 }
 
-nav ul li:hover {
-    background-image: radial-gradient(#5d82e8, transparent);
-    border-radius: 14px;
+nav ul li a:hover {
+    color: #414141 !important;
+    background-color: #ffffff;
 }
 
 .main {
@@ -194,9 +218,9 @@ nav ul li:hover {
 
 .bar {
     width: 100%;
-    height: 400px;
+    height: 200px;
     display: flex;
-    background-color: #408b3c;
+    background-color: #7c7c7c;
     color: white;
     gap: 30px;
     justify-content: center;
@@ -213,7 +237,7 @@ nav ul li:hover {
 
 .bar .vl {
     border-left: 4px solid #dadada !important;
-    height: 300px !important;
+    height: 150px !important;
 }
 
 footer {

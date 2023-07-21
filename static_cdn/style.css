@@ -32,7 +32,7 @@ footer p a img {
 h1 {
     font-family: 'Apex Mk3', sans-serif;
     text-align: center;
-    font-size: 60px;
+    font-size: 45px;
     margin: 25px;
     margin-bottom: 50px;
 }
@@ -114,21 +114,66 @@ p {
 }
 
 nav {
-    height: 175px;
+    height: 41px;
     width: 100%;
     font-size: 20px;
     margin: 0;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: space-between;
-    /* z-index: 2; */
-
+    justify-content: center;
     top: 0;
     position: sticky;
-
-    background-color: #797979;
+    background-color: #414141;
     /* background-image: linear-gradient(180deg, rgb(58 64 225), rgb(113, 167, 235), #F7FBFC); */
+}
+
+.top-nav {
+    width: 100%;
+    height: 1px;
+    margin: 0;
+    padding: 100px;
+    background-color: #3f5c79;
+    display: flex;
+    align-items: center;
+}
+
+.title-nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.title-nav h1 {
+    margin-bottom: 0px !important;
+}
+
+.title-nav h2 {
+    margin-top: 5px !important;
+    font-family: 'Apex Mk3';
+    font-weight: 300;
+    color: white;
+}
+
+.underline-text {
+    display: flex;
+}
+
+.underline-text h2 {
+    margin-right: 0 !important;
+}
+
+.logo {
+    width: 182px;
+}
+
+.vl {
+    border-left: 4px solid rgb(255, 255, 255);
+    border-radius: 5px;
+    height: 125px;
+}
+
+.top-nav h1 {
+    color: white;
 }
 
 nav ul {
@@ -146,10 +191,6 @@ nav ul {
     margin-left: 50px !important;
 }
 
-nav ul img {
-    width: 153px;
-}
-
 nav ul li {
     float: left;
 }
@@ -158,13 +199,14 @@ nav ul li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 17px 23px;
+    padding: 9px 29px;
     text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
 }
 
-nav ul li:hover {
-    background-image: radial-gradient(#5d82e8, transparent);
-    border-radius: 14px;
+nav ul li a:hover {
+    color: #414141 !important;
+    background-color: #ffffff;
 }
 
 .main {
@@ -172,6 +214,30 @@ nav ul li:hover {
     margin: 68px 128px;
     box-shadow: 0px 20px 10px 0px #c5c5c5, 1px 20px 20px 0px #c5c5c5;
     /* box-shadow: 0px 20px 10px 0px #888, 0px 20px 16px 0px #888; */
+}
+
+.bar {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    background-color: #7c7c7c;
+    color: white;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-box {
+    width: 30%;
+    height: 390px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bar .vl {
+    border-left: 4px solid #dadada !important;
+    height: 150px !important;
 }
 
 footer {
