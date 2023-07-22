@@ -19,7 +19,11 @@
 <body>
 
   <div class="notification-top-bar">
-    <p>2023 International High School Writing Contest Application Now Open! Check out our <small><a href="/submit">Submission Page</a></small></p>
+    <p>
+      2023 International High School Writing Contest Application Now Open! Check out our 
+      <small><a href="/submit">Submission Page</a></small>
+      <span>x</span>
+    </p>
   </div>
 
   <ul class="top-nav">
@@ -129,6 +133,13 @@
     </p>
     <p>©2023 by International High School Writing Competition</p>
   </footer>
+
+  <script>
+    document.querySelector(".notification-top-bar p span").addEventListener("click", () => {
+      document.querySelector(".notification-top-bar").style.display = "none"
+    })
+  </script>
+
 </body>
 
 </html>

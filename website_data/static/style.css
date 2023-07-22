@@ -52,6 +52,15 @@ footer p a img {
     text-decoration: none;
 }
 
+.notification-top-bar p span {
+        border-radius: 100px;
+        padding: 3px;
+        cursor: pointer;
+        float: right;
+        margin-right: 6px;
+        font-size: 15px;
+}
+
 h1 {
     font-family: 'Apex Mk3', sans-serif;
     text-align: center;
