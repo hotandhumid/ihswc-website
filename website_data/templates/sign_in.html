@@ -17,23 +17,25 @@
       body {
         background-color: rgb(247, 247, 247);
         margin: 0px;
-        height: 150vh;
         min-height: 0 !important;
       }
 
       .box {
-        display: block;
+        display: flex;
         margin: 80px auto;
         height: 600px;
         width: 600px;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0px 0px 20px 0px gray;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
       h1 {
-        margin-top: 70px;
-        margin-left: 70px;
+        margin-bottom: 30px !important;
       }
 
       i {
@@ -41,7 +43,6 @@
       }
 
       input {
-        margin-left: 70px;
         margin-top: 30px;
         width: 350px;
         height: 40px;
@@ -82,7 +83,15 @@
     <ul class="top-nav">
       <img class="logo" src="../static/jack_logo.png" alt="" />
       <div class="vl"></div>
-      <h1>International High School Writing Contest</h1>
+      <div class="title-nav">
+        <h1>International High School Writing Contest</h1>
+        <div class="underline-text">
+          <h2>Sponsored by</h2>
+          <h2 style="text-decoration: underline; margin-left: 6px !important">
+            Writing Waves
+          </h2>
+        </div>
+      </div>
     </ul>
 
     <nav>
@@ -98,6 +107,7 @@
 
     <div class="box">
       <h1>Sign In<i class="fa-solid fa-right-to-bracket"></i></h1>
+      <p style="margin: 0 !important;">* For judge's use only *</p>
       <input type="text" name="username" id="username" placeholder="Username" />
       <input
         type="password"
@@ -112,8 +122,11 @@
     <footer>
       <p>
         Check out our Instagram!
-        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
-          <img src="../static/instagram_logo.png">
+        <a
+          style="margin-left: 25px"
+          href="https://www.instagram.com/highschool.writing/"
+        >
+          <img src="../static/instagram_logo.png" />
         </a>
       </p>
       <p>©2023 by International High School Writing Competition</p>
