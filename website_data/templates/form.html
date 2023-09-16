@@ -27,7 +27,7 @@
       form {
         margin: 0 auto;
         display: block;
-        width: 906px;
+        width: 908px;
         background-color: white;
         border: 2px solid black;
         padding: 25px;
@@ -39,8 +39,8 @@
       }
       
       input[type="text"] {
-        height: 15px;
-        width: 150px;
+        height: 7px;
+        width: 130px;
         padding: 12px;
         margin: 8px;
         box-shadow: 1 1 5;
@@ -83,7 +83,13 @@
       
       .group {
         display: flex;
-        gap: 20px;
+      }
+
+      .group p {
+        margin-left: 25px;
+        margin-right: 100px;
+        line-height: 35px;
+        margin-bottom: 5px;
       }
       
       button {
@@ -157,6 +163,10 @@
 
       .form-link:hover {
         background-color: #00d72b;
+      }
+
+      #page5 * input, #page5 * input {
+        pointer-events: none;
       }
     </style>
   </head>
@@ -277,6 +287,26 @@
       makeGroup(["title5"], 22, 6);
       makeGroup(["word_count5"], 23, 6);
       makeGroup(["pdf_file5"], 24, 6);
+
+      // Add red asterik
+      document.querySelectorAll("#page1 * label").forEach(l => {
+        l.innerHTML += "<span style='color: red; vertical-align: middle;'> * </span>"
+      })
+      document.querySelectorAll("#page2 * label").forEach(l => {
+        l.innerHTML += "<span style='color: red; vertical-align: middle;'> * </span>"
+      })
+
+      // Blocks page 4 - 5
+      document.querySelectorAll("#page5 * input, #page5 * select").forEach(i => {
+        i.setAttribute("disabled", "disabled")
+        i.setAttribute("tabindex", "-1")
+        i.style += "cursor: not-allowed"
+      })
+      document.querySelectorAll("#page6 * input, #page6 * select").forEach(i => {
+        i.setAttribute("disabled", "disabled")
+        i.setAttribute("tabindex", "-1")
+        i.style += "cursor: not-allowed"
+      })
 
       // Appends submit button and error message on page 6
       button = document.createElement("button");

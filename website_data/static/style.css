@@ -145,6 +145,14 @@ p {
     line-height: 35px;
 }
 
+h2 {
+    font-size: 2vw !important;
+}
+
+p, li {
+    font-size: 1vw !important;
+}
+
 nav {
     height: 41px;
     width: 100%;
@@ -286,9 +294,9 @@ nav ul li a:hover {
 }
 
 .bar {
-    width: 100%;
+    width: 80%;
     height: 155px;
-    /* margin: 50px; */
+    margin: 0 auto;
     display: flex;
     background-color: #7c7c7c;
     color: white;
@@ -303,6 +311,10 @@ nav ul li a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.info-box h1 {
+    font-size: 2vw;
 }
 
 .bar .vl {
