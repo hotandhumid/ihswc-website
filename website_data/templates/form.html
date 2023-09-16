@@ -215,9 +215,11 @@
           </div>
           <div id="page5" style="display: none">
             <h2 style="text-align: center">Submission 4</h2>
+            <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p>
           </div>
           <div id="page6" style="display: none">
             <h2 style="text-align: center">Submission 5</h2>
+            <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p>
           </div>
         </div>
         {% csrf_token %}
@@ -307,6 +309,10 @@
         i.setAttribute("tabindex", "-1")
         i.style += "cursor: not-allowed"
       })
+
+      // Appends checkbox for agreement
+      document.querySelector("#page6").innerHTML += `<input type="checkbox" name="agree" id="agree">
+      <label for="agree">I accept and agree to the <a href="../static/participation-terms.pdf">Participation Terms</a></label>`
 
       // Appends submit button and error message on page 6
       button = document.createElement("button");

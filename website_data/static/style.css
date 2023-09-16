@@ -314,6 +314,7 @@ nav ul li a:hover {
 }
 
 .info-box h1 {
+    margin: 0;
     font-size: 2vw;
 }
 
@@ -334,4 +335,12 @@ footer {
 
 footer h3 {
     display: flex;
+}
+
+h2 {
+    font-size: 2vw !important;
+}
+
+p, li {
+    font-size: 1vw !important;
 }
