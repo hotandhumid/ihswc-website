@@ -15,11 +15,6 @@
         scroll-behavior: smooth;
       }
       
-      body {
-        margin: 0;
-        min-height: 262vh;
-      }
-      
       #form {
         margin: 120px;
       }
@@ -168,6 +163,19 @@
       #page5 * input, #page5 * input {
         pointer-events: none;
       }
+
+      body > nav > ul > li:nth-child(2) > a {
+        color: black;
+        background-color: white;
+      }
+
+      h1 {
+        margin-bottom: -40px !important;
+      }
+
+      #page1 > h2 {
+        margin: 0 0 20px 0 !important;
+      }
     </style>
   </head>
 
@@ -289,6 +297,11 @@
       makeGroup(["title5"], 22, 6);
       makeGroup(["word_count5"], 23, 6);
       makeGroup(["pdf_file5"], 24, 6);
+
+      // Removing numbers from labels
+      document.querySelectorAll("#page2 * label, #page3 * label, #page4 * label, #page5 * label, #page6 * label").forEach(l => {
+        l.innerText = l.innerText.slice(0, -3) + ": "
+      })
 
       // Add red asterik
       document.querySelectorAll("#page1 * label").forEach(l => {
@@ -430,6 +443,7 @@
         d.previousElementSibling.innerHTML +=
           '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
       }
+
     </script>
   </body>
 </html>
