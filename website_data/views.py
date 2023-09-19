@@ -148,9 +148,12 @@ def form(request):
 
             return redirect("/awards")
     else:
-        form = TestFileForm()
+        form = TestFileForm()   
+    
+    model = TestFileModel.objects.all()
+    emails = [i.email for i in model]
         
-    return render(request, "form.html", {"form": form})
+    return render(request, "form.html", {"form": form, "emails": emails})
 
 
 def rules(request):

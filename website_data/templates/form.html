@@ -16,7 +16,7 @@
       }
       
       #form {
-        margin: 120px;
+        margin: 50px;
       }
       
       form {
@@ -104,6 +104,23 @@
         background-color: #51c5f3;
         cursor: pointer;
       }
+
+      #page6 > div.button {
+        width: 100px;
+        height: 50px;
+        background-color: #99dbf5;
+        border: 2px solid black;
+        border-radius: 10px;
+        margin: 10px auto;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      #page6 > div.button:hover {
+        background-color: #51c5f3;
+        cursor: pointer;
+      }
       
       .show {
         display: block !important;
@@ -181,6 +198,8 @@
 
   <body>
     
+    <div id="model-data" style="display: none;">{{ emails }}</div>
+
     <ul class="top-nav">
       <img class="logo" src="../static/jack_logo.png" alt="">
       <div class="vl"></div>
@@ -204,30 +223,28 @@
       </ul>
     </nav>
 
-    <h1 id="submission-form" style="text-align: center">Submission Form</h1>
-
     <div id="form">
       <form action="/form/" method="post" enctype="multipart/form-data">
         <div id="pages">
           <div id="page1" style="display: none" class="show">
-            <h2 style="text-align: center">Personal Information</h2>
+            <h2 class='heading' style="text-align: center">Personal Information</h2>
           </div>
           <div id="page2" style="display: none">
-            <h2 style="text-align: center">Submission 1</h2>
+            <h2 class='heading' style="text-align: center">Submission 1</h2>
           </div>
           <div id="page3" style="display: none">
-            <h2 style="text-align: center">Submission 2</h2>
+            <h2 class='heading' style="text-align: center">Submission 2</h2>
           </div>
           <div id="page4" style="display: none">
-            <h2 style="text-align: center">Submission 3</h2>
+            <h2 class='heading' style="text-align: center">Submission 3</h2>
           </div>
           <div id="page5" style="display: none">
-            <h2 style="text-align: center">Submission 4</h2>
-            <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p>
+            <h2 class='heading' style="text-align: center">Submission 4</h2>
+            <!-- <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p> -->
           </div>
           <div id="page6" style="display: none">
-            <h2 style="text-align: center">Submission 5</h2>
-            <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p>
+            <h2 class='heading' style="text-align: center">Submission 5</h2>
+            <!-- <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p> -->
           </div>
         </div>
         {% csrf_token %}
@@ -311,25 +328,15 @@
         l.innerHTML += "<span style='color: red; vertical-align: middle;'> * </span>"
       })
 
-      // Blocks page 4 - 5
-      document.querySelectorAll("#page5 * input, #page5 * select").forEach(i => {
-        i.setAttribute("disabled", "disabled")
-        i.setAttribute("tabindex", "-1")
-        i.style += "cursor: not-allowed"
-      })
-      document.querySelectorAll("#page6 * input, #page6 * select").forEach(i => {
-        i.setAttribute("disabled", "disabled")
-        i.setAttribute("tabindex", "-1")
-        i.style += "cursor: not-allowed"
-      })
-
       // Appends checkbox for agreement
       document.querySelector("#page6").innerHTML += `<input type="checkbox" name="agree" id="agree">
       <label for="agree">I accept and agree to the <a href="../static/participation-terms.pdf">Participation Terms</a></label>`
 
       // Appends submit button and error message on page 6
       button = document.createElement("button");
-      button.setAttribute("type", "submit");
+      button.setAttribute("class", "button")
+      button.setAttribute("type", "submit")
+      button.setAttribute("onclick", "validate(event)")
       button.innerText = "Submit";
       p = document.createElement("p");
       p.setAttribute("class", "error");
@@ -337,23 +344,27 @@
       document.querySelector("#page6").append(p);
 
       // Display error message if all fields are not filled
-      button = document.querySelector("button[type='submit']");
-      button.addEventListener("click", function () {
+      emails = document.querySelector("#model-data").innerText.slice(1, -1).replaceAll("'", "").split(", ")
+      error = document.querySelector(".error")
+
+      const validate = (event) => {
         inputs = Array.prototype.slice
           .call(document.querySelectorAll("input"))
-          .slice(0, 18);
+          .slice(0, 17);
 
         for (i = 0; i < inputs.length; i += 1) {
           if (inputs[i].value == "") {
-            document.querySelector(
-              ".error"
-            ).innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[
-              i
-            ].previousElementSibling.innerText.replace(":", "")}"`;
+            error.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[i].previousElementSibling.innerText.replace(":", "")}"`;
+            event.preventDefault()
             break;
           }
         }
-      });
+
+        if (emails.includes(document.querySelector("#id_email").value)) {
+          error.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> You already submitted once, you must pay to submit again!`;
+          event.preventDefault()
+        }
+      };
 
       // Adding functions to next and back buttons
       next = document.querySelector("#next");
@@ -434,7 +445,6 @@
 
       // Adding a function for onchange event to input type files
       function getFileData(d) {
-        console.log(d);
         var file = d.files[0];
         var filename = file.name;
         d.parentElement.parentElement.style.width = "auto";
@@ -442,6 +452,52 @@
         d.previousElementSibling.innerText = filename;
         d.previousElementSibling.innerHTML +=
           '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
+      }
+
+      // Cookie functions
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      function getCookie(cname) {
+        cookies = decodeURIComponent(document.cookie)
+        for (c of cookies.split("; ")) {
+          if (c.split("=")[0] == cname) {
+            return c.split("=")[1]
+          }
+        }
+      }
+
+      // Adds cookie after submitting
+      button = document.querySelector(".button")
+      button.addEventListener("click", () => {
+        setCookie("submitted", "true", 365)
+      })
+
+      // Blocks second submission
+      if (getCookie("submitted") == "true") {
+        document.querySelectorAll(".heading").forEach(h => {
+          h.innerText += " Must pay to submit again."
+        })
+
+        document.querySelectorAll("*input").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style += "cursor: not-allowed"
+        })
+        // document.querySelectorAll("#page5 * input, #page5 * select").forEach(i => {
+        //   i.setAttribute("disabled", "disabled")
+        //   i.setAttribute("tabindex", "-1")
+        //   i.style += "cursor: not-allowed"
+        // })
+        // document.querySelectorAll("#page6 * input, #page6 * select").forEach(i => {
+        //   i.setAttribute("disabled", "disabled")
+        //   i.setAttribute("tabindex", "-1")
+        //   i.style += "cursor: not-allowed"
+        // })
       }
 
     </script>
