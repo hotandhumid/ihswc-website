@@ -286,7 +286,7 @@ nav ul li a:hover {
 
 .main p {
     font-size: 20px;
-    margin: 0px !important;
+    /* margin: 0px !important; */
 }
 
 .main img {
@@ -335,6 +335,16 @@ footer {
 
 footer h3 {
     display: flex;
+}
+
+footer h3 a img {
+    max-width: 25px;
+    height: auto;
+}
+
+footer h3 a {
+    color: wheat;
+    margin-left: 8px;
 }
 
 h2 {
