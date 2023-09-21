@@ -482,26 +482,27 @@
       // Blocks second submission
       if (getCookie("submitted") == "true") {
         document.querySelectorAll(".heading").forEach(h => {
-          h.innerText += " Must pay to submit again."
+          h.innerText = "Must pay to submit again."
+          h.style.color = "red"
         })
 
-        document.querySelectorAll("*input").forEach(i => {
+        document.querySelectorAll("input").forEach(i => {
           i.setAttribute("disabled", "disabled")
           i.setAttribute("tabindex", "-1")
-          i.style += "cursor: not-allowed"
+          i.style = "cursor: not-allowed"
         })
-        // document.querySelectorAll("#page5 * input, #page5 * select").forEach(i => {
-        //   i.setAttribute("disabled", "disabled")
-        //   i.setAttribute("tabindex", "-1")
-        //   i.style += "cursor: not-allowed"
-        // })
-        // document.querySelectorAll("#page6 * input, #page6 * select").forEach(i => {
-        //   i.setAttribute("disabled", "disabled")
-        //   i.setAttribute("tabindex", "-1")
-        //   i.style += "cursor: not-allowed"
-        // })
+        document.querySelectorAll("select").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style = "cursor: not-allowed"
+        })
+        document.querySelectorAll(".file-style *, .file-style").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style = "cursor: not-allowed !important"
+        })
+        document.querySelector("#page6 > button").style.display = "none"
       }
-
     </script>
   </body>
 </html>
