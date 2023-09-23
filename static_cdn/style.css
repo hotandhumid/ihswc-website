@@ -263,14 +263,18 @@ nav ul li a:hover {
 .rect {
     display: flex;
     gap: 30px;
-    margin: 50px 0px;
+    margin: 1px 0px;
+}
+
+.rect img {
+    margin-left: 25px;
 }
 
 .main .background-image {
     text-align: center;
     background-image: url('https://images.squarespace-cdn.com/content/v1/643a12900476a6182de9a9a6/c0099f94-5c2d-4bb0-a3b3-81015ff7764d/Screen+Shot+2023-04-14+at+8.21.19+PM.png');
     display: block;
-    margin: 70px auto;
+    margin: 40px auto;
     width: 100%;
     height: 30vh;
     background-repeat: no-repeat;
@@ -344,7 +348,7 @@ footer h3 a img {
 
 footer h3 a {
     color: wheat;
-    margin-left: 8px;
+    margin-left: 4px;
 }
 
 h2 {
