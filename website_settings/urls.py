@@ -19,9 +19,12 @@ from django.urls import re_path as url
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("website_data.urls")),
     url(r'^favicon\.ico$', RedirectView.as_view(url='/static/favicon.ico')),
+    path("robots.txt", TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 ]  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
