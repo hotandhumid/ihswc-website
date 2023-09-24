@@ -51,6 +51,7 @@
       
       .file-style {
         justify-content: center;
+        align-items: center;
         margin: 10px auto;
         border: 2px solid black;
         padding: 6px 12px;
@@ -69,6 +70,11 @@
       .file-style * {
         margin: 5px !important;
         cursor: pointer;
+      }
+
+      .file-style p {
+        height: 40px;
+        line-height: 15px !important;
       }
       
       select {
@@ -450,10 +456,14 @@
         var file = d.files[0];
         var filename = file.name;
         d.parentElement.parentElement.style.width = "auto";
-
-        d.previousElementSibling.innerText = filename;
+        if (filename.length > 15) {
+          d.previousElementSibling.innerText = filename.slice(0, 5) + "..." + filename.slice(-6);
+        }
+        else {
+          d.previousElementSibling.innerText = filename;
+        }
         d.previousElementSibling.innerHTML +=
-          '<p>Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
+          '<p stlyle="height: 60px;">Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
       }
 
       // Cookie functions
@@ -476,7 +486,7 @@
       // Adds cookie after submitting
       button = document.querySelector(".button")
       button.addEventListener("click", () => {
-        setCookie("submitted", "true", 365)
+        setCookie("submitted", "true", 600)
       })
 
       // Blocks second submission

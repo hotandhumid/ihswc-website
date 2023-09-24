@@ -166,3 +166,8 @@ def awards(request):
 
 def submissions(request):
     return render(request, "submissions.html", {"submissions": list(TestFileModel.objects.all().values())})
+
+
+def custom_404(request, exception):
+    return render(request, '404.html', status=404)
+

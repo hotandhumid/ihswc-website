@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found</title>
+    
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <ul class="top-nav">
+        <img class="logo" src="../static/jack_logo.png" alt="">
+        <div class="vl"></div>
+        <div class="title-nav">
+          <h1>International High School Writing Contest</h1>
+          <div class="underline-text">
+            <h2>Sponsored by</h2>
+            <h2 style="text-decoration: underline; margin-left: 6px !important;">Writing Waves</h2>
+          </div>
+        </div>
+    </ul>
+    
+    <nav>
+        <ul class="right">
+            <li><a href="/home">Home</a></li>
+            <li><a href="/submit">Submit</a></li>
+            <li><a href="/awards">Awards</a></li>
+            <li><a href="/process">Our Process</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/sign-in">Sign In</a></li>
+        </ul>
+    </nav>
+
+    <div class="main" style="display: flex; flex-wrap: wrap; justify-content: center; flex-direction: column; align-items: center;">
+        <h2>Error</h2>
+        <h3>Page not found at: </h3>
+    </div>
+
+    <script>
+        document.querySelector("div.main h3").innerText += " " + document.location.href
+    </script>
+</body>
+</html>
