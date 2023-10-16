@@ -13,5 +13,6 @@ urlpatterns = [
     path('rules/', views.rules),
     path('test/', views.test, name="test"),
     path('sign-in/', views.sign_in),
-    path('admin-page', views.admin_page)
+    path('admin-page', views.admin_page),
+    path('donate', views.donate)
 ]

@@ -492,7 +492,7 @@
       // Blocks second submission
       if (getCookie("submitted") == "true") {
         document.querySelectorAll(".heading").forEach(h => {
-          h.innerText = "Must pay to submit again."
+          h.innerText = "You can only submit once!"
           h.style.color = "red"
         })
 
