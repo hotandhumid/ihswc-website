@@ -145,14 +145,6 @@ p {
     line-height: 35px;
 }
 
-h2 {
-    font-size: 2vw !important;
-}
-
-p, li {
-    font-size: 1vw !important;
-}
-
 nav {
     height: 41px;
     width: 100%;
@@ -339,6 +331,7 @@ footer {
 
 footer h3 {
     display: flex;
+    font-size: 0.8vw !important;
 }
 
 footer h3 a img {
@@ -352,9 +345,29 @@ footer h3 a {
 }
 
 h2 {
-    font-size: 2vw !important;
+    font-size: 2vw;
 }
 
-p, li {
+p {
     font-size: 1vw !important;
 }
+
+@media screen and (max-width: 1104px) {
+    h1, h2, li { font-size: 25px !important }
+    .logo, .vl { display: none; }
+    .top-nav { width: auto !important; }
+  }
+
+  @media screen and (max-width: 1900px) {
+    li { height: auto; font-size: 25px; }
+  }
+
+  @media screen and (max-width: 600px) {
+    .box h2 {
+      margin-right: 0 !important;
+    }
+  }
+
+  @media screen and (max-width: 901px) {
+    li { font-size: 15px !important; }
+  }

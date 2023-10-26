@@ -4,7 +4,13 @@
 <head>
     <title>International High School Writing Contest</title>
     <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <style>
+        body {
+          overflow-x: hidden !important;
+        }
+
         footer h3 a img {
           max-width: 25px;
           height: auto;
@@ -42,7 +48,7 @@
           border-radius: 5px;
           padding: 30px;
           z-index: -1;
-          font-size: 1vw !important;
+          font-size: 1vw;
           font-weight: 100; 
         }
 
@@ -53,17 +59,17 @@
         }
 
         .fadeInLeft {
-          animation: fadeInLeft 5s both;
+          animation: fadeInLeft 1s both;
         }
 
         .fadeInRight {
-          animation: fadeInRight 5s both;
+          animation: fadeInRight 1s both;
         }
 
         @keyframes fadeInLeft {
           0% {
             opacity: 0;
-            transform: translateX(-50px);
+            transform: translateX(-150px);
           }
           100% {
             opacity: 1;
@@ -74,7 +80,7 @@
         @keyframes fadeInRight {
           0% {
             opacity: 0;
-            transform: translateX(50px);
+            transform: translateX(150px);
           }
           100% {
             opacity: 1;
@@ -94,6 +100,28 @@
           h2 {
             margin: 0 !important;
           }
+
+          .underline-text { display: none !important }
+        }
+
+        @media screen and (max-width: 1104px) {
+          h1, h2, li { font-size: 25px !important }
+          .logo, .vl { display: none; }
+          .top-nav { width: auto !important; }
+        }
+
+        @media screen and (max-width: 1900px) {
+          li { height: auto; font-size: 25px; }
+        }
+
+        @media screen and (max-width: 600px) {
+          .box h2 {
+            margin-right: 0 !important;
+          }
+        }
+
+        @media screen and (max-width: 901px) {
+          li { font-size: 15px !important; }
         }
 
         body > nav > ul > li:nth-child(5) > a {
