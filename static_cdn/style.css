@@ -90,7 +90,7 @@ h1 {
 }
 
 .mobile-nav {
-    height: 50px;
+    /* height: 50px; */
     width: 100%;
     margin: 0;
     display: none;
@@ -102,7 +102,7 @@ h1 {
 
 .mobile-nav ul {
     display: none;
-    height: 50px;
+    /* height: 50px; */
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -128,6 +128,58 @@ h1 {
     color: white;
     font-size: 40px;
 }
+
+body > nav > ul > li:nth-child(1) > a {
+    color: black;
+    background-color: white;
+  }
+
+  .rect img {
+    width: 100%; /* Make the image responsive by setting its width to 100% */
+    max-height: 46vh;
+  }
+
+  .notification-top-bar {
+    display: none; /* Hide the notification bar on small screens */
+  }
+
+  @media (max-width: 768px) {
+    .top-nav {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .underline-text {
+      display: none !important;
+    }
+
+    .bar {
+      width: 100vw !important;
+    }
+  }
+
+  @media (max-width: 1245px) {
+    .main {
+      width: 100vw;
+      margin: 0 !important;
+    }
+    
+    p, li, h3 {
+      font-size: 15px !important;
+    }
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #nav-button {
+    cursor: pointer;
+  }
+
+  .mobile-nav ul li {
+    width: 100%;
+  }
 
 h2 {
     line-height: 35px;
@@ -162,7 +214,7 @@ nav {
 
 .top-nav {
     width: 100%;
-    height: 1px;
+    height: 65px;
     margin: 0;
     padding: 100px;
     background-color: #3f5c79;
@@ -303,7 +355,7 @@ nav ul li a:hover {
 
 .info-box {
     width: 30%;
-    height: 390px;
+    /* height: 390px; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -331,7 +383,7 @@ footer {
 
 footer h3 {
     display: flex;
-    font-size: 0.8vw !important;
+    font-size: 0.8vw;
 }
 
 footer h3 a img {
@@ -349,12 +401,12 @@ h2 {
 }
 
 p {
-    font-size: 1vw !important;
+    font-size: 1vw;
 }
 
 @media screen and (max-width: 1104px) {
     h1, h2, li { font-size: 25px !important }
-    .logo, .vl { display: none; }
+    .logo { display: none; }
     .top-nav { width: auto !important; }
   }
 

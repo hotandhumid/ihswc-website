@@ -11,8 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300&display=swap" rel="stylesheet">
-  <script src="../static/main.js"></script>
   <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" rel="stylesheet">
 
   <meta name="google-site-verification" content="jxchWvoL8fu6MlRAkUqK7ldbkYy9aoSEpOKgJzdPfs0" />
 
@@ -47,6 +47,61 @@
       height: 46vh;
 
     }
+  </style>
+   <style>
+    body > nav > ul > li:nth-child(1) > a {
+      color: black;
+      background-color: white;
+    }
+
+    .rect img {
+      width: 100%; /* Make the image responsive by setting its width to 100% */
+      max-height: 46vh;
+    }
+
+    .notification-top-bar {
+      display: none; /* Hide the notification bar on small screens */
+    }
+
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .underline-text {
+        display: none !important;
+      }
+
+      .bar {
+        width: 100vw !important;
+      }
+    }
+
+    @media (max-width: 1245px) {
+      .main {
+        width: 100vw;
+        margin: 0 !important;
+      }
+
+      p {
+        font-size: 15px !important;
+      }
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    #nav-button {
+      cursor: pointer;
+    }
+
+    .mobile-nav ul li {
+      width: 100%;
+    }
+
+    
   </style>
 </head>
 
@@ -85,8 +140,10 @@
   </nav>
 
   <div class="mobile-nav">
-    <button id="nav-button"><i class="fa-solid fa-bars"></i></button>
-    <ul class="left">
+    <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+    <ul>
       <li><a href="/home">Home</a></li>
       <li><a href="/submit">Submit</a></li>
       <li><a href="/awards">Awards</a></li>
@@ -95,6 +152,16 @@
       <li><a href="/sign-in">Sign In</a></li>
     </ul>
   </div>
+  <script>
+    function mobileNav() {
+      if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+      }
+      else {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+      }
+    }
+  </script>
 
   <div class="main" style="display: flex; flex-wrap: wrap;">
 

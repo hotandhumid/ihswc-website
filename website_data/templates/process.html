@@ -4,6 +4,13 @@
 
 <head>
   <title>International High School Writing Contest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/style.css" />
+  <link href="https://fonts.cdnfonts.com/css/apex-sans" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+  <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+
   <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
   <style>
     body > nav > ul > li:nth-child(4) > a {
@@ -13,6 +20,13 @@
 
     .main p {
       margin-left: 25px !important
+    }
+
+    body > div.main > p:nth-child(4) > a {
+      color: #ff8d00;
+    }
+    body > div.main > p:nth-child(4) > a:visited {
+      color: #ff8d00;
     }
   </style>
   <link rel="stylesheet" href="../static/style.css" />
@@ -42,6 +56,30 @@
       <li><a href="/sign-in">Sign In</a></li>
     </ul>
   </nav>
+
+  <div class="mobile-nav">
+    <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+    <ul>
+      <li><a href="/home">Home</a></li>
+      <li><a href="/submit">Submit</a></li>
+      <li><a href="/awards">Awards</a></li>
+      <li><a href="/process">Our Process</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/sign-in">Sign In</a></li>
+    </ul>
+  </div>
+  <script>
+    function mobileNav() {
+      if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+      }
+      else {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+      }
+    }
+  </script>
 
   <div class="main">
     <h1>Our Process</h1>

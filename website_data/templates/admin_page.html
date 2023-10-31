@@ -22,6 +22,7 @@
 
       #submission-box {
         display: flex;
+        flex-wrap: wrap;
       }
 
       .submission {
@@ -96,6 +97,30 @@
         <li><a href="/sign-in">Sign In</a></li>
       </ul>
     </nav>
+
+    <div class="mobile-nav">
+      <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </div>
+    <script>
+      function mobileNav() {
+        if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+        }
+        else {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+        }
+      }
+    </script>
 
     <h1>Admin Page</h1>
 
