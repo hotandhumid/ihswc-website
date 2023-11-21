@@ -56,7 +56,7 @@
         border: 2px solid black;
         padding: 6px 12px;
         cursor: pointer;
-        width: 245px;
+        width: 305px;
         height: 62px;
         border-radius: 5px;
         text-align: center;
@@ -221,7 +221,7 @@
   
     <nav>
       <ul class="right">
-        <li><a href="/home">Home</a></li>
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
         <li><a href="/submit">Submit</a></li>
         <li><a href="/awards">Awards</a></li>
         <li><a href="/process">Our Process</a></li>
@@ -235,7 +235,7 @@
         <i class="fa-solid fa-bars"></i>
       </a>
       <ul>
-        <li><a href="/home">Home</a></li>
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
         <li><a href="/submit">Submit</a></li>
         <li><a href="/awards">Awards</a></li>
         <li><a href="/process">Our Process</a></li>
@@ -295,7 +295,7 @@
               <img src="../static/instagram_logo.png" >
           </a>
       </h3>
-      <h3>Sponsored by <a href="writingwaves.org">writingwaves.org</a></h3>
+      <h3>Sponsored by <a href="https://writingwaves.org">writingwaves.org</a></h3>
       <h3>©2023 by International High School Writing Competition</h3>
     </footer>
 
@@ -465,15 +465,15 @@
 
       // Changes label for file uploads
       document.querySelector("label[for='id_pdf_file1']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1';
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1 (PDF)';
       document.querySelector("label[for='id_pdf_file2']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2';
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2 (PDF)';
       document.querySelector("label[for='id_pdf_file3']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3';
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3 (PDF)';
       document.querySelector("label[for='id_pdf_file4']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4';
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4 (PDF)';
       document.querySelector("label[for='id_pdf_file5']").innerHTML =
-        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5';
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5 (PDF)';
 
       // Adding a function for onchange event to input type files
       function getFileData(d) {
