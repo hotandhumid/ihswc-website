@@ -165,7 +165,7 @@
       inp1.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           if (username.value == "admin" && password.value == "12345") {
-            location.href = "/admin-page?login=success";
+            location.href = "/admin-page?login=success&user=admin";
           } else {
             p = document.querySelector("#error");
             p.innerText = "Incorrect username or password";
@@ -177,7 +177,7 @@
       inp2.addEventListener("keypress", (e) => {
         if (e.key === "Enter") {
           if (username.value == "admin" && password.value == "12345") {
-            location.href = "/admin-page?login=success";
+            location.href = "/admin-page?login=success&user=admin";
           } else {
             p = document.querySelector("#error");
             p.innerText = "Incorrect username or password";
@@ -192,7 +192,7 @@
         password = document.querySelector("#password");
 
         if (username.value == "admin" && password.value == "12345") {
-          location.href = "/admin-page?login=success";
+          location.href = "/admin-page?login=success&user=admin";
         } else {
           p = document.querySelector("#error");
           p.innerText = "Incorrect username or password";

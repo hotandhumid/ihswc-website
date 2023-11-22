@@ -3,6 +3,12 @@ from django import forms
 from datetime import date
 
 
+class JudgeForm(forms.Form):
+    graded_by = forms.CharField()
+    review = forms.CharField(widget=forms.Textarea)
+    rating = forms.CharField(widget=forms.RadioSelect(choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"),("5", "5")]))
+    submission = forms.CharField(widget=forms.HiddenInput())
+
 class TestFileForm(forms.Form):
     firstname = forms.CharField(required=True, label="first name")
     lastname = forms.CharField(required=True, label="last name")

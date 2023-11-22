@@ -1,11 +1,34 @@
 from django.shortcuts import render, redirect
-from .models import TestFileModel
-from .forms import TestFileForm
+from .models import TestFileModel, JudgeModel
+from .forms import TestFileForm, JudgeForm
 # Create your views here.
 
 
+def submission(request):
+    if request.method == "POST":
+        form = JudgeForm(request.POST)
+        if form.is_valid() and len(JudgeModel.objects.filter(submission=request.GET['id'])) == 0:
+            cd = form.cleaned_data
+            f = JudgeModel(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'])
+            f.save()
+
+    else:
+        form = JudgeForm()
+
+    if len(JudgeModel.objects.filter(submission=request.GET['id'])) == 0:
+        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
+                                               "form": form,
+                                               "id": request.GET['id']})
+    else:
+        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
+                                                   "judging": JudgeModel.objects.get(submission=request.GET['id']).get_values(),
+                                                   "judge_submitted": True})
+
 def admin_page(request):
-    return render(request, "admin_page.html", {"submissions": list(TestFileModel.objects.all().values())})
+    graded_lst = [int(i['submission']) for i in JudgeModel.objects.all().values()]
+    return render(request, "admin_page.html", {"submissions": list(TestFileModel.objects.all().values()),
+                                               "gradings": list(JudgeModel.objects.all().values()),
+                                               "graded_lst": graded_lst})
 
 
 def sign_in(request):
