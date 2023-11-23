@@ -186,7 +186,7 @@ def form(request):
                 sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="Highschoolwritingcontest.com"),
                 to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
                 subject=f"NEW SUBMISSION : {cd['email']}",
-                text=f"Name: {cd['firstname']} {cd['lastname']}. Email: {cd['emailemail_test7']} Check it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
+                text=f"Name: {cd['firstname']} {cd['lastname']}. Email: {cd['email']} Check it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
                 category="Integration Test",
             )
 
