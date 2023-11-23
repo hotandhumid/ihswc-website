@@ -183,10 +183,10 @@ def form(request):
             import mailtrap as mt
 
             mail = mt.Mail(
-                sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="Highschoolwritingcontest.com"),
+                sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="highschoolwritingcontest.com (my lovely email bot)"),
                 to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
                 subject=f"IHSWC Alert | New Submission by: {cd['email']}",
-                text=f"\nName: {cd['firstname']} {cd['lastname']}.\nEmail: {cd['email']}\n\nCONTACT INFO:\n\n------------------------\nPhone Number: {cd['phone_number']}\nCountry: {cd['country']}\nCity: {cd['city']}\nZipcode: {cd['zipcode']}\n\nCheck it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
+                text=f"\nName: {cd['firstname']} {cd['lastname']}.\nEmail: {cd['email']}\n\nCONTACT INFO:\n-------------------------------\nPhone Number: {cd['phone_number']}\nCountry: {cd['country']}\nCity: {cd['city']}\nZipcode: {cd['zipcode']}\n\nCheck it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
                 category="Integration Test",
             )
 
