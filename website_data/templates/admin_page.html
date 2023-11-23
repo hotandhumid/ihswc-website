@@ -126,23 +126,34 @@
 
     <!-- <div id="root">{{submissions}}</div> -->
     
-      
+    <button onclick="showUngraded()">Show ungraded</button>
+    <button onclick="showGraded()">Show graded</button>
+    <button onclick="showAll()">Show all</button>
 
     <div id="submission-box">
       {% for submission in submissions %}
-        <div class="submission">
-          {% if submission.id in graded_lst %}
+        {% if submission.id in graded_lst %}
+          <div class="submission graded">
+              {% for grade in gradings %}
 
-            {% for grade in gradings %}
+                {% if submission.id|slugify == grade.submission|slugify %}
+                  <p>Graded by {{grade.graded_by}}</p>
+                  <p>Rating: {{grade.rating}}</p>
+                {% endif %}
 
-              {% if submission.id|slugify == grade.submission|slugify %}
-                <p>Graded by {{grade.graded_by}}</p>
-                <p>Rating: {{grade.rating}}</p>
-              {% endif %}
+              {% endfor %}
+              <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
+              <div class="info">
+                <!-- <p>Submission: {{submission.id}}</p> -->
+                <p>Title: {{submission.title1}}</p>
+                <p>Category: {{submission.category1}}</p>
+                <p>Word Count: {{submission.word_count1}}</p>
+              </div>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}">Review Submission <i class="fa-solid fa-right-long"></i></a>
+            </div>
 
-            {% endfor %}
-
-          {% endif %}
+        {% else %}
+        <div class="submission ungraded">
           <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
           <div class="info">
             <!-- <p>Submission: {{submission.id}}</p> -->
@@ -152,10 +163,27 @@
           </div>
           <a class="submission-link" href="/admin-page/submission?id={{submission.id}}">Review Submission <i class="fa-solid fa-right-long"></i></a>
         </div>
+
+        {% endif %}
       {% endfor %}
     </div>
 
     <script>
+      function showUngraded() {
+        document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
+        document.querySelectorAll(".graded").forEach(d => {
+            d.style.display = "none"
+        })
+      }
+      function showGraded() {
+        document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
+        document.querySelectorAll(".ungraded").forEach(d => {
+          d.style.display = "none"
+        })
+      }
+      function showAll() {
+        document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
+      }
       q = new URLSearchParams(location.search);
       if (q.get("login") != "success") {
         location.href = "/sign-in";

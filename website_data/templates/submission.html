@@ -124,6 +124,8 @@
 
     <h1>Admin Page</h1>
 
+    <a href="/admin-page?login=success&user=admin" style="color: blue;text-decoration: none;margin-left: 100px;">Back to Submissions</a>
+
     <!-- <div id="root">{{submissions}}</div> -->
     <div id="root">{{judge_submitted}}</div>
 
@@ -143,7 +145,7 @@
           <form method="post">
             {% csrf_token %}
             <p>Graded by:</p>{{form.graded_by}}
-            <p>Rating: </p>{{form.rating}}
+            <p>Rating (1.0-10.0): </p>{{form.rating}}
             <p>Review: </p>{{form.review}}
             <input type="hidden" name="submission" id="id_submission" value="{{id}}">
             <button type="submit">Save</button>
@@ -154,12 +156,46 @@
             <p>Graded by: {{judging.graded_by}}</p>
             <p>Rating: {{judging.rating}}</p>
             <p>Review: {{judging.review}}</p>
+            <button onclick="addForm()">Add Another Review</button>
           </div>
           
         </div>
     </div>
 
     <script>
+        function addForm() {
+            form = document.createElement("form")
+            textarea = document.createElement("textarea")
+            form.setAttribute("method", "post")
+            textarea.setAttribute("name", "review")
+            textarea.setAttribute("style", "width: 380px; height: 170px;")
+            textarea.setAttribute("required", "")
+            textarea.setAttribute("id", "id_review")
+            submit = document.createElement("button")
+            submit.setAttribute("type", "submit")
+            submit.innerHTML = "Submit"
+
+            graded_by = document.createElement("input")
+            graded_by.setAttribute("type", "text")
+            graded_by.setAttribute("name", "graded_by")
+            graded_by.setAttribute("id", "id_graded_by")
+            graded_by.setAttribute("value", "{{judging.graded_by}}")
+            graded_by.setAttribute("style", "display: none")
+            rating = document.createElement("input")
+            rating.setAttribute("type", "radio")
+            rating.setAttribute("name", "rating")
+            rating.setAttribute("id", "id_rating_3")
+            rating.setAttribute("value", "{{judging.rating}}")
+            rating.setAttribute("style", "display: none")
+            form.append(textarea)
+            form.append(submit)
+            form.append(graded_by)
+            form.append(rating)
+            form.innerHTML += `{% csrf_token %}`
+            document.querySelector("#judge-box").append(form)
+
+        }
+
         if (document.querySelector("#root").innerText == "True") {
             document.querySelector("form").remove()
         }

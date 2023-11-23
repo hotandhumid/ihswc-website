@@ -1,8 +1,11 @@
+
 from django.shortcuts import render, redirect
 from .models import TestFileModel, JudgeModel
 from .forms import TestFileForm, JudgeForm
 # Create your views here.
 
+from django.core.mail import send_mail
+import mailtrap as mt
 
 def submission(request):
     if request.method == "POST":
@@ -168,6 +171,27 @@ def form(request):
             )
 
             f.save()
+
+
+            # send_mail(
+            #     f"highschoolwritingcontest.com | NEW SUBMISSION | {cd['email']}",
+            #     f"{cd['firstname'], cd['lastname']} just submitted. Email: {cd['email']}",
+            #     "mailtrap@highschoolwritingcontest.com",
+            #     ["daniel.miami2005@gmail.com", "jack.jiaen.he@gmail.com"],
+            #     fail_silently=False,
+            # )
+            import mailtrap as mt
+
+            mail = mt.Mail(
+                sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="Highschoolwritingcontest.com"),
+                to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
+                subject=f"NEW SUBMISSION : {cd['email']}",
+                text=f"Name: {cd['firstname']} {cd['lastname']}. Email: {cd['emailemail_test7']} Check it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
+                category="Integration Test",
+            )
+
+            client = mt.MailtrapClient(token="c76c34495d8006938a9177c6dff66489")
+            client.send(mail)
 
             return redirect("/donate")
     else:

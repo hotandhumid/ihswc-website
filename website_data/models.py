@@ -8,7 +8,7 @@ from django.db import models
 class JudgeModel(models.Model):
     graded_by = models.CharField(max_length=50)
     review = models.CharField(max_length=300)
-    rating = models.CharField(max_length=1)
+    rating = models.CharField(max_length=5)
     submission = models.CharField(max_length=5)
 
     def get_values(self):

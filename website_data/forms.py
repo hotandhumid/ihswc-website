@@ -6,7 +6,8 @@ from datetime import date
 class JudgeForm(forms.Form):
     graded_by = forms.CharField()
     review = forms.CharField(widget=forms.Textarea)
-    rating = forms.CharField(widget=forms.RadioSelect(choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"),("5", "5")]))
+    # rating = forms.CharField(widget=forms.RadioSelect(choices=[("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"),("5", "5")]))
+    rating = forms.CharField()
     submission = forms.CharField(widget=forms.HiddenInput())
 
 class TestFileForm(forms.Form):
