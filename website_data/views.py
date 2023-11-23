@@ -185,7 +185,7 @@ def form(request):
             mail = mt.Mail(
                 sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="Highschoolwritingcontest.com"),
                 to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
-                subject=f"NEW SUBMISSION : {cd['email']}",
+                subject=f"IHSWC Alert | New Submission by: {cd['email']}",
                 text=f"Name: {cd['firstname']} {cd['lastname']}.\n\nEmail: {cd['email']}\n\nCONTACT INFO:\n\nAddress: {cd['address']}\nPhone Number: {cd['phone_number']}\nCountry: {cd['country']}\nCity: {cd['city']}\n\nCheck it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
                 category="Integration Test",
             )
