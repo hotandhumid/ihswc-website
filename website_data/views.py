@@ -10,10 +10,22 @@ import mailtrap as mt
 def submission(request):
     if request.method == "POST":
         form = JudgeForm(request.POST)
-        if form.is_valid() and len(JudgeModel.objects.filter(submission=request.GET['id'])) == 0:
-            cd = form.cleaned_data
-            f = JudgeModel(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'])
-            f.save()
+        if form.is_valid():
+            if len(JudgeModel.objects.filter(submission=request.GET['id'])) != 0:
+                print('yes')
+                instance = JudgeModel.objects.filter(submission=request.GET['id'])
+                instance = instance[len(instance) - 1]
+                f = JudgeModel(graded_by=instance.graded_by, review=instance.review + " | " + form.cleaned_data['review'], rating=instance.rating, submission=instance.submission)
+                f.save()
+            else:
+                print('nooo')
+                print(request.POST)
+                cd = form.cleaned_data
+                f = JudgeModel(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'])
+                f.save()
+        else:
+            print(request.POST)
+            print(form.errors)
 
     else:
         form = JudgeForm()
@@ -23,8 +35,8 @@ def submission(request):
                                                "form": form,
                                                "id": request.GET['id']})
     else:
-        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
-                                                   "judging": JudgeModel.objects.get(submission=request.GET['id']).get_values(),
+        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(),
+                                                   "judging": JudgeModel.objects.filter(submission=request.GET['id'])[len(JudgeModel.objects.filter(submission=request.GET['id'])) - 1].get_values(),
                                                    "judge_submitted": True})
 
 def admin_page(request):

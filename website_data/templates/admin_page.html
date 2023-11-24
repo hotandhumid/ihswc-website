@@ -184,6 +184,8 @@
       function showAll() {
         document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
       }
+      
+
       q = new URLSearchParams(location.search);
       if (q.get("login") != "success") {
         location.href = "/sign-in";

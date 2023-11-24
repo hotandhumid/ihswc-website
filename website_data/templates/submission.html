@@ -155,10 +155,9 @@
           <div id="judge-box">
             <p>Graded by: {{judging.graded_by}}</p>
             <p>Rating: {{judging.rating}}</p>
-            <p>Review: {{judging.review}}</p>
-            <button onclick="addForm()">Add Another Review</button>
+            <p>Reviews: <p style="display: none;">{{judging.review}}</p></p>
+            <button onclick="addForm()">Add Review</button>
           </div>
-          
         </div>
     </div>
 
@@ -171,6 +170,7 @@
             textarea.setAttribute("style", "width: 380px; height: 170px;")
             textarea.setAttribute("required", "")
             textarea.setAttribute("id", "id_review")
+            textarea.setAttribute("placeholder", "Author Name: Review")
             submit = document.createElement("button")
             submit.setAttribute("type", "submit")
             submit.innerHTML = "Submit"
@@ -187,13 +187,31 @@
             rating.setAttribute("id", "id_rating_3")
             rating.setAttribute("value", "{{judging.rating}}")
             rating.setAttribute("style", "display: none")
+            submission = document.createElement("input")
+            submission.setAttribute("name", "submission")
+            submission.setAttribute("id", "id_submission")
+            submission.setAttribute("value", "{{judging.submission}}")
+            submission.setAttribute("style", "display: none")
+
+            form.innerHTML += `{% csrf_token %}`
             form.append(textarea)
             form.append(submit)
             form.append(graded_by)
             form.append(rating)
-            form.innerHTML += `{% csrf_token %}`
+            form.append(submission)
+            rating.checked = true
             document.querySelector("#judge-box").append(form)
 
+            btn = document.querySelector("#judge-box > button")
+            btn.setAttribute("onclick", "removeForm()")
+            btn.innerHTML = "Cancel Review"
+        }
+
+        function removeForm() {
+            document.querySelector("#judge-box > form").remove()
+            btn = document.querySelector("#judge-box > button")
+            btn.setAttribute("onclick", "addForm()")
+            btn.innerHTML = "Add Review"
         }
 
         if (document.querySelector("#root").innerText == "True") {
@@ -201,6 +219,16 @@
         }
         else {
             document.querySelector("div#judge-box").remove()
+        }
+
+        if (document.querySelector("#judge-box > p:nth-child(4)").innerText.includes("|")) {
+          p = document.querySelector("#judge-box > p:nth-child(4)")
+          p.innerText.split("|").forEach(d => {
+            document.querySelector("#judge-box").innerHTML += `<li>${d}</li>`
+          })
+        }
+        else {
+          document.querySelector("#judge-box").innerHTML += `<p>${p = document.querySelector("#judge-box > p:nth-child(4)").innerHTML}</p>`
         }
     </script>    
 
