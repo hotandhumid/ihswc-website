@@ -129,18 +129,17 @@
     <!-- <div id="root">{{submissions}}</div> -->
     <div id="root">{{judge_submitted}}</div>
 
-
     <div id="submission-box">
         <div class="submission">
-          <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
+          <p style="text-transform: ca  italize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
           <div class="info">
             <!-- <p>Submission: {{submission.id}}</p> -->
-            <p>Title: {{submission.title1}}</p>
+            <p>Title: {{submission.title1}}</p> 
             <p>Category: {{submission.category1}}</p>
             <p>Word Count: {{submission.word_count1}}</p>
           </div>
           <!-- <embed src="/media/{{submission.pdf_file1}}" type="application/pdf"> -->
-          <a href="/media/{{submission.pdf_file1}}">View Submission <i class="fa-solid fa-right-long"></i></a>
+          <a href="/media/{{submission.pdf_file1}}" target="_blank">View Submission <i class="fa-solid fa-right-long"></i></a>
 
           <form method="post">
             {% csrf_token %}

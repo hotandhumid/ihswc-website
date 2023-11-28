@@ -3,18 +3,44 @@ from django.test import TestCase
 # Create your tests here.
 
 
-import mailtrap as mt
+import smtplib
 
-mail = mt.Mail(
-    sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="Highschoolwritingcontest.com"),
-    to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
-    subject="IHSWC Alert | New Submission by: {cd['email']}",
-    text="Name: {cd['firstname']} {cd['lastname']}.\n\nEmail: {cd['email']}\n\nCONTACT INFO:\n\nAddress: {cd['address']}\nPhone Number: {cd['phone_number']}\nCountry: {cd['country']}\nCity: {cd['city']}\n\nCheck it out: https://highschoolwritingcontest.com/admin-page/?login=success&user=admin",
-    category="Integration Test",
-)
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
 
-client = mt.MailtrapClient(token="c76c34495d8006938a9177c6dff66489")
-client.send(mail)
+# Set your Mailtrap credentials
+mailtrap_username = "your_mailtrap_username"
+mailtrap_password = "your_mailtrap_password"
+
+# Set sender and recipient email addresses
+sender_email = "mailtrap@highschoolwritingcontest.com"
+recipients = ["daniel.miami2005@gmail.com", "jack.jiaen.he@gmail.com"]
+
+# Create a MIME message
+message = MIMEMultipart()
+message["From"] = sender_email
+message["To"] = ", ".join(recipients)
+message["Subject"] = "Test Email Subject"
+
+# Add the body to the MIME message
+html_content = "This is a test email with an attached PDF file."
+message.attach(MIMEText(html_content, "html"))
+
+# Attach the PDF file
+pdf_file_path = "/Users/dl/Documents/html_css_js_projects/websites/djangos/jacks-website/media/Read_and_Respond__dOnYPDl.pdf"
+with open(pdf_file_path, "rb") as pdf_file:
+    pdf_attachment = MIMEApplication(pdf_file.read(), _subtype="pdf")
+    pdf_attachment.add_header("Content-Disposition", f"attachment; filename={pdf_file_path}")
+    message.attach(pdf_attachment)
+
+
+with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
+    server.starttls()
+    server.login("api", "c76c34495d8006938a9177c6dff66489")
+    server.sendmail("highschoolwritingcontest.com <mailtrap@highschoolwritingcontest.com>", recipients, message.as_string())
+
+
 # PGPASSWORD=Weyd4ife877vMKgLpX4zJsDcbMHFgI6a psql -h dpg-cijna3p8g3nc2gamv6d0-a.oregon-postgres.render.com -U highschoolwritingcontest_user highschoolwritingcontest
 
 # put nav in bar, make it sticky
