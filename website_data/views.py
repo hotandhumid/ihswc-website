@@ -4,38 +4,48 @@ from .models import TestFileModel, JudgeModel
 from .forms import TestFileForm, JudgeForm
 # Create your views here.
 
-from django.core.mail import send_mail
+import smtplib
 import mailtrap as mt
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.application import MIMEApplication
+import requests
 
 def submission(request):
     if request.method == "POST":
         form = JudgeForm(request.POST)
         if form.is_valid():
             if len(JudgeModel.objects.filter(submission=request.GET['id'])) != 0:
-                print('yes')
                 instance = JudgeModel.objects.filter(submission=request.GET['id'])
                 instance = instance[len(instance) - 1]
                 f = JudgeModel(graded_by=instance.graded_by, review=instance.review + " | " + form.cleaned_data['review'], rating=instance.rating, submission=instance.submission)
                 f.save()
             else:
-                print('nooo')
-                print(request.POST)
                 cd = form.cleaned_data
                 f = JudgeModel(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'])
                 f.save()
-        else:
-            print(request.POST)
-            print(form.errors)
 
     else:
         form = JudgeForm()
 
+    sub = request.GET['sub']
+    sub_dict = {
+        "firstname": TestFileModel.objects.get(id=request.GET['id']).get_values()['firstname'],
+        "lastname": TestFileModel.objects.get(id=request.GET['id']).get_values()['lastname'],
+        "title": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'title{sub}'],
+        "category": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'category{sub}'],
+        "word_count": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'word_count{sub}'],
+        "pdf_file": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'pdf_file{sub}']
+    }
+
     if len(JudgeModel.objects.filter(submission=request.GET['id'])) == 0:
-        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
+        # return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
+        return render(request, "submission.html", {"submission": sub_dict, 
                                                "form": form,
                                                "id": request.GET['id']})
     else:
-        return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(),
+        # return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(),
+        return render(request, "submission.html", {"submission": sub_dict,
                                                    "judging": JudgeModel.objects.filter(submission=request.GET['id'])[len(JudgeModel.objects.filter(submission=request.GET['id'])) - 1].get_values(),
                                                    "judge_submitted": True})
 
@@ -184,26 +194,100 @@ def form(request):
 
             f.save()
 
+            #~ EMAIL TO ME AND JACK
+            # Set sender and recipient email addresses
+            sender_name = "highschoolwritingcontest.com"
+            sender_email = "mailtrap@highschoolwritingcontest.com"
+            recipients = ["daniel.miami2005@gmail.com", "jack.jiaen.he@gmail.com"]
+            # Create a MIME message
+            message = MIMEMultipart()
+            message["From"] = f"{sender_name} <{sender_email}>"
+            message["To"] = ", ".join(recipients)
+            message["Subject"] = f"New Submission | {cd['email']}: {cd['lastname']}, {cd['firstname']}"
+            # Add the body to the HTML MIME message
+            html_content = f"""
+            <html>
+                <head></head>
+                <body>
+                    <h1>{cd['firstname']} {cd['lastname']}</h1>
+                    <p>Name: {cd['firstname']} {cd['lastname']}</p>
+                    <p>Name: {cd['firstname']} {cd['lastname']}</p>
+                    <p>Email: {cd['email']}</p>
+                    <p>CONTACT INFO:</p>
+                    <hr>
+                    <p>Phone Number: {cd['phone_number']}</p>
+                    <p>Country: {cd['country']}</p>
+                    <p>City: {cd['city']}</p>
+                    <p>Zipcode: {cd['zipcode']}</p>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file1']}">Write a review</a>
+                </body>
+            </html>
+            """
+            message.attach(MIMEText(html_content, "html"))
+            # Attach the PDF file
+            pdf_url = "https://www.highschoolwritingcontest.com/media/ThebeautyofuncertaintyinlifebyhyeminKim_Nov.30.2023.pdf"
+            pdf_response = requests.get(pdf_url)
+            pdf_content = pdf_response.content
+            pdf_attachment = MIMEApplication(pdf_content, _subtype="pdf")
+            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            message.attach(pdf_attachment)
+            with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
+                server.starttls()
+                server.login("api", "c76c34495d8006938a9177c6dff66489")
+                server.sendmail(sender_email, recipients, message.as_string())
 
-            # send_mail(
-            #     f"highschoolwritingcontest.com | NEW SUBMISSION | {cd['email']}",
-            #     f"{cd['firstname'], cd['lastname']} just submitted. Email: {cd['email']}",
-            #     "mailtrap@highschoolwritingcontest.com",
-            #     ["daniel.miami2005@gmail.com", "jack.jiaen.he@gmail.com"],
-            #     fail_silently=False,
-            # )
-            import mailtrap as mt
 
-            mail = mt.Mail(
-                sender=mt.Address(email="mailtrap@highschoolwritingcontest.com", name="highschoolwritingcontest.com (my lovely email bot)"),
-                to=[mt.Address(email="daniel.miami2005@gmail.com"), mt.Address(email="jack.jiaen.he@gmail.com")],
-                subject=f"IHSWC Alert | New Submission by: {cd['email']}",
-                text=f"\nName: {cd['firstname']} {cd['lastname']}.\nEmail: {cd['email']}\n\nCONTACT INFO:\n-------------------------------\nPhone Number: {cd['phone_number']}\nCountry: {cd['country']}\nCity: {cd['city']}\nZipcode: {cd['zipcode']}\n\nCheck it out: https://highschoolwritingcontest.com/media/{files['pdf_file1']}",
-                category="Integration Test",
-            )
+            #~ EMAIL TO SUBMITTER
+            # Set sender and recipient email addresses
+            sender_name = "highschoolwritingcontest.com"
+            sender_email = "mailtrap@highschoolwritingcontest.com"
+            # Create a MIME message
+            message = MIMEMultipart()
+            message["From"] = f"{sender_name} <{sender_email}>"
+            message["To"] = cd['email']
+            message["Subject"] = "Submission Success!"
+            # Add the body to the HTML MIME message
+            html_content = f"""
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Email</title>    
+            </head>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f8f9fa;">
+                <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto;">
+                    <header style="background-color: #007BFF; color: #fff; padding: 10px; text-align: center;">
+                        <h1>Thank you for submitting, {cd['firstname']} {cd['lastname']}!</h1>
+                    </header>
 
-            client = mt.MailtrapClient(token="c76c34495d8006938a9177c6dff66489")
-            client.send(mail)
+                    <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto; padding: 20px;">
+                        <div style="min-height: calc(100vh - 60px); box-sizing: border-box;">
+                            <p>Hello {cd['firstname']} {cd['lastname']},</p>
+
+                            <p>Your submission has been received!</p>
+
+                            <p>Donations of any amount are kindly appreciated! Donate <a href="https://writingwaves.org/checkout/donate?donatePageId=64836d536d69932109567eab">here</a> now!</p>
+
+                            <p>Best regards,<br>
+                            highschoolwritingcontest.com</p>
+                        </div>
+                    </div>
+
+                    <footer style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+                        <p>Copyright © 2023. All rights reserved.</p>
+                    </footer>
+                </div>
+            </body>
+            </html>
+            """
+            message.attach(MIMEText(html_content, "html"))
+
+            with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
+                server.starttls()
+                server.login("api", "c76c34495d8006938a9177c6dff66489")
+                server.sendmail(sender_email, cd['email'], message.as_string())
+
 
             return redirect("/donate")
     else:

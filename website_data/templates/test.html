@@ -1,71 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
-    <title>TESTING PAGE</title>
+    <title>Email Example</title>
     <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: black;
         }
 
-        td,
-        th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 80%;
+            max-width: 600px;
         }
 
-        tr:nth-child(even) {
-            background-color: #dddddd;
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #f4f4f4;
+            padding: 10px;
+            text-align: center;
         }
     </style>
 </head>
-
 <body>
-    <h1>TEST FILE UPLOADING</h1>
-    <form action="/test/" method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{form}}
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <header>
+            <h1>Thank you for submitting, {cd['firstname']} {cd['lastname']}!</h1>
+        </header>
 
-    <table>
+        <main>
+            <p>Hello {cd['firstname']} {cd['lastname']},</p>
 
-        <tr>
-            <th>Name</th>
-            <th>Submissions</th>
-            <th>Titles</th>
-            <th>Categories</th>
-            <th>Word Counts</th>
-        </tr>
+            <p>Your submission has been received!</p>
 
-        <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-        </tr>
-        
-        <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-        </tr>
+            <p>Donations of any amount are kindly appreciated! Donate <a href="https://writingwaves.org/checkout/donate?donatePageId=64836d536d69932109567eab">here</a> now!</p>
 
-    </table>
+            <p>Best regards,<br>
+            highschoolwritingcontest.com</p>
+        </main>
 
-
-    <script>
-        function getFileData(myFile) {
-            var file = myFile.files[0];
-            var filename = file.name;
-            console.log(filename)
-        }
-    </script>
+        <footer>
+            <p>Copyright highschoolwritingcontest.com © 2023. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
-
 </html>

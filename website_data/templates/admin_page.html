@@ -24,6 +24,10 @@
         display: flex;
         flex-wrap: wrap;
       }
+      #new-submission-box {
+        display: flex;
+        flex-wrap: wrap;
+      }
 
       .submission {
         width: 400px;
@@ -69,6 +73,39 @@
 
       .submission a:visited {
         color: inherit;
+      }
+
+      .submission-link {
+        display: block;
+      }
+
+      .filter-box {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .filter-box button {
+        border-radius: 10px;
+        outline: none;
+        height: 42px;
+        width: 135px;
+        margin: 15px;
+        background-color: #60e160;
+        border: 2px solid black;
+        cursor: pointer;
+      }
+
+      .filter-box label {
+        margin: auto 5px;
+      }
+
+      .filter-box select {
+        height: 36px;
+        margin: auto 5px;
+        border-radius: 10px;
+        padding-left: 5px;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -123,12 +160,25 @@
     </script>
 
     <h1>Admin Page</h1>
-
-    <!-- <div id="root">{{submissions}}</div> -->
     
-    <button onclick="showUngraded()">Show ungraded</button>
-    <button onclick="showGraded()">Show graded</button>
-    <button onclick="showAll()">Show all</button>
+    <div class="filter-box">
+      <button onclick="showUngraded()">Show ungraded</button>
+      <button onclick="showGraded()">Show graded</button>
+      <button onclick="showAll()">Show all</button>
+    </div>
+    <div class="filter-box">
+      <label for="category">Category:</label>
+      <select id="category" name="category">
+          <option value="all">All</option>
+          <option value="Critical Essay">Critical Essay</option>
+          <option value="Shortstory">Shortstory</option>
+          <option value="Dramatic Script">Dramatic Script</option>
+          <option value="Poetry">Poetry</option>
+          <option value="Flash Fiction">Flash Fiction</option>
+      </select>
+      <button onclick="filter()" style="background-color: #e1c860 !important;">Filter</button>
+      <button onclick="javascript:window.location.reload()" style="background-color: #da5e46 !important;">Reset Filters</button>
+    </div>
 
     <div id="submission-box">
       {% for submission in submissions %}
@@ -145,28 +195,98 @@
               <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
               <div class="info">
                 <!-- <p>Submission: {{submission.id}}</p> -->
-                <p>Title: {{submission.title1}}</p>
-                <p>Category: {{submission.category1}}</p>
-                <p>Word Count: {{submission.word_count1}}</p>
+                <div id="sub1">
+                  <p class='title-field'>Title: {{submission.title1}}</p>
+                  <p class='category-field'>Category: {{submission.category1}}</p>
+                  <p class='word-count-field'>Word Count: {{submission.word_count1}}</p>
+                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                {% if submission.title2 != "" and submission.title2 != "___" %}
+                <div id="sub2">
+                  <p class='title-field'>Title: {{submission.title2}}</p>
+                  <p class='category-field'>Category: {{submission.category2}}</p>
+                  <p class='word-count-field'>Word Count: {{submission.word_count2}}</p>
+                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                {% endif %}
+                {% if submission.title3 != "" and submission.title3 != "___" %}
+                <div id="sub3">
+                  <p class='title-field'>Title: {{submission.title3}}</p>
+                  <p class='category-field'>Category: {{submission.category3}}</p>
+                  <p class='word-count-field'>Word Count: {{submission.word_count3}}</p>
+                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                {% endif %}
+                {% if submission.title4 != "" and submission.title4 != "___" %}
+                <div id="sub4">
+                  <p class='title-field'>Title: {{submission.title4}}</p>
+                  <p class='category-field'>Category: {{submission.category4}}</p>
+                  <p class='word-count-field'>Word Count: {{submission.word_count4}}</p>
+                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                {% endif %}
+                {% if submission.title5 != "" and submission.title5 != "___" %}
+                <div id="sub5">
+                  <p class='title-field'>Title: {{submission.title5}}</p>
+                  <p class='category-field'>Category: {{submission.category5}}</p>
+                  <p class='word-count-field'>Word Count: {{submission.word_count5}}</p>
+                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                {% endif %}
               </div>
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}">Review Submission <i class="fa-solid fa-right-long"></i></a>
             </div>
 
         {% else %}
         <div class="submission ungraded">
           <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
           <div class="info">
-            <!-- <p>Submission: {{submission.id}}</p> -->
-            <p>Title: {{submission.title1}}</p>
-            <p>Category: {{submission.category1}}</p>
-            <p>Word Count: {{submission.word_count1}}</p>
+            <div id="sub1">
+              <!-- <p>Submission: {{submission.id}}</p> -->
+              <p class='title-field'>Title: {{submission.title1}}</p>
+              <p class='category-field'>Category: {{submission.category1}}</p>
+              <p class='word-count-field'>Word Count: {{submission.word_count1}}</p>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            {% if submission.title2 != "" and submission.title2 != "___" %}
+            <div id="sub2">
+              <p class='title-field'>Title: {{submission.title2}}</p>
+              <p class='category-field'>Category: {{submission.category2}}</p>
+              <p class='word-count-field'>Word Count: {{submission.word_count2}}</p>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            {% endif %}
+            {% if submission.title3 != "" and submission.title3 != "___" %}
+            <div id="sub3">
+              <p class='title-field'>Title: {{submission.title3}}</p>
+              <p class='category-field'>Category: {{submission.category3}}</p>
+              <p class='word-count-field'>Word Count: {{submission.word_count3}}</p>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            {% endif %}
+            {% if submission.title4 != "" and submission.title4 != "___" %}
+            <div id="sub4">
+              <p class='title-field'>Title: {{submission.title4}}</p>
+              <p class='category-field'>Category: {{submission.category4}}</p>
+              <p class='word-count-field'>Word Count: {{submission.word_count4}}</p>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            {% endif %}
+            {% if submission.title5 != "" and submission.title5 != "___" %}
+            <div id="sub5">
+              <p class='title-field'>Title: {{submission.title5}}</p>
+              <p class='category-field'>Category: {{submission.category5}}</p>
+              <p class='word-count-field'>Word Count: {{submission.word_count5}}</p>
+              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            {% endif %}
           </div>
-          <a class="submission-link" href="/admin-page/submission?id={{submission.id}}">Review Submission <i class="fa-solid fa-right-long"></i></a>
         </div>
 
         {% endif %}
       {% endfor %}
     </div>
+
+    <div id="new-submission-box"></div>
 
     <script>
       function showUngraded() {
@@ -184,6 +304,36 @@
       function showAll() {
         document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
       }
+
+      function filter() {
+        if (document.querySelector("#category").value == "all") {
+          window.location.reload()
+        }
+        document.querySelector("#new-submission-box").innerHTML = ""
+        filterValue = document.querySelector("#category").value
+        document.querySelectorAll(".category-field").forEach(p => {
+          if (p.innerText.split(": ")[1] == filterValue) {
+            submission_box = document.createElement("div")
+            submission_box.setAttribute("class", "submission")
+            sub = document.createElement("div")
+            sub.setAttribute("id", `sub${p.parentElement['id'].slice(-1)}`)
+            sub.innerHTML = `
+              <h1>${p.parentElement.parentElement.previousElementSibling.innerText}</h1>
+              <p class='title-field'>${p.previousElementSibling.innerText}</p>
+              <p class="category-field">${p.innerText}</p>
+              <p class='word-count-field'>${p.nextElementSibling.innerText}</p>
+              <a class="submission-link" href="${p.nextElementSibling.nextElementSibling['href']}">${p.nextElementSibling.nextElementSibling.innerHTML}</a>
+            `
+            submission_box.append(sub)
+            document.querySelector("#new-submission-box").append(submission_box)
+
+            upperBox = p.parentElement.parentElement
+            Array.prototype.slice.call(upperBox.children).forEach(c => c.style.display = "none")
+            p.parentElement.style.display = "block"
+          }
+        })
+        document.querySelector("#submission-box").style.display = "none"
+      }
       
 
       q = new URLSearchParams(location.search);
@@ -192,51 +342,5 @@
       }
     </script>
 
-    <!-- <script>
-      function makeLink(href, n, div, obj) {
-        info = document.createElement("div");
-        info.classList.add("info");
-        info.innerHTML = `<p>Submission: ${n}</p> <p>Title: ${
-          obj["title" + n]
-        }</p> <p>Category: ${obj["category" + n]}</p> <p>Word Count: ${
-          obj["word_count" + n]
-        }</p>`;
-
-        a = document.createElement("a");
-        a.setAttribute("href", `/media/${href}`);
-        a.setAttribute("target", "_blank");
-        a.innerHTML = `View Submission ${n} <i class="fa-solid fa-right-long"></i>`;
-
-        div.append(info);
-        div.append(a);
-      }
-
-      pdfs = ["pdf_file1", "pdf_file2", "pdf_file3", "pdf_file4", "pdf_file5"];
-
-      submissions = JSON.parse(
-        document
-          .querySelector("#root")
-          .innerText.replaceAll("'", '"')
-          .replaceAll("datetime", '"datetime')
-          .replaceAll(")", ')"')
-      );
-
-      submissions.forEach((s) => {
-        div = document.createElement("div");
-        div.classList.add("submission");
-        div.innerHTML = `<p style="text-transform: capitalize; font-size: 30px;">${s["firstname"]} ${s["lastname"]}</p>`;
-
-        pdfs.forEach((pdf) => {
-          if (s[pdf] == "___") {
-            console.log("empty");
-          } else {
-            console.log(s[pdf]);
-            makeLink(s[pdf], pdf.slice(-1), div, s);
-          }
-        });
-
-        document.querySelector("#submission-box").append(div);
-      });
-    </script> -->
-  </body>
+</body>
 </html>
