@@ -130,6 +130,8 @@
         th {
             background-color: #f2f2f2;
         }
+
+        ol li {    padding-bottom: 10px;}
     </style>
   </head>
 
@@ -207,7 +209,51 @@
       <button onclick="filter()" style="background-color: #e1c860 !important;">Filter</button>
       <button onclick="javascript:window.location.reload()" style="background-color: #da5e46 !important;">Reset Filters</button>
     </div>
-<!-- 
+    <div class="filter-box">
+      <button class="view-button" onclick="gridView()">Grid View</button>
+    </div>
+
+    <ol style="display: none;">
+      {% for submission in submissions %}
+          {% if submission.id in graded_lst %}
+            <li>{{submission.category1}}: <a href="/admin-page/submission?id={{submission.id}}&sub=1">{{submission.title1}}</a><p class="judge-reviews">
+              {% for grade in gradings %}
+                  {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '1' %}
+                    <i class="fa-solid fa-check"></i>
+                    <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                  {% endif %}
+              {% endfor %}
+            </p>  </li>
+            {% if submission.title2 != "" and submission.title2 != "___" %}
+              <li>{{submission.category2}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title2}}</a></li>
+            {% endif %}
+            {% if submission.title3 != "" and submission.title3 != "___" %}
+              <li>{{submission.category3}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title3}}</a></li>
+            {% endif %}
+            {% if submission.title4 != "" and submission.title4 != "___" %}
+              <li>{{submission.category4}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title4}}</a></li>
+            {% endif %}
+            {% if submission.title5 != "" and submission.title5 != "___" %}
+              <li>{{submission.category5}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title5}}</a></li>
+            {% endif %}
+          {% else %}
+            <li>{{submission.category1}}: <a href="/admin-page/submission?id={{submission.id}}&sub=1">{{submission.title1}}</a></li>
+            {% if submission.title2 != "" and submission.title2 != "___" %}
+              <li>{{submission.category2}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title2}}</a></li>
+            {% endif %}
+            {% if submission.title3 != "" and submission.title3 != "___" %}
+              <li>{{submission.category3}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title3}}</a></li>
+            {% endif %}
+            {% if submission.title4 != "" and submission.title4 != "___" %}
+              <li>{{submission.category4}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title4}}</a></li>
+            {% endif %}
+            {% if submission.title5 != "" and submission.title5 != "___" %}
+              <li>{{submission.category5}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title5}}</a></li>
+            {% endif %}
+          {% endif %}
+      {% endfor %}
+    </ol>
+
     <table>
       <thead>
         <tr>
@@ -215,19 +261,19 @@
           <th>Name</th>
           <th>Title1</th>
           <th>Category1</th>
-          <th>Word Count1</th>
+          <!-- <th>Word Count1</th> -->
           <th>Title2</th>
           <th>Category2</th>
-          <th>Word Count2</th>
+          <!-- <th>Word Count2</th> -->
           <th>Title3</th>
           <th>Category3</th>
-          <th>Word Count3</th>
+          <!-- <th>Word Count3</th> -->
           <th>Title4</th>
           <th>Category4</th>
-          <th>Word Count4</th>
+          <!-- <th>Word Count4</th> -->
           <th>Title5</th>
           <th>Category5</th>
-          <th>Word Count5</th>
+          <!-- <th>Word Count5</th> -->
         </tr>
       </thead>
       <tbody>
@@ -248,7 +294,7 @@
                 </p>  
               </td>
               <td class='category-field'>{{submission.category1}}</td>
-              <td class='word-count-field'>{{submission.word_count1}}</td>
+              <!-- <td class='word-count-field'>{{submission.word_count1}}</td> -->
 
               {% if submission.title2 != "" and submission.title2 != "___" %}
                 <td class='title-field'>
@@ -264,7 +310,7 @@
                   </p> 
                 </td>
                 <td class='category-field'>{{submission.category2}}</td>
-                <td class='word-count-field'>{{submission.word_count2}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count2}}</td> -->
               {% endif %}
               {% if submission.title3 != "" and submission.title3 != "___" %}
                 <td class='title-field'>
@@ -280,7 +326,7 @@
                   </p> 
                 </td>
                 <td class='category-field'>{{submission.category3}}</td>
-                <td class='word-count-field'>{{submission.word_count3}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count3}}</td> -->
               {% endif %}
               {% if submission.title4 != "" and submission.title4 != "___" %}
                 <td class='title-field'>
@@ -296,7 +342,7 @@
                   </p> 
                 </td>
                 <td class='category-field'>{{submission.category4}}</td>
-                <td class='word-count-field'>{{submission.word_count4}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count4}}</td> -->
                 {% endif %}
                 {% if submission.title5 != "" and submission.title5 != "___" %}
                   <td class='title-field'>
@@ -312,7 +358,7 @@
                     </p> 
                   </td>
                   <td class='category-field'>{{submission.category5}}</td>
-                  <td class='word-count-field'>{{submission.word_count5}}</td>
+                  <!-- <td class='word-count-field'>{{submission.word_count5}}</td> -->
                 {% endif %}
 
             </tr>
@@ -322,35 +368,35 @@
               <td>{{submission.firstname}} {{submission.lastname}}</td>
               <td class='title-field'><a href="/admin-page/submission?id={{submission.id}}&sub=1">{{submission.title1}}</a></td>
               <td class='category-field'>{{submission.category1}}</td>
-              <td class='word-count-field'>{{submission.word_count1}}</td>
+              <!-- <td class='word-count-field'>{{submission.word_count1}}</td> -->
 
               {% if submission.title2 != "" and submission.title2 != "___" %}
                 <td class='title-field'><a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title2}}</a></td>
                 <td class='category-field'>{{submission.category2}}</td>
-                <td class='word-count-field'>{{submission.word_count2}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count2}}</td> -->
               {% endif %}
               {% if submission.title3 != "" and submission.title3 != "___" %}
                 <td class='title-field'><a href="/admin-page/submission?id={{submission.id}}&sub=3">{{submission.title3}}</a></td>
                 <td class='category-field'>{{submission.category3}}</td>
-                <td class='word-count-field'>{{submission.word_count3}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count3}}</td> -->
               {% endif %}
               {% if submission.title4 != "" and submission.title4 != "___" %}
                 <td class='title-field'><a href="/admin-page/submission?id={{submission.id}}&sub=4">{{submission.title4}}</a></td>
                 <td class='category-field'>{{submission.category4}}</td>
-                <td class='word-count-field'>{{submission.word_count4}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count4}}</td> -->
               {% endif %}
               {% if submission.title5 != "" and submission.title5 != "___" %}
                 <td class='title-field'><a href="/admin-page/submission?id={{submission.id}}&sub=5">{{submission.title5}}</a></td>
                 <td class='category-field'>{{submission.category5}}</td>
-                <td class='word-count-field'>{{submission.word_count5}}</td>
+                <!-- <td class='word-count-field'>{{submission.word_count5}}</td> -->
               {% endif %}
             </tr>
         {% endif %}
         {% endfor %}
       </tbody>
-    </table> -->
+    </table>
 
-    <div id="submission-box">
+    <div id="submission-box" style="display: none;">
       {% for submission in submissions %}
         {% if submission.id in graded_lst %}
           <div class="submission graded">
@@ -360,7 +406,7 @@
                 <div id="sub1">
                   <p class='title-field'>Title: {{submission.title1}}</p>
                   <p class='category-field'>Category: {{submission.category1}}</p>
-                  <p class='word-count-field'>Word Count: {{submission.word_count1}}</p>
+                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count1\}\}</p> -->
 
                   <p class="judge-reviews">Reviews: 
                     {% for grade in gradings %}
@@ -379,7 +425,7 @@
                 <div id="sub2">
                   <p class='title-field'>Title: {{submission.title2}}</p>
                   <p class='category-field'>Category: {{submission.category2}}</p>
-                  <p class='word-count-field'>Word Count: {{submission.word_count2}}</p>
+                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count2\}\}</p> -->
 
                   <p class="judge-reviews">Reviews: 
                     {% for grade in gradings %}
@@ -399,7 +445,7 @@
                 <div id="sub3">
                   <p class='title-field'>Title: {{submission.title3}}</p>
                   <p class='category-field'>Category: {{submission.category3}}</p>
-                  <p class='word-count-field'>Word Count: {{submission.word_count3}}</p>
+                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count3\}\}</p> -->
 
                   <p class="judge-reviews">Reviews: 
                     {% for grade in gradings %}
@@ -419,7 +465,7 @@
                 <div id="sub4">
                   <p class='title-field'>Title: {{submission.title4}}</p>
                   <p class='category-field'>Category: {{submission.category4}}</p>
-                  <p class='word-count-field'>Word Count: {{submission.word_count4}}</p>
+                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count4\}\}</p> -->
 
                   <p class="judge-reviews">Reviews: 
                     {% for grade in gradings %}
@@ -439,7 +485,7 @@
                 <div id="sub5">
                   <p class='title-field'>Title: {{submission.title5}}</p>
                   <p class='category-field'>Category: {{submission.category5}}</p>
-                  <p class='word-count-field'>Word Count: {{submission.word_count5}}</p>
+                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count5\}\}</p> -->
 
                   <p class="judge-reviews">Reviews: 
                     {% for grade in gradings %}
@@ -466,14 +512,14 @@
               <!-- <p>Submission: {{submission.id}}</p> -->
               <p class='title-field'>Title: {{submission.title1}}</p>
               <p class='category-field'>Category: {{submission.category1}}</p>
-              <p class='word-count-field'>Word Count: {{submission.word_count1}}</p>
+              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count1\}\}</p> -->
               <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
             </div>
             {% if submission.title2 != "" and submission.title2 != "___" %}
             <div id="sub2">
               <p class='title-field'>Title: {{submission.title2}}</p>
               <p class='category-field'>Category: {{submission.category2}}</p>
-              <p class='word-count-field'>Word Count: {{submission.word_count2}}</p>
+              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count2\}\}</p> -->
               <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
             </div>
             {% endif %}
@@ -481,7 +527,7 @@
             <div id="sub3">
               <p class='title-field'>Title: {{submission.title3}}</p>
               <p class='category-field'>Category: {{submission.category3}}</p>
-              <p class='word-count-field'>Word Count: {{submission.word_count3}}</p>
+              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count3\}\}</p> -->
               <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
             </div>
             {% endif %}
@@ -489,7 +535,7 @@
             <div id="sub4">
               <p class='title-field'>Title: {{submission.title4}}</p>
               <p class='category-field'>Category: {{submission.category4}}</p>
-              <p class='word-count-field'>Word Count: {{submission.word_count4}}</p>
+              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count4\}\}</p> -->
               <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
             </div>
             {% endif %}
@@ -497,7 +543,7 @@
             <div id="sub5">
               <p class='title-field'>Title: {{submission.title5}}</p>
               <p class='category-field'>Category: {{submission.category5}}</p>
-              <p class='word-count-field'>Word Count: {{submission.word_count5}}</p>
+              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count5\}\}</p> -->
               <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
             </div>
             {% endif %}
@@ -575,6 +621,28 @@
           }
         })
         document.querySelector("#submission-box").style.display = "none"
+      }
+
+      function gridView() {
+        document.querySelector("table").style.display = "none"
+        document.querySelector("#submission-box").style.display = "flex"
+        document.querySelector("ol").style.display = "none"
+        document.querySelector(".view-button").innerHTML = "Table View"
+        document.querySelector(".view-button").setAttribute("onclick", "tableView()")
+      }
+      function tableView() {
+        document.querySelector("table").style.display = "block"
+        document.querySelector("#submission-box").style.display = "none"
+        document.querySelector("ol").style.display = "none"
+        document.querySelector(".view-button").innerHTML = "List View"
+        document.querySelector(".view-button").setAttribute("onclick", "listView()")
+      }
+      function listView() {
+        document.querySelector("table").style.display = "none"
+        document.querySelector("#submission-box").style.display = "none"
+        document.querySelector("ol").style.display = "block"
+        document.querySelector(".view-button").innerHTML = "Grind View"
+        document.querySelector(".view-button").setAttribute("onclick", "gridView()")
       }
       
 
