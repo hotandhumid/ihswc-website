@@ -5,3 +5,4 @@ psycopg2-binary==2.9.6
 django-database-url==1.0.3
 mailtrap==2.0.1
 requests==2.31.0
+django_extensions==3.2.3
