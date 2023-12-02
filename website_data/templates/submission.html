@@ -71,10 +71,16 @@
         color: inherit;
       }
 
-      #judge-box1, #judge-box2 {
+      #judge-box1, #judge-box2, #judge-box3 {
         margin: 19px;
         border: 1px solid black;
         border-radius: 10px;
+      }
+      @media (max-width: 768px) {
+        div.submission {
+          width: unset !important;
+          margin: 0 !important
+        }
       }
     </style>
   </head>
@@ -168,6 +174,11 @@
             <p>Rating: {{judging2.rating}}</p>
             <p>Reviews: {{judging2.review}}</p>
           </div>
+          <div id="judge-box3">
+            <p>Graded by: {{judging3.graded_by}}</p>
+            <p>Rating: {{judging3.rating}}</p>
+            <p>Reviews: {{judging3.review}}</p>
+          </div>
         </div>
     </div>
 
@@ -224,16 +235,30 @@
             btn.innerHTML = "Add Review"
         }
 
-        if (document.querySelector("#root").innerText == "2") {
+        if (document.querySelector("#root").innerText == "3") {
+            console.log("good");
             document.querySelector("form").remove()
+        }
+        else if (document.querySelector("#root").innerText == "2") {
+          document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box1"), document.querySelector("form"))
+          document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box2"), document.querySelector("form"))
+          warning = document.createElement("p")
+          warning.innerHTML = "Only add third review after all submissions have been graded twice!"
+          warning.setAttribute("style", "color: red")
+          document.querySelector("#submission-box > div").insertBefore(warning, document.querySelector("form"))
+          document.querySelector("div#judge-box3").remove()
         }
         else if (document.querySelector("#root").innerText == "1") {
           document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box1"), document.querySelector("form"))
+          document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box2"), document.querySelector("form"))
+          document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box3"), document.querySelector("form"))
           document.querySelector("div#judge-box2").remove()
+          document.querySelector("div#judge-box3").remove()
         }
         else {
             document.querySelector("div#judge-box1").remove()
             document.querySelector("div#judge-box2").remove()
+            document.querySelector("div#judge-box3").remove()
         }
 
         if (document.querySelector("#judge-box > p:nth-child(4)").innerText.includes("|")) {

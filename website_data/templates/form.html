@@ -200,6 +200,64 @@
       #page1 > h2 {
         margin: 0 0 20px 0 !important;
       }
+
+    @media (max-width: 768px) {
+      #info {
+        text-align: left !important;
+      }
+      div#form {
+        margin: 0 !important;
+      }
+      form {
+        width: unset !important;
+      }
+      .group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+      .top-nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .underline-text {
+        display: none !important;
+      }
+
+      .bar {
+        width: 100vw !important;
+      }
+
+      .rect {
+        flex-direction: column;
+      }
+      .rect img {
+        width: 347px !important;
+        height: 419px !important;
+      }
+      .main {
+        padding: 8px !important;
+      }
+      .bar { 
+        gap: 0px !important;
+      }
+    }
+
+    @media (max-width: 1245px) {
+      .main {
+        width: 100vw;
+        margin: 0 !important; 
+      }
+
+      p { 
+        font-size: 15px !important;
+      }
+
+      .background-image {
+        height: auto !important;
+      }
+    }
     </style>
   </head>
 

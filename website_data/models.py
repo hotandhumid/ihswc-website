@@ -39,6 +39,23 @@ class JudgeModel2(models.Model):
     
     def __str__(self):
         return f"Submission {self.submission} graded by {self.graded_by}"
+class JudgeModel3(models.Model):
+    graded_by = models.CharField(max_length=50)
+    review = models.CharField(max_length=300)
+    rating = models.CharField(max_length=5)
+    submission = models.CharField(max_length=5)
+    sub_number = models.CharField(max_length=5)
+
+    def get_values(self):
+        return {
+            "graded_by": self.graded_by,
+            "review": self.review,
+            "rating": self.rating, 
+            "submission": self.submission
+        }
+    
+    def __str__(self):
+        return f"Submission {self.submission} graded by {self.graded_by}"
 
 class TestFileModel(models.Model):
     firstname = models.CharField(default="___", max_length=100)
