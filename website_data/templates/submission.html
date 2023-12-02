@@ -70,6 +70,12 @@
       .submission a:visited {
         color: inherit;
       }
+
+      #judge-box1, #judge-box2 {
+        margin: 19px;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
     </style>
   </head>
 
@@ -146,16 +152,21 @@
             <p>Graded by:</p>{{form.graded_by}}
             <p>Rating (1.0-10.0): </p>{{form.rating}}
             <p>Review: </p>{{form.review}}
+            <input type="hidden" name="sub_number" id="id_sub_number" value="{{submission.sub_number}}">
             <input type="hidden" name="submission" id="id_submission" value="{{id}}">
             <button type="submit">Save</button>
           </form>
 
           
-          <div id="judge-box">
-            <p>Graded by: {{judging.graded_by}}</p>
-            <p>Rating: {{judging.rating}}</p>
-            <p>Reviews: <p style="display: none;">{{judging.review}}</p></p>
-            <button onclick="addForm()">Add Review</button>
+          <div id="judge-box1">
+            <p>Graded by: {{judging1.graded_by}}</p>
+            <p>Rating: {{judging1.rating}}</p>
+            <p>Reviews: {{judging1.review}}</p>
+          </div>
+          <div id="judge-box2">
+            <p>Graded by: {{judging2.graded_by}}</p>
+            <p>Rating: {{judging2.rating}}</p>
+            <p>Reviews: {{judging2.review}}</p>
           </div>
         </div>
     </div>
@@ -178,18 +189,18 @@
             graded_by.setAttribute("type", "text")
             graded_by.setAttribute("name", "graded_by")
             graded_by.setAttribute("id", "id_graded_by")
-            graded_by.setAttribute("value", "{{judging.graded_by}}")
+            graded_by.setAttribute("value", "{{judging1.graded_by}}")
             graded_by.setAttribute("style", "display: none")
             rating = document.createElement("input")
             rating.setAttribute("type", "radio")
             rating.setAttribute("name", "rating")
             rating.setAttribute("id", "id_rating_3")
-            rating.setAttribute("value", "{{judging.rating}}")
+            rating.setAttribute("value", "{{judging1.rating}}")
             rating.setAttribute("style", "display: none")
             submission = document.createElement("input")
             submission.setAttribute("name", "submission")
             submission.setAttribute("id", "id_submission")
-            submission.setAttribute("value", "{{judging.submission}}")
+            submission.setAttribute("value", "{{judging1.submission}}")
             submission.setAttribute("style", "display: none")
 
             form.innerHTML += `{% csrf_token %}`
@@ -213,11 +224,16 @@
             btn.innerHTML = "Add Review"
         }
 
-        if (document.querySelector("#root").innerText == "True") {
+        if (document.querySelector("#root").innerText == "2") {
             document.querySelector("form").remove()
         }
+        else if (document.querySelector("#root").innerText == "1") {
+          document.querySelector("#submission-box > div").insertBefore(document.querySelector("div#judge-box1"), document.querySelector("form"))
+          document.querySelector("div#judge-box2").remove()
+        }
         else {
-            document.querySelector("div#judge-box").remove()
+            document.querySelector("div#judge-box1").remove()
+            document.querySelector("div#judge-box2").remove()
         }
 
         if (document.querySelector("#judge-box > p:nth-child(4)").innerText.includes("|")) {

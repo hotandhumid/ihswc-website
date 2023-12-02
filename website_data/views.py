@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
-from .models import TestFileModel, JudgeModel
-from .forms import TestFileForm, JudgeForm
+from .models import TestFileModel, JudgeModel1, JudgeModel2
+from .forms import TestFileForm, JudgeForm1, JudgeForm2
 # Create your views here.
 
 import smtplib
@@ -13,20 +13,35 @@ import requests
 
 def submission(request):
     if request.method == "POST":
-        form = JudgeForm(request.POST)
-        if form.is_valid():
-            if len(JudgeModel.objects.filter(submission=request.GET['id'])) != 0:
-                instance = JudgeModel.objects.filter(submission=request.GET['id'])
-                instance = instance[len(instance) - 1]
-                f = JudgeModel(graded_by=instance.graded_by, review=instance.review + " | " + form.cleaned_data['review'], rating=instance.rating, submission=instance.submission)
+        if len(JudgeModel1.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
+            form1 = JudgeForm1(request.POST)
+            if form1.is_valid():
+                # if len(JudgeModel1.objects.filter(submission=request.GET['id'])) != 0:
+                #     instance = JudgeModel1.objects.filter(submission=request.GET['id'])
+                #     instance = instance[len(instance) - 1]
+                #     f = JudgeModel1(graded_by=instance.graded_by, review=instance.review + " | " + form1.cleaned_data['review'], rating=instance.rating, submission=instance.submission)
+                #     f.save()
+                # else:
+                cd = form1.cleaned_data
+                f = JudgeModel1(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'], sub_number=cd['sub_number'])
                 f.save()
-            else:
-                cd = form.cleaned_data
-                f = JudgeModel(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'])
+                return redirect("/admin-page?login=success&user=admin")
+        if len(JudgeModel2.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
+            form2 = JudgeForm2(request.POST)
+            if form2.is_valid():
+                # if len(JudgeModel2.objects.filter(submission=request.GET['id'])) != 0:
+                #     instance = JudgeModel2.objects.filter(submission=request.GET['id'])
+                #     instance = instance[len(instance) - 1]
+                #     f = JudgeModel2(graded_by=instance.graded_by, review=instance.review + " | " + form2.cleaned_data['review'], rating=instance.rating, submission=instance.submission)
+                #     f.save()
+                # else:
+                cd = form2.cleaned_data
+                f = JudgeModel2(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'], sub_number=cd['sub_number'])
                 f.save()
-
+                return redirect("/admin-page?login=success&user=admin")
     else:
-        form = JudgeForm()
+        form1 = JudgeForm1()
+        form2 = JudgeForm2()
 
     sub = request.GET['sub']
     sub_dict = {
@@ -35,25 +50,37 @@ def submission(request):
         "title": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'title{sub}'],
         "category": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'category{sub}'],
         "word_count": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'word_count{sub}'],
-        "pdf_file": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'pdf_file{sub}']
+        "pdf_file": TestFileModel.objects.get(id=request.GET['id']).get_values()[f'pdf_file{sub}'],
+        "sub_number": sub,
     }
 
-    if len(JudgeModel.objects.filter(submission=request.GET['id'])) == 0:
-        # return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(), 
+    if len(JudgeModel1.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
         return render(request, "submission.html", {"submission": sub_dict, 
-                                               "form": form,
+                                               "form": form1,
                                                "id": request.GET['id']})
-    else:
-        # return render(request, "submission.html", {"submission": TestFileModel.objects.get(id=request.GET['id']).get_values(),
+    
+    elif len(JudgeModel1.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 1 and len(JudgeModel2.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
         return render(request, "submission.html", {"submission": sub_dict,
-                                                   "judging": JudgeModel.objects.filter(submission=request.GET['id'])[len(JudgeModel.objects.filter(submission=request.GET['id'])) - 1].get_values(),
-                                                   "judge_submitted": True})
+                                               "form": form2,
+                                               "id": request.GET['id'],
+                                                "judging1": JudgeModel1.objects.filter(submission=request.GET['id'])[len(JudgeModel1.objects.filter(submission=request.GET['id'])) - 1].get_values(),
+                                                "judge_submitted": '1'
+                                               })
+    elif len(JudgeModel1.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 1 and len(JudgeModel2.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 1:
+        return render(request, "submission.html", {"submission": sub_dict,
+                                                   "judging1": JudgeModel1.objects.filter(submission=request.GET['id'])[len(JudgeModel1.objects.filter(submission=request.GET['id'])) - 1].get_values(),
+                                                   "judging2": JudgeModel2.objects.filter(submission=request.GET['id'])[len(JudgeModel2.objects.filter(submission=request.GET['id'])) - 1].get_values(),
+                                                   "judge_submitted": '2'})
 
 def admin_page(request):
-    graded_lst = [int(i['submission']) for i in JudgeModel.objects.all().values()]
+    combined_model = list(JudgeModel1.objects.all().values()) + list(JudgeModel2.objects.all().values())
+    graded_lst = [int(i['submission']) for i in combined_model]
+    countries = [d['country'] for d in list(TestFileModel.objects.all().values())]
+    countries = set(countries)
     return render(request, "admin_page.html", {"submissions": list(TestFileModel.objects.all().values()),
-                                               "gradings": list(JudgeModel.objects.all().values()),
-                                               "graded_lst": graded_lst})
+                                               "gradings": combined_model,
+                                               "graded_lst": graded_lst,
+                                               "countries": countries})
 
 
 def sign_in(request):

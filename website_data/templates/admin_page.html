@@ -160,6 +160,11 @@
     </script>
 
     <h1>Admin Page</h1>
+
+    <div style="display: flex;border: 1px solid black;border-radius: 10px;margin: 0 auto 20px auto;">
+      <h2>Total Submissions: {{submissions|length}}</h2>
+      <h2>Total Countries: {{countries|length}}</h2>
+    </div>
     
     <div class="filter-box">
       <button onclick="showUngraded()">Show ungraded</button>
@@ -184,14 +189,6 @@
       {% for submission in submissions %}
         {% if submission.id in graded_lst %}
           <div class="submission graded">
-              {% for grade in gradings %}
-
-                {% if submission.id|slugify == grade.submission|slugify %}
-                  <p>Graded by {{grade.graded_by}}</p>
-                  <p>Rating: {{grade.rating}}</p>
-                {% endif %}
-
-              {% endfor %}
               <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
               <div class="info">
                 <!-- <p>Submission: {{submission.id}}</p> -->
@@ -199,6 +196,18 @@
                   <p class='title-field'>Title: {{submission.title1}}</p>
                   <p class='category-field'>Category: {{submission.category1}}</p>
                   <p class='word-count-field'>Word Count: {{submission.word_count1}}</p>
+
+                  <p class="judge-reviews">Reviews: 
+                    {% for grade in gradings %}
+
+                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '1' %}
+                          <i class="fa-solid fa-check"></i>
+                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                        {% endif %}
+
+                    {% endfor %}
+                  </p>
+ 
                   <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
                 </div>
                 {% if submission.title2 != "" and submission.title2 != "___" %}
@@ -206,6 +215,18 @@
                   <p class='title-field'>Title: {{submission.title2}}</p>
                   <p class='category-field'>Category: {{submission.category2}}</p>
                   <p class='word-count-field'>Word Count: {{submission.word_count2}}</p>
+
+                  <p class="judge-reviews">Reviews: 
+                    {% for grade in gradings %}
+  
+                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '2' %}
+                          <i class="fa-solid fa-check"></i>
+                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                        {% endif %}
+  
+                    {% endfor %}
+                    </p>
+   
                   <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
                 </div>
                 {% endif %}
@@ -214,6 +235,18 @@
                   <p class='title-field'>Title: {{submission.title3}}</p>
                   <p class='category-field'>Category: {{submission.category3}}</p>
                   <p class='word-count-field'>Word Count: {{submission.word_count3}}</p>
+
+                  <p class="judge-reviews">Reviews: 
+                    {% for grade in gradings %}
+  
+                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '3' %}
+                          <i class="fa-solid fa-check"></i>
+                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                        {% endif %}
+  
+                    {% endfor %}
+                    </p>
+   
                   <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
                 </div>
                 {% endif %}
@@ -222,6 +255,18 @@
                   <p class='title-field'>Title: {{submission.title4}}</p>
                   <p class='category-field'>Category: {{submission.category4}}</p>
                   <p class='word-count-field'>Word Count: {{submission.word_count4}}</p>
+
+                  <p class="judge-reviews">Reviews: 
+                    {% for grade in gradings %}
+  
+                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '4' %}
+                          <i class="fa-solid fa-check"></i>
+                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                        {% endif %}
+  
+                    {% endfor %}
+                    </p>
+   
                   <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
                 </div>
                 {% endif %}
@@ -230,6 +275,18 @@
                   <p class='title-field'>Title: {{submission.title5}}</p>
                   <p class='category-field'>Category: {{submission.category5}}</p>
                   <p class='word-count-field'>Word Count: {{submission.word_count5}}</p>
+
+                  <p class="judge-reviews">Reviews: 
+                    {% for grade in gradings %}
+  
+                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '5' %}
+                          <i class="fa-solid fa-check"></i>
+                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
+                        {% endif %}
+  
+                    {% endfor %}
+                    </p>
+   
                   <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
                 </div>
                 {% endif %}
@@ -289,6 +346,20 @@
     <div id="new-submission-box"></div>
 
     <script>
+      document.querySelectorAll(".judge-reviews").forEach(p => {
+          sum = 0
+          if (p.children.length == 4) {
+            Array.prototype.slice.call(p.children).forEach(pc => {
+              if (pc.classList.contains("judge-rating")) {
+                sum += Number(pc.innerText)
+              }
+            })
+          }
+          average_box = document.createElement("p")
+          average_box.innerText = `Average Rating: ${sum / 2}`
+          p.parentElement.insertBefore(average_box, p.nextElementSibling)
+      })
+      console.log(average);
       function showUngraded() {
         document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
         document.querySelectorAll(".graded").forEach(d => {
