@@ -136,6 +136,48 @@
     .question {
       cursor: pointer;
     }
+
+    .question, .answer {
+      font-size: 24px;
+      margin: 5px; 
+    }
+
+    .answer {
+      font-size: 18px;
+      margin-left: 23px;
+      display: none;
+    }
+
+    .active {
+      display: block !important;
+      animation: dropDownAnimation 0.4s ease;
+    }
+
+    .hidden {
+      display: block;
+      animation: dropUpAnimation 0.4s ease;
+    }
+
+    @keyframes dropDownAnimation {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes dropUpAnimation {
+      from {
+        opacity: 1;
+        transform: translateY(0px);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+    }
   </style>
 </head>
 
@@ -266,7 +308,7 @@
       </div>
     </div>
 
-    <div id="faq">
+    <div id="faq" style="width: 100%;">
       <h1>FAQ</h1>
       <hr>
       <br>
@@ -331,32 +373,44 @@
     </div>
 
       <script>
-        count = 0
-        document.querySelector(".general-q .root").innerHTML.split("\n").slice(1, -1).forEach(p => {
-          if (count % 2 == 0) {
-            q = document.createElement("span")
-            q.classList.add("question")
-            q.innerHTML = p.replace("        ", "")
-            document.querySelector(".general-q").append(q)
-          }
-          else {
-            answer = document.createElement("span")
-            answer.classList.add("answer")
-            answer.innerHTML = p.replace("        ", "")
-            document.querySelector(".general-q").append(answer)
-          }
-          count += 1
-        })
+        function addQuestions(selector) {
+          count = 0
+          document.querySelector(`${selector} .root`).innerHTML.split("\n").slice(1, -1).forEach(p => {
+            if (count % 2 == 0) {
+              q = document.createElement("span")
+              q.classList.add("question")
+              q.innerHTML = p.replace("        ", "")
+              document.querySelector(selector).append(q)
+            }
+            else {
+              answer = document.createElement("span")
+              answer.classList.add("answer")
+              answer.innerHTML = p.replace("        ", "")
+              document.querySelector(selector).append(answer)
+            }
+            count += 1
+          })
+        }
+
+        addQuestions(".general-q")
+        addQuestions(".judging-q")
+        addQuestions(".category-q")
+        addQuestions(".policy-q")
 
         document.querySelectorAll(".question").forEach(q => {
           q.addEventListener("click", () => {
-            if (q.nextElementSibling.classList.contains("show")) {
-              q.nextElementSibling.classList.remove("show")
-              q.nextElementSibling.classList.add("hide")
+            if (q.nextElementSibling.classList.contains("active")) {
+              q.nextElementSibling.classList.remove("active")
+              q.nextElementSibling.classList.add("hidden")
+              setTimeout( () => {q.nextElementSibling.style.display = "none"}, 250)
+            }
+            else if (q.nextElementSibling.classList.contains("hidden")) {
+              q.nextElementSibling.style = ""
+              q.nextElementSibling.classList.add("active")
+              q.nextElementSibling.classList.remove("hidden")
             }
             else {
-              q.nextElementSibling.classList.add("show")
-              q.nextElementSibling.classList.remove("hide")
+              q.nextElementSibling.classList.add("active")
             }
           })
         })
