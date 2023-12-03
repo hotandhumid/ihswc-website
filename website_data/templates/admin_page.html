@@ -29,7 +29,7 @@
         flex-wrap: wrap;
       }
 
-      .submission {
+      /* .submission {
         width: 400px;
         margin: 50px;
         background-color: lightblue;
@@ -39,7 +39,7 @@
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-      }
+      } */
 
       .info {
         margin-top: 10px;
@@ -54,7 +54,7 @@
         text-transform: capitalize;
       }
 
-      .submission a {
+      /* .submission a {
         margin: 20px auto 10px auto;
         width: 170px;
         height: 22px;
@@ -65,11 +65,11 @@
         background-color: #eab949;
         border-radius: 5px;
         text-decoration: none;
-      }
+      } */
 
-      .submission a:hover {
+      /* .submission a:hover {
         background-color: #d0a43d;
-      }
+      } */
 
       .submission a:visited {
         color: inherit;
@@ -211,52 +211,8 @@
       <button onclick="filter()" style="background-color: #e1c860 !important;">Filter</button>
       <button onclick="javascript:window.location.reload()" style="background-color: #da5e46 !important;">Reset Filters</button>
     </div>
-    <div class="filter-box">
-      <button class="view-button" onclick="gridView()">Grid View</button>
-    </div>
 
-    <ol style="display: none;">
-      {% for submission in submissions %}
-          {% if submission.id in graded_lst %}
-            <li>{{submission.category1}}: <a href="/admin-page/submission?id={{submission.id}}&sub=1">{{submission.title1}}</a><p class="judge-reviews">
-              {% for grade in gradings %}
-                  {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '1' %}
-                    <i class="fa-solid fa-check"></i>
-                    <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                  {% endif %}
-              {% endfor %}
-            </p>  </li>
-            {% if submission.title2 != "" and submission.title2 != "___" %}
-              <li>{{submission.category2}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title2}}</a></li>
-            {% endif %}
-            {% if submission.title3 != "" and submission.title3 != "___" %}
-              <li>{{submission.category3}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title3}}</a></li>
-            {% endif %}
-            {% if submission.title4 != "" and submission.title4 != "___" %}
-              <li>{{submission.category4}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title4}}</a></li>
-            {% endif %}
-            {% if submission.title5 != "" and submission.title5 != "___" %}
-              <li>{{submission.category5}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title5}}</a></li>
-            {% endif %}
-          {% else %}
-            <li>{{submission.category1}}: <a href="/admin-page/submission?id={{submission.id}}&sub=1">{{submission.title1}}</a></li>
-            {% if submission.title2 != "" and submission.title2 != "___" %}
-              <li>{{submission.category2}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title2}}</a></li>
-            {% endif %}
-            {% if submission.title3 != "" and submission.title3 != "___" %}
-              <li>{{submission.category3}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title3}}</a></li>
-            {% endif %}
-            {% if submission.title4 != "" and submission.title4 != "___" %}
-              <li>{{submission.category4}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title4}}</a></li>
-            {% endif %}
-            {% if submission.title5 != "" and submission.title5 != "___" %}
-              <li>{{submission.category5}}: <a href="/admin-page/submission?id={{submission.id}}&sub=2">{{submission.title5}}</a></li>
-            {% endif %}
-          {% endif %}
-      {% endfor %}
-    </ol>
-
-    <table>
+    <table id="submission-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -281,7 +237,7 @@
       <tbody>
         {% for submission in submissions %}
           {% if submission.id in graded_lst %}
-            <tr>
+            <tr class="graded">
               <td>{{forloop.counter}}</td>
               <td>{{submission.firstname}} {{submission.lastname}}</td>
               <td class='title-field'>
@@ -398,165 +354,16 @@
       </tbody>
     </table>
 
-    <div id="submission-box" style="display: none;">
-      {% for submission in submissions %}
-        {% if submission.id in graded_lst %}
-          <div class="submission graded">
-              <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
-              <div class="info">
-                <!-- <p>Submission: {{submission.id}}</p> -->
-                <div id="sub1">
-                  <p class='title-field'>Title: {{submission.title1}}</p>
-                  <p class='category-field'>Category: {{submission.category1}}</p>
-                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count1\}\}</p> -->
-
-                  <p class="judge-reviews">Reviews: 
-                    {% for grade in gradings %}
-
-                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '1' %}
-                          <i class="fa-solid fa-check"></i>
-                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                        {% endif %}
-
-                    {% endfor %}
-                  </p>
- 
-                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
-                </div>
-                {% if submission.title2 != "" and submission.title2 != "___" %}
-                <div id="sub2">
-                  <p class='title-field'>Title: {{submission.title2}}</p>
-                  <p class='category-field'>Category: {{submission.category2}}</p>
-                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count2\}\}</p> -->
-
-                  <p class="judge-reviews">Reviews: 
-                    {% for grade in gradings %}
-  
-                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '2' %}
-                          <i class="fa-solid fa-check"></i>
-                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                        {% endif %}
-  
-                    {% endfor %}
-                    </p>
-   
-                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
-                </div>
-                {% endif %}
-                {% if submission.title3 != "" and submission.title3 != "___" %}
-                <div id="sub3">
-                  <p class='title-field'>Title: {{submission.title3}}</p>
-                  <p class='category-field'>Category: {{submission.category3}}</p>
-                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count3\}\}</p> -->
-
-                  <p class="judge-reviews">Reviews: 
-                    {% for grade in gradings %}
-  
-                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '3' %}
-                          <i class="fa-solid fa-check"></i>
-                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                        {% endif %}
-  
-                    {% endfor %}
-                    </p>
-   
-                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
-                </div>
-                {% endif %}
-                {% if submission.title4 != "" and submission.title4 != "___" %}
-                <div id="sub4">
-                  <p class='title-field'>Title: {{submission.title4}}</p>
-                  <p class='category-field'>Category: {{submission.category4}}</p>
-                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count4\}\}</p> -->
-
-                  <p class="judge-reviews">Reviews: 
-                    {% for grade in gradings %}
-  
-                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '4' %}
-                          <i class="fa-solid fa-check"></i>
-                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                        {% endif %}
-  
-                    {% endfor %}
-                    </p>
-   
-                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
-                </div>
-                {% endif %}
-                {% if submission.title5 != "" and submission.title5 != "___" %}
-                <div id="sub5">
-                  <p class='title-field'>Title: {{submission.title5}}</p>
-                  <p class='category-field'>Category: {{submission.category5}}</p>
-                  <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count5\}\}</p> -->
-
-                  <p class="judge-reviews">Reviews: 
-                    {% for grade in gradings %}
-  
-                        {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '5' %}
-                          <i class="fa-solid fa-check"></i>
-                          <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
-                        {% endif %}
-  
-                    {% endfor %}
-                    </p>
-   
-                  <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
-                </div>
-                {% endif %}
-              </div>
-            </div>
-
-        {% else %}
-        <div class="submission ungraded">
-          <p style="text-transform: capitalize; font-size: 30px;">{{submission.firstname}} {{submission.lastname}}</p>
-          <div class="info">
-            <div id="sub1">
-              <!-- <p>Submission: {{submission.id}}</p> -->
-              <p class='title-field'>Title: {{submission.title1}}</p>
-              <p class='category-field'>Category: {{submission.category1}}</p>
-              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count1\}\}</p> -->
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=1">Review Submission 1 <i class="fa-solid fa-right-long"></i></a>
-            </div>
-            {% if submission.title2 != "" and submission.title2 != "___" %}
-            <div id="sub2">
-              <p class='title-field'>Title: {{submission.title2}}</p>
-              <p class='category-field'>Category: {{submission.category2}}</p>
-              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count2\}\}</p> -->
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=2">Review Submission 2 <i class="fa-solid fa-right-long"></i></a>
-            </div>
-            {% endif %}
-            {% if submission.title3 != "" and submission.title3 != "___" %}
-            <div id="sub3">
-              <p class='title-field'>Title: {{submission.title3}}</p>
-              <p class='category-field'>Category: {{submission.category3}}</p>
-              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count3\}\}</p> -->
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=3">Review Submission 3 <i class="fa-solid fa-right-long"></i></a>
-            </div>
-            {% endif %}
-            {% if submission.title4 != "" and submission.title4 != "___" %}
-            <div id="sub4">
-              <p class='title-field'>Title: {{submission.title4}}</p>
-              <p class='category-field'>Category: {{submission.category4}}</p>
-              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count4\}\}</p> -->
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=4">Review Submission 4 <i class="fa-solid fa-right-long"></i></a>
-            </div>
-            {% endif %}
-            {% if submission.title5 != "" and submission.title5 != "___" %}
-            <div id="sub5">
-              <p class='title-field'>Title: {{submission.title5}}</p>
-              <p class='category-field'>Category: {{submission.category5}}</p>
-              <!-- <p class='word-count-field'>Word Count: \{\{submission.word_count5\}\}</p> -->
-              <a class="submission-link" href="/admin-page/submission?id={{submission.id}}&sub=5">Review Submission 5 <i class="fa-solid fa-right-long"></i></a>
-            </div>
-            {% endif %}
-          </div>
-        </div>
-
-        {% endif %}
-      {% endfor %}
-    </div>
-
-    <div id="new-submission-box"></div>
+    <table id="new-submission-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
 
     <script>
       document.querySelectorAll(".judge-reviews").forEach(p => {
@@ -573,7 +380,7 @@
           p.parentElement.insertBefore(average_box, p.nextElementSibling)
       })
       function showUngraded() {
-        document.querySelectorAll(".submission").forEach(d => d.style.display = "block")
+        document.querySelectorAll(".submission").forEach(d => d.style.display = "table-row")
         document.querySelectorAll(".graded").forEach(d => {
             d.style.display = "none"
         })
@@ -581,8 +388,8 @@
       function showGradedOnce() {
         document.querySelectorAll(".submission").forEach(d => d.style.display = "none")
         document.querySelectorAll(".judge-reviews").forEach(p => {
-          if (p.children.length == 3) {
-            p.parentElement.parentElement.parentElement.style.display = "block"
+          if (p.children.length == 2) {
+            p.parentElement.parentElement.style.display = "table-row"
           }
         })
       }
@@ -596,55 +403,43 @@
       }
 
       function filter() {
+
         if (document.querySelector("#category").value == "all") {
           window.location.reload()
         }
-        document.querySelector("#new-submission-box").innerHTML = ""
+
+        document.querySelector("#new-submission-table tbody").innerHTML = ""
         filterValue = document.querySelector("#category").value
+
         document.querySelectorAll(".category-field").forEach(p => {
-          if (p.innerText.split(": ")[1] == filterValue) {
-            submission_box = document.createElement("div")
-            submission_box.setAttribute("class", "submission")
-            sub = document.createElement("div")
-            sub.setAttribute("id", `sub${p.parentElement['id'].slice(-1)}`)
-            sub.innerHTML = `
-              <h1>${p.parentElement.parentElement.previousElementSibling.innerText}</h1>
-              <p class='title-field'>${p.previousElementSibling.innerText}</p>
-              <p class="category-field">${p.innerText}</p>
-              <p class='word-count-field'>${p.nextElementSibling.innerText}</p>
-              <a class="submission-link" href="${p.nextElementSibling.nextElementSibling['href']}">${p.nextElementSibling.nextElementSibling.innerHTML}</a>
-            `
-            submission_box.append(sub)
-            document.querySelector("#new-submission-box").append(submission_box)
+          if (p.innerText == filterValue) {
+            sub = document.createElement("tr")
+            sub.classList.add("submission")
+            if (p.previousElementSibling.querySelector(".judge-reviews") == null) {
+              sub.innerHTML = `
+                <td>${p.parentElement.firstChild.nextElementSibling.nextElementSibling.innerText}</td>
+                <td class='title-field'><a href='${p.previousElementSibling.firstChild['href']}'>${p.previousElementSibling.innerText}</a></td>
+                <td class="category-field">${p.innerText}</td>
+                `
+                document.querySelector("#new-submission-table tbody").append(sub)
+            }
+            else {
+              sub.classList.add("graded")
+              sub.innerHTML = `
+                <td>${p.parentElement.firstChild.nextElementSibling.nextElementSibling.innerText}</td>
+                <td>${p.previousElementSibling.innerHTML}</td>
+                <td class="category-field">${p.innerText}</td>
+              `
+              document.querySelector("#new-submission-table tbody").append(sub)
+            }
+
 
             upperBox = p.parentElement.parentElement
-            Array.prototype.slice.call(upperBox.children).forEach(c => c.style.display = "none")
-            p.parentElement.style.display = "block"
+            // Array.prototype.slice.call(upperBox.children).forEach(c => c.style.display = "none")
+            // p.parentElement.style.display = "block"
           }
         })
-        document.querySelector("#submission-box").style.display = "none"
-      }
-
-      function gridView() {
-        document.querySelector("table").style.display = "none"
-        document.querySelector("#submission-box").style.display = "flex"
-        document.querySelector("ol").style.display = "none"
-        document.querySelector(".view-button").innerHTML = "Table View"
-        document.querySelector(".view-button").setAttribute("onclick", "tableView()")
-      }
-      function tableView() {
-        document.querySelector("table").style.display = "block"
-        document.querySelector("#submission-box").style.display = "none"
-        document.querySelector("ol").style.display = "none"
-        document.querySelector(".view-button").innerHTML = "List View"
-        document.querySelector(".view-button").setAttribute("onclick", "listView()")
-      }
-      function listView() {
-        document.querySelector("table").style.display = "none"
-        document.querySelector("#submission-box").style.display = "none"
-        document.querySelector("ol").style.display = "block"
-        document.querySelector(".view-button").innerHTML = "Grind View"
-        document.querySelector(".view-button").setAttribute("onclick", "gridView()")
+        document.querySelector("#submission-table").style.display = "none"
       }
       
 

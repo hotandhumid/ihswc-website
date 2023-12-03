@@ -1,0 +1,574 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <title>Submit Form</title>
+    <link rel="stylesheet" href="../static/style.css" />
+    <script
+    src="https://kit.fontawesome.com/65a259d37d.js"
+    crossorigin="anonymous"
+    ></script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      #form {
+        margin: 50px;
+      }
+      
+      form {
+        margin: 0 auto;
+        display: block;
+        width: 908px;
+        background-color: white;
+        border: 2px solid black;
+        padding: 25px;
+      }
+      
+      label {
+        font-size: 20px;
+        text-transform: capitalize;
+      }
+      
+      input[type="text"] {
+        height: 7px;
+        width: 130px;
+        padding: 12px;
+        margin: 8px;
+        box-shadow: 1 1 5;
+        border-radius: 5px;
+        border: 2px solid rgba(48, 48, 48, 0.649);
+        font-size: 18px;
+      }
+      
+      input[type="file"] {
+        display: none;
+      }
+      
+      .file-style {
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto;
+        border: 2px solid black;
+        padding: 6px 12px;
+        cursor: pointer;
+        width: 305px;
+        height: 62px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: rgba(222, 222, 222, 0.819);
+      }
+      
+      .file-style:hover {
+        background-color: rgba(163, 163, 163, 0.819);
+      }
+      
+      .file-style * {
+        margin: 5px !important;
+        cursor: pointer;
+      }
+
+      .file-style p {
+        height: 40px;
+        line-height: 15px !important;
+      }
+      
+      select {
+        margin: 5px;
+        padding: 5px;
+        border-radius: 10px;
+      }
+      
+      .group {
+        display: flex;
+      }
+
+      .group p {
+        margin-left: 25px;
+        margin-right: 100px;
+        line-height: 35px;
+        margin-bottom: 5px;
+      }
+      
+      button {
+        width: 100px;
+        height: 50px;
+        background-color: #99dbf5;
+        color: black;
+        border: 2px solid black;
+        border-radius: 10px;
+        font-size: 15px;
+        display: block;
+        margin: 10px auto;
+        outline: none;
+      }
+      
+      button:hover {
+        background-color: #51c5f3;
+        cursor: pointer;
+      }
+
+      #page6 > div.button {
+        width: 100px;
+        height: 50px;
+        background-color: #99dbf5;
+        border: 2px solid black;
+        border-radius: 10px;
+        margin: 10px auto;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+      }
+
+      #page6 > div.button:hover {
+        background-color: #51c5f3;
+        cursor: pointer;
+      }
+      
+      .show {
+        display: block !important;
+      }
+      
+      .button-box {
+        display: block;
+        height: 80px;
+        margin: 15px;
+      }
+      
+      #back {
+        float: left;
+      }
+      
+      #next {
+        float: right;
+      }
+      
+      .hide {
+        visibility: hidden;
+      }
+      
+      .file-label {
+        font-size: 25px;
+        margin: 25px !important;
+        background-color: color(srgb 0.855 0.855 0.855);
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+      
+      .error {
+        text-transform: capitalize;
+        text-align: center;
+        color: #ff3200;
+      }
+
+      .form-link {
+        color: black !important;
+        margin: 200px 0 0 25px;
+        text-decoration: none;
+        background-color: #00c527;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid black;
+      }
+
+      .form-link:visited {
+        color: inherit;
+      }
+
+      .form-link:hover {
+        background-color: #00d72b;
+      }
+
+      #page5 * input, #page5 * input {
+        pointer-events: none;
+      }
+
+      body > nav > ul > li:nth-child(2) > a {
+        color: black;
+        background-color: white;
+      }
+
+      h1 {
+        margin-bottom: -40px !important;
+      }
+
+      #page1 > h2 {
+        margin: 0 0 20px 0 !important;
+      }
+
+    @media (max-width: 768px) {
+      #info {
+        text-align: left !important;
+      }
+      div#form {
+        margin: 0 !important;
+      }
+      form {
+        width: unset !important;
+      }
+      .group {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+      }
+      .top-nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .underline-text {
+        display: none !important;
+      }
+
+      .bar {
+        width: 100vw !important;
+      }
+
+      .rect {
+        flex-direction: column;
+      }
+      .rect img {
+        width: 347px !important;
+        height: 419px !important;
+      }
+      .main {
+        padding: 8px !important;
+      }
+      .bar { 
+        gap: 0px !important;
+      }
+    }
+
+    @media (max-width: 1245px) {
+      .main {
+        width: 100vw;
+        margin: 0 !important; 
+      }
+
+      p { 
+        font-size: 15px !important;
+      }
+
+      .background-image {
+        height: auto !important;
+      }
+    }
+    </style>
+  </head>
+
+  <body>
+    
+    <div id="model-data" style="display: none;">{{ emails }}</div>
+
+    <ul class="top-nav">
+      <img class="logo" src="../static/jack_logo.png" alt="">
+      <div class="vl"></div>
+      <div class="title-nav">
+        <h1>International High School Writing Contest</h1>
+        <div class="underline-text">
+          <h2>Sponsored by</h2>
+          <h2 style="text-decoration: underline; margin-left: 6px !important;">Writing Waves</h2>
+        </div>
+      </div>
+    </ul>
+  
+    <nav>
+      <ul class="right">
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </nav>
+
+    <div class="mobile-nav">
+      <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <ul>
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </div>
+    <script>
+      function mobileNav() {
+        if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+        }
+        else {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+        }
+      }
+    </script>
+
+    <div style="margin-top: 100px;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="email" id="resubmit_email" name="resubmit_email" placeholder="Email address...">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <footer>
+      <h3>
+          Check out our Instagram!
+          <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+              <img src="../static/instagram_logo.png" >
+          </a>
+      </h3>
+      <h3>Sponsored by <a href="https://writingwaves.org">writingwaves.org</a></h3>
+      <h3>©2023 by International High School Writing Competition</h3>
+    </footer>
+
+    <script>
+      // Function for moving inputs under specified group and page
+      function makeGroup(ids, count, page) {
+        const div = document.createElement("div");
+        div.classList.add("group");
+        div.setAttribute("id", `group${count}`);
+        document.querySelector(`#page${page}`).append(div);
+
+        const group = document.querySelector(`#group${count}`);
+
+        ids.forEach((id) => {
+          group.append(document.querySelector(`#id_${id}`).parentElement);
+        });
+      }
+
+      makeGroup(["firstname", "lastname"], 1, 1);
+      makeGroup(["email", "phone_number"], 2, 1);
+      makeGroup(["country", "city", "zipcode"], 3, 1);
+      makeGroup(["grade_level", "birthday_month"], 4, 1);
+      makeGroup(["school_name", "school_address"], 5, 1);
+      makeGroup(["parent_firstname", "parent_lastname"], 6, 1);
+      makeGroup(["parent_email", "parent_phone_number"], 7, 1);
+
+      makeGroup(["category1"], 9, 2);
+      makeGroup(["title1"], 10, 2);
+      makeGroup(["word_count1"], 11, 2);
+      makeGroup(["pdf_file1"], 12, 2);
+
+      makeGroup(["category2"], 13, 3);
+      makeGroup(["title2"], 14, 3);
+      makeGroup(["word_count2"], 15, 3);
+      makeGroup(["pdf_file2"], 16, 3);
+
+      makeGroup(["category3"], 17, 4);
+      makeGroup(["title3"], 18, 4);
+      makeGroup(["word_count3"], 19, 4);
+      makeGroup(["pdf_file3"], 20, 4);
+
+      makeGroup(["category4"], 25, 5);
+      makeGroup(["title4"], 26, 5);
+      makeGroup(["word_count4"], 27, 5);
+      makeGroup(["pdf_file4"], 28, 5);
+
+      makeGroup(["category5"], 21, 6);
+      makeGroup(["title5"], 22, 6);
+      makeGroup(["word_count5"], 23, 6);
+      makeGroup(["pdf_file5"], 24, 6);
+
+      // Removing numbers from labels
+      document.querySelectorAll("#page2 * label, #page3 * label, #page4 * label, #page5 * label, #page6 * label").forEach(l => {
+        l.innerText = l.innerText.slice(0, -3) + ": "
+      })
+
+      // Add red asterik
+      document.querySelectorAll("#page1 * label").forEach(l => {
+        l.innerHTML += "<span style='color: red; vertical-align: middle;'> * </span>"
+      })
+      document.querySelectorAll("#page2 * label").forEach(l => {
+        l.innerHTML += "<span style='color: red; vertical-align: middle;'> * </span>"
+      })
+
+      // Appends checkbox for agreement
+      document.querySelector("#page1").innerHTML += `<input style="margin-top: 20px;" type="checkbox" name="agree" id="agree">
+      <label for="agree">I accept and agree to the <a href="../static/participation-terms.pdf">Participation Terms</a></label>`
+
+      // Appends submit button and error message on page 6
+      button = document.createElement("button");
+      button.setAttribute("class", "button")
+      button.setAttribute("type", "submit")
+      button.setAttribute("onclick", "validate(event)")
+      button.innerText = "Submit";
+      p = document.createElement("p");
+      p.setAttribute("class", "error");
+      document.querySelector("#page6").append(button);
+      document.querySelector("#page6").append(p);
+
+      // Display error message if all fields are not filled
+      emails = document.querySelector("#model-data").innerText.slice(1, -1).replaceAll("'", "").split(", ")
+      error = document.querySelector(".error")
+
+      const validate = (event) => {
+        inputs = Array.prototype.slice
+          .call(document.querySelectorAll("input"))
+          .slice(0, 17);
+
+        for (i = 0; i < inputs.length; i += 1) {
+          if (inputs[i].value == "") {
+            error.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[i].previousElementSibling.innerText.replace(":", "")}"`;
+            event.preventDefault()
+            break;
+          }
+        }
+
+        if (emails.includes(document.querySelector("#id_email").value)) {
+          error.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> You already submitted once, you must pay to submit again!`;
+          event.preventDefault()
+        }
+      };
+
+      // Adding functions to next and back buttons
+      next = document.querySelector("#next");
+      back = document.querySelector("#back");
+
+      next.addEventListener("click", function () {
+        back.classList.remove("hide");
+
+        if (document.querySelector("#page5").classList.contains("show")) {
+          next.classList.add("hide");
+        }
+
+        for (
+          i = 0;
+          i <= document.querySelector("#pages").children.length;
+          i += 1
+        ) {
+          if (
+            document
+              .querySelector("#pages")
+              .children[i].classList.contains("show")
+          ) {
+            document
+              .querySelector("#pages")
+              .children[i].classList.remove("show");
+            document
+              .querySelector("#pages")
+              .children[i + 1].classList.add("show");
+            break;
+          }
+        }
+      });
+
+      back.addEventListener("click", function () {
+        next.classList.remove("hide");
+
+        if (document.querySelector("#page2").classList.contains("show")) {
+          back.classList.add("hide");
+        }
+
+        for (
+          i = 0;
+          i <= document.querySelector("#pages").children.length;
+          i += 1
+        ) {
+          if (
+            document
+              .querySelector("#pages")
+              .children[i].classList.contains("show")
+          ) {
+            document
+              .querySelector("#pages")
+              .children[i].classList.remove("show");
+            document
+              .querySelector("#pages")
+              .children[i - 1].classList.add("show");
+            break;
+          }
+        }
+      });
+
+      // Adding a class to input type files
+      document.querySelectorAll("input[type='file']").forEach((i) => {
+        i.parentElement.parentElement.classList.add("file-style");
+      });
+
+      // Changes label for file uploads
+      document.querySelector("label[for='id_pdf_file1']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 1 (PDF)';
+      document.querySelector("label[for='id_pdf_file2']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 2 (PDF)';
+      document.querySelector("label[for='id_pdf_file3']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 3 (PDF)';
+      document.querySelector("label[for='id_pdf_file4']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 4 (PDF)';
+      document.querySelector("label[for='id_pdf_file5']").innerHTML =
+        '<i class="fa-solid fa-folder-plus"></i> Upload Submission 5 (PDF)';
+
+      // Adding a function for onchange event to input type files
+      function getFileData(d) {
+        var file = d.files[0];
+        var filename = file.name;
+        d.parentElement.parentElement.style.width = "auto";
+        if (filename.length > 15) {
+          d.previousElementSibling.innerText = filename.slice(0, 5) + "..." + filename.slice(-6);
+        }
+        else {
+          d.previousElementSibling.innerText = filename;
+        }
+        d.previousElementSibling.innerHTML +=
+          '<p stlyle="height: 60px;">Change File<i class="fa-solid fa-file-arrow-up"></i></p>';
+      }
+
+      // Cookie functions
+      function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      function getCookie(cname) {
+        cookies = decodeURIComponent(document.cookie)
+        for (c of cookies.split("; ")) {
+          if (c.split("=")[0] == cname) {
+            return c.split("=")[1]
+          }
+        }
+      }
+
+      // Adds cookie after submitting
+      button = document.querySelector(".button")
+      button.addEventListener("click", () => {
+        setCookie("submitted", "true", 600)
+      })
+
+      // Blocks second submission
+      if (getCookie("submitted") == "true") {
+        document.querySelectorAll(".heading").forEach(h => {
+          h.innerText = "You can only submit once!"
+          h.style.color = "red"
+        })
+
+        document.querySelectorAll("input").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style = "cursor: not-allowed"
+        })
+        document.querySelectorAll("select").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style = "cursor: not-allowed"
+        })
+        document.querySelectorAll(".file-style *, .file-style").forEach(i => {
+          i.setAttribute("disabled", "disabled")
+          i.setAttribute("tabindex", "-1")
+          i.style = "cursor: not-allowed !important"
+        })
+        document.querySelector("#page6 > button").style.display = "none"
+      }
+    </script>
+  </body>
+</html>

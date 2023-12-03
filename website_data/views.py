@@ -446,6 +446,70 @@ def form(request):
     return render(request, "form.html", {"form": form, "emails": emails})
 
 
+def resubmit(request):
+    if request.method == "POST":
+        emails = [sub['email'] for sub in TestFileModel.objects.all().values()]
+        if request.POST['resubmit_email'] in emails:
+            return redirect(f"/resubmit_form?email={request.POST['resubmit_email']}")
+    return render(request, "resubmit.html")
+
+
+def resubmit_form(request):
+    email = request.GET['email']
+    initial_dict = TestFileModel.objects.filter(email=email)[0].get_values()
+
+    if request.method == "POST":
+        form = TestFileForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            cd = form.cleaned_data
+            
+            raw_files = dict(request.FILES)
+            files = {}
+            file_names = ["pdf_file1", "pdf_file2", "pdf_file3", "pdf_file4", "pdf_file5"]
+            
+            for f in file_names:
+                if f in raw_files.keys():
+                    files.update({f : request.FILES[f] })
+                else:
+                    files.update({ f : "___" })
+
+            f = TestFileModel(
+                firstname=cd["firstname"],
+                lastname=cd["lastname"],
+                email=cd["email"],
+                phone_number=cd["phone_number"],
+                country=cd["country"],
+                city=cd["city"],
+                zipcode=cd["zipcode"],
+                grade_level=cd["grade_level"],
+                birthday=cd["birthday"],
+                school_name=cd["school_name"],
+                school_address=cd["school_address"],
+                parent_firstname=cd["parent_firstname"],
+                parent_lastname=cd["parent_lastname"],
+                parent_email=cd["parent_email"],
+                parent_phone_number=cd["parent_phone_number"],
+
+                category1=cd["category1"],
+                title1=cd["title1"],
+                word_count1=cd["word_count1"],
+                pdf_file1=files["pdf_file1"],
+
+                category2=cd["category2"],
+                title2=cd["title2"],
+                word_count2=cd["word_count2"],
+                pdf_file2=files["pdf_file2"],
+            )
+            f.save()
+    else:
+        form = TestFileForm(initial=initial_dict)
+
+    print(form)
+
+    return render(request, "resubmit_form.html", {"form": form})
+
+
 def rules(request):
     return render(request, "rules.html")
 

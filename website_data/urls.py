@@ -8,6 +8,8 @@ urlpatterns = [
     path('awards/', views.awards),
     path('submit/', views.submit),
     path('form/', views.form, name="form"),
+    path('resubmit/', views.resubmit),
+    path('resubmit_form/', views.resubmit_form),
     path('home/', views.home),
     path('process/', views.process),
     path('rules/', views.rules),

@@ -123,8 +123,19 @@
     .mobile-nav ul li {
       width: 100%;
     }
+    .root {
+      display: none;
+    }
 
+    #faq > div {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
     
+    .question {
+      cursor: pointer;
+    }
   </style>
 </head>
 
@@ -255,11 +266,107 @@
       </div>
     </div>
 
+    <div id="faq">
+      <h1>FAQ</h1>
+      <hr>
+      <br>
+      <div class="general-q">
+        <h2>General</h2>
+        <div class="root">
+          When is the deadline?
+          For the December 2023 International High School Writing Contest, the deadline for all categories is December 20th.
+          When are winners announced?
+          An estimate for the winners announcement will be made after gathering all submissions. Currently, it is to-be-determined.
+          What are the entry fees?
+          There are no entry fees.
+          Are we exclusive?
+          No, you may submit the same works to other competitions, unless they are exclusive.
+          How do I edit information after submission?
+          Go to the "Submit" tab, head towards the bottom "Resubmit", and follow the instructions to resubmit/edit a submission.
+          Can I resubmit?
+          Yes, see the question above.
+          Can I add notes for clarification/directions?
+          Yes, you may add notes clarifying certain characters or describing how you intend the piece to be judged. For example, "Note: This is spoken word."
+          How will Gold Medallion Recipients receive their payments?
+          The cash prize will be transferred through Zelle (with either the parent's email address or phone number). This payment is only available for US-based high schoolers.
+        </div>
+      </div>
+      <div class="judging-q">
+        <h2>Judging</h2>
+        <div class="root">
+          How do I become a judge?
+          As of now, judge applications are closed. 
+          Can judges submit their own work?
+          Yes, however judges may only submit in categories they are not judging in. For example, a Judge in Poetry may not submit poems.
+          Can judges judge their own category
+          No, judges are not allowed to judge their own categories. 
+        </div>
+      </div>
+      <div class="category-q">
+        <h2>Categories</h2>
+        <div class="root">
+          Are there word limits for writing?
+          Yes, word limits vary depending on the category. If your work exceeds the word limit of a category, please submit a shortened version of the work.
+          Is there a specific theme a work must address?
+          No, there are no pre-defined prompts.
+          Do I have to be published? And if so, where?
+          If your work received a Silver or Gold Medallion, your work will be published on this website's gallery and potentially elsewhere.
+          Can I submit the same piece to different categories?
+          Yes, you may submit the same piece to different categories.
+        </div>
+      </div>
+      <div class="policy-q">
+        <h2>Policy</h2>
+        <div class="root">
+          Can AI-generated work be entered into the 2024 Scholastic Awards?
+          No. Currently, AI-generated work is not invited to be entered into the International High School Writing Contest, and if entered, will be subject to disqualification.
+          What is your plagiarism policy?
+          All work entered must be original, meaning you create the work based on your own ideas. By entering, you agree that you created it and did not copy it from any other person, business, school, or organization. Any work that infringes anyone’s intellectual property rights will be disqualified.
+          Can I enter work that has been previously published, exhibited, or recognized by another program?
+          If your work has been previously published, exhibited, or recognized by another program, confirm that they do not hold exclusive rights to your work before entering.
+          Can I re-enter a work that I entered to the International High School Writing Contest in a previous year?
+          Previously awarded works cannot be re-entered, even if heavily modified. Although previous unawarded works may be entered.
+        </div>
+      </div>
+    </div>
+
+      <script>
+        count = 0
+        document.querySelector(".general-q .root").innerHTML.split("\n").slice(1, -1).forEach(p => {
+          if (count % 2 == 0) {
+            q = document.createElement("span")
+            q.classList.add("question")
+            q.innerHTML = p.replace("        ", "")
+            document.querySelector(".general-q").append(q)
+          }
+          else {
+            answer = document.createElement("span")
+            answer.classList.add("answer")
+            answer.innerHTML = p.replace("        ", "")
+            document.querySelector(".general-q").append(answer)
+          }
+          count += 1
+        })
+
+        document.querySelectorAll(".question").forEach(q => {
+          q.addEventListener("click", () => {
+            if (q.nextElementSibling.classList.contains("show")) {
+              q.nextElementSibling.classList.remove("show")
+              q.nextElementSibling.classList.add("hide")
+            }
+            else {
+              q.nextElementSibling.classList.add("show")
+              q.nextElementSibling.classList.remove("hide")
+            }
+          })
+        })
+      </script>
+
   </div>
 
   <footer>
     <h3>
-        Contact us at internationalhswritingcontest@gmail.com | Check out our Instagram!
+        Contact us at <a href="mailto:internationalhswritingcontest@gmail.com">internationalhswritingcontest@gmail.com</a> | Check out our Instagram!
         <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
             <img src="../static/instagram_logo.png" >
         </a>
