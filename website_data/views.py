@@ -11,6 +11,103 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.application import MIMEApplication
 import requests
 
+
+def email_page(request):
+    if request.method == "POST":
+        try:
+            if request.POST['test'] == 'on':
+                message = MIMEMultipart()
+                message["From"] = "highschoolwritingcontest.com <mailtrap@highschoolwritingcontest.com>"
+                message["To"] = request.POST['email']
+                message["Subject"] = request.POST['subject']
+                html_content = f"""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Email</title>    
+                </head>
+                <body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f8f9fa;">
+                    <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto;">
+                        <header style="background-color: #007BFF; color: #fff; padding: 10px; text-align: center;">
+                            <h1>Mesage from highschoolwritingcontest!</h1>
+                        </header>
+
+                        <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <div style="min-height: calc(100vh - 60px); box-sizing: border-box;">
+                                <p>Hello,</p>
+
+                                <p>{request.POST['message']}</p>
+
+                                <p>Best regards,<br>
+                                highschoolwritingcontest.com</p>
+                            </div>
+                        </div>
+
+                        <footer style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+                            <p>Copyright © 2023. All rights reserved.</p>
+                        </footer>
+                    </div>
+                </body>
+                </html>
+                """
+                message.attach(MIMEText(html_content, "html"))
+
+                with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
+                    server.starttls()
+                    server.login("api", "c76c34495d8006938a9177c6dff66489")
+                    server.sendmail("mailtrap@highschoolwritingcontest.com", request.POST['email'], message.as_string())
+        except:
+            if request.POST['email'].upper() == "ALL":
+                print("ALL")
+                message = MIMEMultipart()
+                message["From"] = "highschoolwritingcontest.com <mailtrap@highschoolwritingcontest.com>"
+                recipients = [sub['email'] for sub in TestFileModel.objects.all().values()]
+                message["To"] = "mailtrap@highschoolwritingcontest.com"
+                message["Subject"] = request.POST['subject']
+                html_content = f"""
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Email</title>    
+                </head>
+                <body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; background-color: #f8f9fa;">
+                    <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto;">
+                        <header style="background-color: #007BFF; color: #fff; padding: 10px; text-align: center;">
+                            <h1>Message from highschoolwritingcontest!</h1>
+                        </header>
+
+                        <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto; padding: 20px;">
+                            <div style="min-height: calc(100vh - 60px); box-sizing: border-box;">
+                                <p>Hello,</p>
+
+                                <p>{request.POST['message']}</p>
+
+                                <p>Best regards,<br>
+                                highschoolwritingcontest.com</p>
+                            </div>
+                        </div>
+
+                        <footer style="background-color: #f4f4f4; padding: 10px; text-align: center;">
+                            <p>Copyright © 2023. All rights reserved.</p>
+                        </footer>
+                    </div>
+                </body>
+                </html>
+                """
+                message.attach(MIMEText(html_content, "html"))
+
+                with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
+                    server.starttls()
+                    server.login("api", "c76c34495d8006938a9177c6dff66489")
+                    server.sendmail("mailtrap@highschoolwritingcontest.com", ["daniel.miami2005@gmail.com"] + recipients, message.as_string())
+        
+    return render(request, "email_page.html")
+
+
 def submission(request):
     if request.method == "POST":
         if len(JudgeModel1.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:

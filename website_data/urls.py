@@ -15,5 +15,6 @@ urlpatterns = [
     path('sign-in/', views.sign_in),
     path('admin-page/', views.admin_page),
     path('admin-page/submission/', views.submission),
-    path('donate/', views.donate)
+    path('donate/', views.donate),
+    path('admin-page/email-page/', views.email_page)
 ]

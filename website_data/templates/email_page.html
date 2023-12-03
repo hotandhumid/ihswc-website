@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>International High School Writing Contest</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../static/style.css" />
+  <link href="https://fonts.cdnfonts.com/css/apex-sans" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+  <script src="https://kit.fontawesome.com/65a259d37d.js" crossorigin="anonymous"></script>
+
+  <link rel="icon" type="image/x-icon" href="../../static/favicon.ico">
+  <style>
+    body > nav > ul > li:nth-child(4) > a {
+        color: black;
+        background-color: white;
+    }
+
+    .main p {
+      margin-left: 25px !important
+    }
+
+    body > div.main > p:nth-child(4) > a {
+      color: #ff8d00;
+    }
+    body > div.main > p:nth-child(4) > a:visited {
+      color: #ff8d00;
+    }
+    @media (max-width: 768px) {
+      h1, h2 {
+        text-align: unset !important;
+      }
+    }
+    .email-box {
+        display: table-caption;
+    }
+    input {
+        width: 193px;
+        height: 30px;
+        margin: 10px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+    textarea {
+        padding: 5px;
+        margin: 10px;
+    }
+  </style>
+  <link rel="stylesheet" href="../../static/style.css" />
+</head>
+
+<body>
+
+  <ul class="top-nav">
+    <img class="logo" src="../../static/jack_logo.png" alt="">
+    <div class="vl"></div>
+    <div class="title-nav">
+      <h1>International High School Writing Contest</h1>
+      <div class="underline-text">
+        <h2>Sponsored by</h2>
+        <h2 style="text-decoration: underline; margin-left: 6px !important;">Writing Waves</h2>
+      </div>
+    </div>
+  </ul>
+
+  <nav>
+    <ul class="right">
+      <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+      <li><a href="/submit">Submit</a></li>
+      <li><a href="/awards">Awards</a></li>
+      <li><a href="/process">Our Process</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/sign-in">Sign In</a></li>
+    </ul>
+  </nav>
+
+  <div class="mobile-nav">
+    <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+      <i class="fa-solid fa-bars"></i>
+    </a>
+    <ul>
+      <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+      <li><a href="/submit">Submit</a></li>
+      <li><a href="/awards">Awards</a></li>
+      <li><a href="/process">Our Process</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/sign-in">Sign In</a></li>
+    </ul>
+  </div>
+  <script>
+    function mobileNav() {
+      if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+      }
+      else {
+        document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+      }
+    }
+  </script>
+
+  <div class="main">
+    <div class="email-box">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>If you want to send email to all submitters, put "ALL" in receiver email</p>
+            <input type="text" name="email" id="id_email" placeholder="Receiver Email">
+            <input type="text" name="subject" id="id_subject" placeholder="Subject">
+            <textarea name="message" id="id_message" cols="47" rows="22" placeholder="Message"></textarea>
+            <label for="test">Send a test message</label>
+            <input type="checkbox" name="test" id="id_test">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+  </div>
+
+  <footer>
+    <h3>
+        Check out our Instagram!
+        <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+            <img src="../../static/instagram_logo.png" >
+        </a>
+    </h3>
+    <h3>Sponsored by <a href="https://writingwaves.org">writingwaves.org</a></h3>
+    <h3>©2023 by International High School Writing Competition</h3>
+  </footer>
+
+</body>
+
+</html>
