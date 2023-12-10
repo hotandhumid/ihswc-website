@@ -313,9 +313,10 @@
     </script>
 
     <div style="margin-top: 100px;">
-        <form action="" method="post">
+      <form action="" method="post">
+          <p>Enter your email address:</p>
             {% csrf_token %}
-            <input type="email" id="resubmit_email" name="resubmit_email" placeholder="Email address...">
+            <input type="email" id="resubmit_email" name="resubmit_email" placeholder="Email address..." style="margin-left: 25px;">
             <button type="submit">Submit</button>
         </form>
     </div>
