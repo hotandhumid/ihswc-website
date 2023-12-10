@@ -61,6 +61,19 @@
             highschoolwritingcontest.com</p>
         </main>
 
+        <button onclick="disableButton()">Disable Button</button>
+
+        <script>
+            function disableButton() {
+                document.querySelector("form button").setAttribute("disabled", "true")
+            }
+        </script>
+
+        <form action="/home">
+            <button type="submit">Submit</button>
+
+        </form>
+
         <footer>
             <p>Copyright highschoolwritingcontest.com © 2023. All rights reserved.</p>
         </footer>

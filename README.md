@@ -11,3 +11,9 @@ Make sure your terminal looks like this:
 Still need to be in same directory
 `<C:/jackj/Documents/jacks_website>`
 `cd %user_profile%\Documents\jacks_website && git add . && git commit -m "jack made changes" && git push -u origin master`
+
+## For dan
+
+sftp "server"
+get db.sqlite3
+get media/* media/

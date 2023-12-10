@@ -568,6 +568,7 @@
       // Adds cookie after submitting
       button = document.querySelector(".button")
       button.addEventListener("click", () => {
+        button.setAttribute("disabled", "true")
         setCookie("submitted", "true", 600)
       })
 
