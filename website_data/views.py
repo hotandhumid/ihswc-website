@@ -366,7 +366,11 @@ def form(request):
                     <p>Country: {cd['country']}</p>
                     <p>City: {cd['city']}</p>
                     <p>Zipcode: {cd['zipcode']}</p>
-                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file1']}">Write a review</a>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file1']}">Write a review for 1</a>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file2']}">Write a review for 2</a>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file3']}">Write a review for 3</a>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file4']}">Write a review for 4</a>
+                    <a href="https://highschoolwritingcontest.com/media/{files['pdf_file5']}">Write a review for 5</a>
                 </body>
             </html>
             """

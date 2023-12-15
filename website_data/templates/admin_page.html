@@ -132,6 +132,10 @@
         }
 
         ol li {    padding-bottom: 10px;}
+
+        .highlighted {
+          background-color: #f0f0b0ab;
+        }
     </style>
   </head>
 
@@ -197,6 +201,7 @@
       <button onclick="showUngraded()">Show ungraded</button>
       <button onclick="showGradedOnce()">Show graded once</button>
       <button onclick="showGradedTwice()">Show graded twice</button>
+      <button onclick="showGradedThrice()">Show graded thrice</button>
     </div>
     <div class="filter-box">
       <label for="category">Category:</label>
@@ -245,7 +250,9 @@
                 <p class="judge-reviews">
                   {% for grade in gradings %}
                       {% if submission.id|slugify == grade.submission|slugify and grade.sub_number == '1' %}
-                        <i class="fa-solid fa-check"></i>
+                        <!-- I have no wifi rn -->
+                        <!-- <i class="fa-solid fa-check"></i> -->
+                        <i class="fa-solid fa-check">check</i>
                         <i class="judge-rating" style="display: none;">{{grade.rating}}</i>
                       {% endif %}
                   {% endfor %}
@@ -354,7 +361,7 @@
       </tbody>
     </table>
 
-    <table id="new-submission-table">
+    <table id="new-submission-table" style="display: none;">
       <thead>
         <tr>
           <th>Name</th>
@@ -386,23 +393,46 @@
         })
       }
       function showGradedOnce() {
+        document.querySelectorAll(".highlighted").forEach(h => h.classList.remove("highlighted"))
+        document.querySelectorAll("table#submission-table tbody tr").forEach(tr => tr.classList.add("submission"))
         document.querySelectorAll(".submission").forEach(d => d.style.display = "none")
         document.querySelectorAll(".judge-reviews").forEach(p => {
           if (p.children.length == 2) {
+            p.parentElement.classList.add("highlighted")
+            p.parentElement.nextElementSibling.classList.add("highlighted")
             p.parentElement.parentElement.style.display = "table-row"
           }
         })
       }
       function showGradedTwice() {
+        document.querySelectorAll(".highlighted").forEach(h => h.classList.remove("highlighted"))
+        document.querySelectorAll("table#submission-table tbody tr").forEach(tr => tr.classList.add("submission"))
         document.querySelectorAll(".submission").forEach(d => d.style.display = "none")
         document.querySelectorAll(".judge-reviews").forEach(p => {
           if (p.children.length == 4) {
-            p.parentElement.parentElement.parentElement.style.display = "block"
+            p.parentElement.classList.add("highlighted")
+            p.parentElement.nextElementSibling.classList.add("highlighted")
+            console.log(p);
+            p.parentElement.parentElement.style.display = "table-row"
+          }
+        })
+      }
+      function showGradedThrice() {
+        document.querySelectorAll(".highlighted").forEach(h => h.classList.remove("highlighted"))
+        document.querySelectorAll("table#submission-table tbody tr").forEach(tr => tr.classList.add("submission"))
+        document.querySelectorAll(".submission").forEach(d => d.style.display = "none")
+        document.querySelectorAll(".judge-reviews").forEach(p => {
+          if (p.children.length == 6) {
+            p.parentElement.classList.add("highlighted")
+            p.parentElement.nextElementSibling.classList.add("highlighted")
+            p.parentElement.parentElement.style.display = "table-row"
           }
         })
       }
 
       function filter() {
+
+        document.querySelector("#new-submission-table").style.display = "inline-table"
 
         if (document.querySelector("#category").value == "all") {
           window.location.reload()
