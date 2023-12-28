@@ -573,7 +573,8 @@
       })
 
       // Blocks second submission
-      if (getCookie("submitted") == "true") {
+      // only remove for now
+      /* if (getCookie("submitted") == "true") {
         document.querySelectorAll(".heading").forEach(h => {
           h.innerText = "You can only submit once!"
           h.style.color = "red"
@@ -595,7 +596,7 @@
           i.style = "cursor: not-allowed !important"
         })
         document.querySelector("#page6 > button").style.display = "none"
-      }
+      } */
     </script>
   </body>
 </html>
