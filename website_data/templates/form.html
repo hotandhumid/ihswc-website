@@ -444,6 +444,7 @@
 
         for (i = 0; i < inputs.length; i += 1) {
           if (inputs[i].value == "") {
+            console.log("error")
             error.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Please fill out "${inputs[i].previousElementSibling.innerText.replace(":", "")}"`;
             event.preventDefault()
             break;
@@ -567,10 +568,10 @@
 
       // Adds cookie after submitting
       button = document.querySelector(".button")
-      button.addEventListener("click", () => {
-        button.setAttribute("disabled", "true")
-        setCookie("submitted", "true", 600)
-      })
+      // button.addEventListener("click", () => {
+      //   button.setAttribute("disabled", "true")
+      //   setCookie("submitted", "true", 600)
+      // })
 
       // Blocks second submission
       // only remove for now

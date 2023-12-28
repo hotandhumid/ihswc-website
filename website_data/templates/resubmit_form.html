@@ -565,35 +565,35 @@
       }
 
       // Adds cookie after submitting
-      button = document.querySelector(".button")
-      button.addEventListener("click", () => {
-        setCookie("submitted", "true", 600)
-      })
+      // button = document.querySelector(".button")
+      // button.addEventListener("click", () => {
+      //   setCookie("submitted", "true", 600)
+      // })
 
       // Blocks second submission
-      if (getCookie("submitted") == "true") {
-        document.querySelectorAll(".heading").forEach(h => {
-          h.innerText = "You can only submit once!"
-          h.style.color = "red"
-        })
+      // if (getCookie("submitted") == "true") {
+      //   document.querySelectorAll(".heading").forEach(h => {
+      //     h.innerText = "You can only submit once!"
+      //     h.style.color = "red"
+      //   })
 
-        document.querySelectorAll("input").forEach(i => {
-          i.setAttribute("disabled", "disabled")
-          i.setAttribute("tabindex", "-1")
-          i.style = "cursor: not-allowed"
-        })
-        document.querySelectorAll("select").forEach(i => {
-          i.setAttribute("disabled", "disabled")
-          i.setAttribute("tabindex", "-1")
-          i.style = "cursor: not-allowed"
-        })
-        document.querySelectorAll(".file-style *, .file-style").forEach(i => {
-          i.setAttribute("disabled", "disabled")
-          i.setAttribute("tabindex", "-1")
-          i.style = "cursor: not-allowed !important"
-        })
-        document.querySelector("#page6 > button").style.display = "none"
-      }
+      //   document.querySelectorAll("input").forEach(i => {
+      //     i.setAttribute("disabled", "disabled")
+      //     i.setAttribute("tabindex", "-1")
+      //     i.style = "cursor: not-allowed"
+      //   })
+      //   document.querySelectorAll("select").forEach(i => {
+      //     i.setAttribute("disabled", "disabled")
+      //     i.setAttribute("tabindex", "-1")
+      //     i.style = "cursor: not-allowed"
+      //   })
+      //   document.querySelectorAll(".file-style *, .file-style").forEach(i => {
+      //     i.setAttribute("disabled", "disabled")
+      //     i.setAttribute("tabindex", "-1")
+      //     i.style = "cursor: not-allowed !important"
+      //   })
+      //   document.querySelector("#page6 > button").style.display = "none"
+      // }
     </script>
   </body>
 </html>
