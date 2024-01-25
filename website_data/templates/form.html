@@ -257,7 +257,69 @@
       .background-image {
         height: auto !important;
       }
+
     }
+
+    #page6 > div.loading-box {
+      display: none;
+    }
+    .lds-ellipsis {
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: black;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
     </style>
   </head>
 
@@ -334,6 +396,10 @@
           <div id="page6" style="display: none">
             <h2 class='heading' style="text-align: center">Submission 5</h2>
             <!-- <p style="color: red; text-align: center;">Must pay to access Submissions 4-5</p> -->
+            <div class="loading-box">
+              <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+              <p style="text-align: center !important;margin: 0 !important;">Submitting your file...</p>
+            </div>
           </div>
         </div>
         {% csrf_token %}
@@ -442,6 +508,7 @@
           .call(document.querySelectorAll("input"))
           .slice(0, 17);
 
+        confirmed = false
         for (i = 0; i < inputs.length; i += 1) {
           if (inputs[i].value == "") {
             console.log("error")
@@ -449,6 +516,13 @@
             event.preventDefault()
             break;
           }
+          confirmed = true
+        }
+
+        if (confirmed) {
+          document.querySelector("#page6 > button").style.display = "none"
+          document.querySelector(".loading-box").parentElement.appendChild(document.querySelector(".loading-box"))
+          document.querySelector(".loading-box").style.display = "block"
         }
 
         // if (emails.includes(document.querySelector("#id_email").value)) {

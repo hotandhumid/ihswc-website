@@ -359,7 +359,6 @@ def form(request):
                 <body>
                     <h1>{cd['firstname']} {cd['lastname']}</h1>
                     <p>Name: {cd['firstname']} {cd['lastname']}</p>
-                    <p>Name: {cd['firstname']} {cd['lastname']}</p>
                     <p>Email: {cd['email']}</p>
                     <p>CONTACT INFO:</p>
                     <hr>
@@ -367,46 +366,48 @@ def form(request):
                     <p>Country: {cd['country']}</p>
                     <p>City: {cd['city']}</p>
                     <p>Zipcode: {cd['zipcode']}</p>
+                    <!-- 
                     <a href="https://highschoolwritingcontest.com/media/{files['pdf_file1']}">Write a review for 1</a>
                     <a href="https://highschoolwritingcontest.com/media/{files['pdf_file2']}">Write a review for 2</a>
                     <a href="https://highschoolwritingcontest.com/media/{files['pdf_file3']}">Write a review for 3</a>
                     <a href="https://highschoolwritingcontest.com/media/{files['pdf_file4']}">Write a review for 4</a>
                     <a href="https://highschoolwritingcontest.com/media/{files['pdf_file5']}">Write a review for 5</a>
+                    -->
                 </body>
             </html>
             """
             message.attach(MIMEText(html_content, "html"))
             # Attach the PDF file
-            pdf_url1 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file1']}"
-            pdf_url2 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file2']}"
-            pdf_url3 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file3']}"
-            pdf_url4 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file4']}"
-            pdf_url5 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file5']}"
-            pdf_response1 = requests.get(pdf_url1)
-            pdf_response2 = requests.get(pdf_url2)
-            pdf_response3 = requests.get(pdf_url3)
-            pdf_response4 = requests.get(pdf_url4)
-            pdf_response5 = requests.get(pdf_url5)
-            pdf_content1 = pdf_response1.content
-            pdf_content2 = pdf_response2.content
-            pdf_content3 = pdf_response3.content
-            pdf_content4 = pdf_response4.content
-            pdf_content5 = pdf_response5.content
-            pdf_attachment = MIMEApplication(pdf_content1, _subtype="pdf")
-            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
-            message.attach(pdf_attachment)
-            pdf_attachment = MIMEApplication(pdf_content2, _subtype="pdf")
-            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
-            message.attach(pdf_attachment)
-            pdf_attachment = MIMEApplication(pdf_content3, _subtype="pdf")
-            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
-            message.attach(pdf_attachment)
-            pdf_attachment = MIMEApplication(pdf_content4, _subtype="pdf")
-            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
-            message.attach(pdf_attachment)
-            pdf_attachment = MIMEApplication(pdf_content5, _subtype="pdf")
-            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
-            message.attach(pdf_attachment)
+            # pdf_url1 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file1']}"
+            # pdf_url2 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file2']}"
+            # pdf_url3 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file3']}"
+            # pdf_url4 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file4']}"
+            # pdf_url5 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file5']}"
+            # pdf_response1 = requests.get(pdf_url1)
+            # pdf_response2 = requests.get(pdf_url2)
+            # pdf_response3 = requests.get(pdf_url3)
+            # pdf_response4 = requests.get(pdf_url4)
+            # pdf_response5 = requests.get(pdf_url5)
+            # pdf_content1 = pdf_response1.content
+            # pdf_content2 = pdf_response2.content
+            # pdf_content3 = pdf_response3.content
+            # pdf_content4 = pdf_response4.content
+            # pdf_content5 = pdf_response5.content
+            # pdf_attachment = MIMEApplication(pdf_content1, _subtype="pdf")
+            # pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            # message.attach(pdf_attachment)
+            # pdf_attachment = MIMEApplication(pdf_content2, _subtype="pdf")
+            # pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            # message.attach(pdf_attachment)
+            # pdf_attachment = MIMEApplication(pdf_content3, _subtype="pdf")
+            # pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            # message.attach(pdf_attachment)
+            # pdf_attachment = MIMEApplication(pdf_content4, _subtype="pdf")
+            # pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            # message.attach(pdf_attachment)
+            # pdf_attachment = MIMEApplication(pdf_content5, _subtype="pdf")
+            # pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            # message.attach(pdf_attachment)
             with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
                 server.starttls()
                 server.login("api", "c76c34495d8006938a9177c6dff66489")
@@ -439,7 +440,7 @@ def form(request):
 
                     <div style="background-color: #ffffff; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden; width: 80%; max-width: 600px; margin: 0 auto; padding: 20px;">
                         <div style="min-height: calc(100vh - 60px); box-sizing: border-box;">
-                            <p>Hello {cd['firstname']} {cd['lastname']},</p>
+                            <p>Dear {cd['firstname']} {cd['lastname']},</p>
 
                             <p>Your submission has been received!</p>
 
