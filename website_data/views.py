@@ -377,10 +377,34 @@ def form(request):
             """
             message.attach(MIMEText(html_content, "html"))
             # Attach the PDF file
-            pdf_url = "https://www.highschoolwritingcontest.com/media/ThebeautyofuncertaintyinlifebyhyeminKim_Nov.30.2023.pdf"
-            pdf_response = requests.get(pdf_url)
-            pdf_content = pdf_response.content
-            pdf_attachment = MIMEApplication(pdf_content, _subtype="pdf")
+            pdf_url1 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file1']}"
+            pdf_url2 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file2']}"
+            pdf_url3 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file3']}"
+            pdf_url4 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file4']}"
+            pdf_url5 = f"https://www.highschoolwritingcontest.com/media/{files['pdf_file5']}"
+            pdf_response1 = requests.get(pdf_url1)
+            pdf_response2 = requests.get(pdf_url2)
+            pdf_response3 = requests.get(pdf_url3)
+            pdf_response4 = requests.get(pdf_url4)
+            pdf_response5 = requests.get(pdf_url5)
+            pdf_content1 = pdf_response1.content
+            pdf_content2 = pdf_response2.content
+            pdf_content3 = pdf_response3.content
+            pdf_content4 = pdf_response4.content
+            pdf_content5 = pdf_response5.content
+            pdf_attachment = MIMEApplication(pdf_content1, _subtype="pdf")
+            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            message.attach(pdf_attachment)
+            pdf_attachment = MIMEApplication(pdf_content2, _subtype="pdf")
+            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            message.attach(pdf_attachment)
+            pdf_attachment = MIMEApplication(pdf_content3, _subtype="pdf")
+            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            message.attach(pdf_attachment)
+            pdf_attachment = MIMEApplication(pdf_content4, _subtype="pdf")
+            pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
+            message.attach(pdf_attachment)
+            pdf_attachment = MIMEApplication(pdf_content5, _subtype="pdf")
             pdf_attachment.add_header("Content-Disposition", "attachment", filename="attachment.pdf")
             message.attach(pdf_attachment)
             with smtplib.SMTP("live.smtp.mailtrap.io", 587) as server:
