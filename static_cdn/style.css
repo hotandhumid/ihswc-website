@@ -139,9 +139,9 @@ body > nav > ul > li:nth-child(1) > a {
     max-height: 46vh;
   }
 
-  .notification-top-bar {
-    display: none; /* Hide the notification bar on small screens */
-  }
+  /* .notification-top-bar {
+    display: none; 
+  } */
 
   @media (max-width: 768px) {
     .top-nav {
