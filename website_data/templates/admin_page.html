@@ -373,19 +373,28 @@
     </table>
 
     <script>
-      document.querySelectorAll(".judge-reviews").forEach(p => {
-          sum = 0
-          if (p.children.length >= 4) {
+
+    document.querySelectorAll(".judge-reviews").forEach(p => {
+        let sum = 0;
+        let count = 0; // Initialize a counter for elements with class "judge-rating"
+
+        if (p.children.length >= 4) {
             Array.prototype.slice.call(p.children).forEach(pc => {
-              if (pc.classList.contains("judge-rating")) {
-                sum += Number(pc.innerText)
-              }
-            })
-          }
-          average_box = document.createElement("p")
-          average_box.innerText = `Average Rating: ${sum / 2}`
-          p.parentElement.insertBefore(average_box, p.nextElementSibling)
-      })
+                if (pc.classList.contains("judge-rating")) {
+                    sum += Number(pc.innerText);
+                    count++; // Increment count for each "judge-rating" element
+                }
+            });
+        }
+
+        if (count > 0) { // Check to ensure at least one "judge-rating" element was found
+            let average = sum / count;
+            let average_box = document.createElement("p");
+            average_box.innerText = `Average Rating: ${average.toFixed(2)}`; // Format to 2 decimal places
+            p.parentElement.insertBefore(average_box, p.nextElementSibling);
+        }
+    });
+
       function showUngraded() {
         document.querySelectorAll(".submission").forEach(d => d.style.display = "table-row")
         document.querySelectorAll(".graded").forEach(d => {

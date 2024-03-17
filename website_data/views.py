@@ -9,8 +9,9 @@ import smtplib
 import mailtrap as mt
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from email.mime.application import MIMEApplication
-import requests
+from django.shortcuts import render
+from .models import GeneralSettings
+
 
 
 def email_page(request):
@@ -123,6 +124,9 @@ def submission(request):
                 cd = form1.cleaned_data
                 f = JudgeModel1(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'], sub_number=cd['sub_number'])
                 f.save()
+                user_submission = TestFileModel.objects.get(id=cd['submission'])
+                user_submission.judge_model1 = f
+                user_submission.save()
                 return redirect("/admin-page?login=success&user=admin")
         if len(JudgeModel2.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
             form2 = JudgeForm2(request.POST)
@@ -136,6 +140,10 @@ def submission(request):
                 cd = form2.cleaned_data
                 f = JudgeModel2(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'], sub_number=cd['sub_number'])
                 f.save()
+                user_submission = TestFileModel.objects.get(id=cd['submission'])
+                user_submission.judge_model2 = f
+                user_submission.save()
+
                 return redirect("/admin-page?login=success&user=admin")
         if len(JudgeModel3.objects.filter(submission=request.GET['id'], sub_number=request.GET['sub'])) == 0:
             form3 = JudgeForm3(request.POST)
@@ -149,6 +157,9 @@ def submission(request):
                 cd = form3.cleaned_data
                 f = JudgeModel3(graded_by=cd['graded_by'], review=cd['review'], rating=cd['rating'], submission=cd['submission'], sub_number=cd['sub_number'])
                 f.save()
+                user_submission = TestFileModel.objects.get(id=cd['submission'])
+                user_submission.judge_model3 = f
+                user_submission.save()
                 return redirect("/admin-page?login=success&user=admin")
     else:
         form1 = JudgeForm1()
@@ -276,7 +287,17 @@ def test(request):
 
 
 def submit(request):
-    return render(request, "submit.html")
+    # Fetch the 'submissions_open' setting
+    submissions_open_setting = GeneralSettings.objects.filter(key="submissions_open").first()
+    # Check the value field of the setting if it exists, else default to False
+    submissions_open = submissions_open_setting.value if submissions_open_setting and submissions_open_setting.value else False
+
+    if submissions_open:
+        # Render the page for submission form if submissions are open
+        return render(request, 'submit.html')  # Assuming 'submit.html' is your form template
+    else:
+        # Render the 'submission_closed.html' page if submissions are closed
+        return render(request, 'submission_closed.html')
 
 
 def form(request):

@@ -1,10 +1,200 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+    <title>Submission Closed</title>
+
+    <script
+      src="https://kit.fontawesome.com/65a259d37d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../static/style.css" />
+
+    <style>
+      body {
+        background-color: rgb(247, 247, 247);
+        margin: 0px;
+        min-height: 0 !important;
+      }
+
+      .box {
+        display: flex;
+        margin: 80px auto;
+        height: 600px;
+        width: 1000px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px 0px gray;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      h1 {
+        margin-bottom: 30px !important;
+      }
+
+      i {
+        margin-left: 20px;
+      }
+
+      input {
+        margin-top: 30px;
+        width: 350px;
+        height: 40px;
+        border-radius: 10px;
+        border: 2px solid rgb(126, 126, 126);
+        padding: 10px;
+        font-size: 20px;
+      }
+
+      input:focus {
+        border: 2px solid rgb(113, 178, 255);
+      }
+
+      button {
+        height: 50px;
+        width: 150px;
+        font-size: 15px;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        background-color: rgb(66, 146, 255);
+        display: block;
+        margin: 50px auto;
+      }
+
+      button:hover {
+        cursor: pointer;
+        background-color: rgb(66, 124, 206);
+      }
+
+      #error {
+        color: rgb(233, 104, 5);
+      }
+
+      body > nav > ul > li:nth-child(2) > a {
+          color: black;
+          background-color: white;
+      }
+      @media (max-width: 768px) {
+        div.box {
+          width: unset !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <ul class="top-nav">
+      <img class="logo" src="../static/jack_logo.png" alt="" />
+      <div class="vl"></div>
+      <div class="title-nav">
+        <h1>International High School Writing Contest</h1>
+        <div class="underline-text">
+          <h2>Sponsored by</h2>
+          <h2 style="text-decoration: underline; margin-left: 6px !important">
+            Writing Waves
+          </h2>
+        </div>
+      </div>
+    </ul>
+
+    <nav>
+      <ul class="right">
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </nav>
+
+    <div class="mobile-nav">
+      <a href="javascript:void(0);" id="nav-button" onclick="mobileNav()">
+        <i class="fa-solid fa-bars"></i>
+      </a>
+      <ul>
+        <li><a href="/home" style="color: white; background-color: rgba(0, 0, 0, 0);">Home</a></li>
+        <li><a href="/submit">Submit</a></li>
+        <li><a href="/awards">Awards</a></li>
+        <li><a href="/process">Our Process</a></li>
+        <li><a href="/about">About Us</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </div>
+    <script>
+      function mobileNav() {
+        if (document.querySelector("body > div.mobile-nav > ul").style.display == "none") {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "block"
+        }
+        else {
+          document.querySelector("body > div.mobile-nav > ul").style.display = "none"
+        }
+      }
+    </script>
+
+
+    <div class="box">
+        <h1>Submissions Are Currently Closed</h1>
+        <p>We're sorry, but we are not accepting submissions at this time.<br>Thank you for your interest, and please check back later for updates.</p>
+    </div>
+
+    <footer>
+      <h3>
+          Contact <a style="margin-right: 5px;" href="mailto:internationalhswritingcontest@gmail.com">us</a> | Check out our Instagram!
+          <a style="margin-left: 25px;" href='https://www.instagram.com/highschool.writing/'>
+              <img src="../static/instagram_logo.png" >
+          </a>
+      </h3>
+      <h3>Sponsored by <a href="https://writingwaves.org">writingwaves.org</a></h3>
+      <h3>©2023 by International High School Writing Competition</h3>
+    </footer>
+    
+    <script>
+      inp1 = document.querySelector("#password");
+      inp1.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          if (username.value == "admin" && password.value == "12345") {
+            location.href = "/admin-page?login=success&user=admin";
+          } else {
+            p = document.querySelector("#error");
+            p.innerText = "Incorrect username or password";
+          }
+        }
+      });
+
+      inp2 = document.querySelector("#username");
+      inp2.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          if (username.value == "admin" && password.value == "12345") {
+            location.href = "/admin-page?login=success&user=admin";
+          } else {
+            p = document.querySelector("#error");
+            p.innerText = "Incorrect username or password";
+          }
+        }
+      });
+
+      button = document.querySelector("button");
+
+      button.addEventListener("click", function () {
+        username = document.querySelector("#username");
+        password = document.querySelector("#password");
+
+        if (username.value == "admin" && password.value == "12345") {
+          location.href = "/admin-page?login=success&user=admin";
+        } else {
+          p = document.querySelector("#error");
+          p.innerText = "Incorrect username or password";
+        }
+      });
+    </script>
+  </body>
 </html>
