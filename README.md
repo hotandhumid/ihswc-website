@@ -1,4 +1,4 @@
-# Jack's Website
+# Writing Contest Website
 
 ## **RUN THIS IN TERMINAL BEFORE MAKING CHANGES**
 
